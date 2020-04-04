@@ -1,0 +1,39 @@
+<nb-card>
+  <nb-card-header>
+    รายชื่อพนักงาน
+  </nb-card-header>
+
+  <nb-card-body>
+  <!-- <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table> -->
+  <table mdbTable>
+    <thead>
+      <tr>
+        <th style="font-size: 20px; height: 40px; background-color: #FFA500; color: white;  text-align: center;" *ngFor="let head of displayedColumns"
+          scope="col">{{head}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let el of dataSource | paginate: { itemsPerPage: 6, currentPage: p }"
+        [ngStyle]="{'width':column === 'รหัสพนักงาน' ? '100px' : '' }">
+        <th style="background-color: #FFD480; text-align: center;" scope="row"  >{{el.id}}</th>
+        <td>{{el.title}} {{el.name}} {{el.surname}}</td>
+        <td>{{el.email}}</td>
+        <td><img [src]="el.image" /></td>
+        <div style="margin: auto; padding: 30px;">
+          <button nbButton status="warning" style=" background-color: rgb(240, 236, 9); color: black;" id="edit"
+            (click)="editRow(el._id)">EDIT</button>
+          &nbsp;
+          &nbsp;
+          <button nbButton status="danger" style=" background-color: rgb(240, 75, 10); color: white;" id="remove"
+            (click)="deleteRow(el._id)">DELETE</button>
+
+          <!-- <nb-icon id="edit" (click)="editRow(el._id)" [icon]="arrow-down-c" pack="ion"></nb-icon> -->
+        </div>
+      </tr>
+    </tbody>
+    
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </nb-card-body>
+</nb-card>
