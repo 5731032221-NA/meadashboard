@@ -1,3 +1,27 @@
+<!-- <ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template> -->
 <nb-card>
   <nb-card-header>
     Daily Dashboard
@@ -12,9 +36,7 @@
           <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
             <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Employee</b>
           </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{empcount}}</h4>
-          </div>
+          <button class="btn btn-lg btn-outline-primary" (click)="empDialog()">{{empcount}}</button>
         </div>
       </div>
       <div class="col-lg-2">
@@ -22,9 +44,7 @@
           <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
             <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Ontime</b>
           </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{ontimecount}}</h4>
-          </div>
+          <button class="btn btn-lg btn-outline-primary" (click)="ontimeDialog()">{{ontimecount}}</button>
         </div>
       </div>
       <div class="col-lg-2">
@@ -32,19 +52,15 @@
           <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
             <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Late</b>
           </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{latecount}}</h4>
-          </div>
+          <button class="btn btn-lg btn-outline-primary" (click)="lateDialog()">{{latecount}}</button>
         </div>
       </div>
       <div class="col-lg-2">
         <div class="card">
           <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Ansent</b>
+            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Absent</b>
           </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{ansentcount}}</h4>
-          </div>
+          <button class="btn btn-lg btn-outline-primary" (click)="absentDialog()">{{ansentcount}}</button>
         </div>
       </div>
       <div class="col-lg-2">
@@ -52,9 +68,7 @@
           <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
             <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Overtime</b>
           </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{overtimecount}}</h4>
-          </div>
+          <button class="btn btn-lg btn-outline-primary" (click)="overtimeDialog()">{{overtimecount}}</button>
         </div>
       </div>
     </div>

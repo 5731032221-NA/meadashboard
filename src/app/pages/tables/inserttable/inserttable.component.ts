@@ -7,14 +7,15 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 const httpHeaders = new HttpHeaders({
-  'Content-Type' : 'application/json'
-}); 
+  'Content-Type': 'application/json'
+});
 const httpHeaders2 = new HttpHeaders({
   // 'Content-Type' : 'multipart/form-data'
-}); 
+});
 const options = {
   headers: httpHeaders
-}; 
+};
+
 
 // import { BlobService, UploadConfig, UploadParams } from 'angular-azure-blob-service'
 // interface TreeNode<T> {
@@ -88,7 +89,7 @@ export class TreeGridComponent {
   //     ],
   //   },
   // ];
-  
+
 
   // getShowOn(index: number) {
   //   const minWithForMultipleColumns = 400;
@@ -99,7 +100,7 @@ export class TreeGridComponent {
   checkoutForm;
   imageFile: File
   titles;
-  
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -110,7 +111,7 @@ export class TreeGridComponent {
     //   storageAccount: 'oneteamblob',
     //   containerName: 'meapicture'
     // }
-    
+
   ) {
     this.titles = ['นาย', 'นาง', 'น.ส.']
     this.checkoutForm = this.formBuilder.group({
@@ -125,8 +126,8 @@ export class TreeGridComponent {
 
   onSubmit(customerData) {
     let formData: any = new FormData();
-    
-    formData.append('photo',this.imageFile );
+
+    formData.append('photo', this.imageFile);
     let options2 = {
       // method: 'POST',
       // body: formData,
@@ -136,16 +137,22 @@ export class TreeGridComponent {
     // this.items = this.cartService.clearCart();
     // console.log(customerData)
     // customerData.append({"image":"https://oneteamblob.blob.core.windows.net/meapicture/"+customerData.id+".jpg"})
-    customerData.image = "https://oneteamblob.blob.core.windows.net/meapicture/"+customerData.id+".jpg";
+    customerData.image = "https://oneteamblob.blob.core.windows.net/meapicture/" + customerData.id + ".jpg";
     this.checkoutForm.reset();
     console.log(customerData.name)
-    this.http.post<any>('http://20.188.110.129:3000/uploadid/'+customerData.id,{}).subscribe(uploadid => 
-      this.http.post<any>('http://20.188.110.129:3000/upload',formData,options2).subscribe(upload => 
-      this.http.post<any>('http://20.188.110.129:3000/postmeaprofile',customerData,options).subscribe(done => console.log(done)) ) );
-    
-    
+    this.http.post<any>('http://20.188.110.129:3000/uploadid/' + customerData.id, {}).subscribe(uploadid =>
+      this.http.post<any>('http://20.188.110.129:3000/upload', formData, options2).subscribe(upload =>
+        this.http.post<any>('http://20.188.110.129:3000/postmeaprofile', customerData, options).subscribe(done => //console.log(done)
+        this.http.post<any>('http://20.188.110.129:3000/posttrainimage', '{"id": "'+customerData.id+'","imageUrl": "'+customerData.image+'" }', options).subscribe(az1 =>
+            console.log(az1)
+          )
+        )
+      )
+    );
+
+
     // let a = this.http.post<any>('http://20.188.110.129:3000/postmeaprofile',customerData,options).subscribe(hero => console.log(hero));
-    
+
     // if (this.imageFile !== null) {
     //   const baseUrl = this.blob.generateBlobUrl(this.Config, this.imageFile.name);
     //   let config = {
@@ -159,7 +166,7 @@ export class TreeGridComponent {
     //     error: (err) => {
     //       console.log('Error:', err);
     //     },
-        
+
     //   };
     //   this.blob.upload(config);
     // }
@@ -171,7 +178,7 @@ export class TreeGridComponent {
     this.imageFile = event.target.files[0]
   }
 
-  
+
 }
 
 @Component({

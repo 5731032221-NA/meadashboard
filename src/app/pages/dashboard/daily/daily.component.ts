@@ -1,13 +1,19 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Color } from 'ng2-charts';
-// import { LocalDataSource } from 'ng2-smart-table';
 
-// import { SmartTableData } from '../../../@core/data/smart-table';
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+// import { Observable, of } from 'rxjs';
+// import { map, catchError, tap } from 'rxjs/operators';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {EmployeeComponent} from './popup/employee/employee.component'
+import {AbsentComponent} from './popup/absent/absent.component'
+import {LateComponent} from './popup/late/late.component'
+import {OntimeComponent} from './popup/ontime/ontime.component'
+import {OvertimeComponent} from './popup/overtime/overtime.component'
+
+
 // import { NbIconLibraries } from '@nebular/theme';
 
 @Component({
@@ -267,7 +273,47 @@ export class DailyComponent {
     }
   }
 
-  constructor(private http: HttpClient, private router: Router) {
+  empDialog(): void {
+    const dialogRef = this.dialog.open(EmployeeComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+      // this.email = result;
+    // });
+  }
+
+  absentDialog(): void {
+    const dialogRef = this.dialog.open(AbsentComponent, {
+      width: '300px',
+      data: {}
+    });
+
+  }
+  lateDialog(): void {
+    const dialogRef = this.dialog.open(LateComponent, {
+      width: '300px',
+      data: {}
+    });
+
+  }
+  ontimeDialog(): void {
+    const dialogRef = this.dialog.open(OntimeComponent, {
+      width: '300px',
+      data: {}
+    });
+
+  }
+  overtimeDialog(): void {
+    const dialogRef = this.dialog.open(OvertimeComponent, {
+      width: '300px',
+      data: {}
+    });
+
+  }
+
+  constructor(private http: HttpClient, private router: Router ,public dialog: MatDialog) {
 
 
     this.http.get<any>('http://20.188.110.129:3000/countmeaprofile').subscribe((res) => { this.empcount = res; })
@@ -384,15 +430,15 @@ export class DailyComponent {
               });
 
             getmeaprofile.forEach((element) => {
-              if (element.name == bestempval) {
+              if (element.id == bestempval) {
                 this.bestemp = bestempval;
                 this.bestempimg = element.image;
               }
-              if (element.name == happyval) {
+              if (element.id == happyval) {
                 this.happyperson = happyval;
                 this.happypersonimg = element.image;
               }
-              if (element.name == MEAloverval) {
+              if (element.id == MEAloverval) {
                 this.mealover = MEAloverval;
                 this.mealoverimg = element.image;
               }

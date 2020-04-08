@@ -12,7 +12,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ChartsModule } from 'ng2-charts';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
-
+import { MatDialogModule, MatButtonModule } from '@angular/material';
+// import {EmployeeComponent} from './daily/popup/employee/employee.component'
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeComponent } from './daily/popup/employee/employee.component';
+import { AbsentComponent } from './daily/popup/absent/absent.component';
+import { LateComponent } from './daily/popup/late/late.component';
+import { OntimeComponent } from './daily/popup/ontime/ontime.component';
+import { OvertimeComponent } from './daily/popup/overtime/overtime.component';
 
 
 @NgModule({
@@ -32,10 +39,22 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle'
     ChartsModule,
     // BrowserAnimationsModule,
     MatButtonToggleModule,
+    MatDialogModule,
+    MatButtonModule,
+    // EmployeeComponent,
     // BlobModule,
   ],
   declarations: [
     ...routedComponents,
+    EmployeeComponent,
+    AbsentComponent,
+    OntimeComponent,
+    LateComponent,
+    OvertimeComponent
   ],
+  entryComponents: [EmployeeComponent,AbsentComponent,
+    OntimeComponent,
+    LateComponent,
+    OvertimeComponent],
 })
 export class DashboardModule { }
