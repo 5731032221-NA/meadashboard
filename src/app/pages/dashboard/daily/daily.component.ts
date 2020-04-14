@@ -497,7 +497,7 @@ export class DailyComponent {
               if (element.id == bestempval) {
                 this.bestempin = element.checkin;
                 this.bestempout = element.checkout;
-                let hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise)*100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise)*100;
+                let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise)*100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise)*200)/2;
                 if(hap > 100) hap = 100;
                 this.bestemphap = hap +"%";
                 this.bestemphour = ( bestemphighestVal/60) +"."+ ("0" + ( bestemphighestVal%60)).slice(-2);
@@ -506,7 +506,7 @@ export class DailyComponent {
               if (element.id == MEAloverval) {
                 this.mealoverin = element.checkin;
                 this.mealoverout = element.checkout;
-                let hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise)*100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise)*100;
+                let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise)*100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise)*200)/2;
                 if(hap > 100) hap = 100;
                 this.mealoverhap = hap +"%";
                 this.mealoverhour = (  getworktime[MEAloverval]/60) +"."+ ("0" + ( getworktime[MEAloverval]%60)).slice(-2);
