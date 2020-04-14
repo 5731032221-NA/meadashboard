@@ -20,7 +20,8 @@ import { AbsentComponent } from './daily/popup/absent/absent.component';
 import { LateComponent } from './daily/popup/late/late.component';
 import { OntimeComponent } from './daily/popup/ontime/ontime.component';
 import { OvertimeComponent } from './daily/popup/overtime/overtime.component';
-
+import { EmoComponent } from './daily/popup/emo/emo.component';
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { OvertimeComponent } from './daily/popup/overtime/overtime.component';
     MatButtonToggleModule,
     MatDialogModule,
     MatButtonModule,
+    BarRatingModule,
     // EmployeeComponent,
     // BlobModule,
   ],
@@ -50,11 +52,13 @@ import { OvertimeComponent } from './daily/popup/overtime/overtime.component';
     AbsentComponent,
     OntimeComponent,
     LateComponent,
-    OvertimeComponent
+    OvertimeComponent,
+    EmoComponent
   ],
   entryComponents: [EmployeeComponent,AbsentComponent,
     OntimeComponent,
     LateComponent,
-    OvertimeComponent],
+    OvertimeComponent,
+    EmoComponent],
 })
 export class DashboardModule { }

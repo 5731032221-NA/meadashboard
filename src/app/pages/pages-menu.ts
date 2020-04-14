@@ -119,8 +119,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'home-outline',
     children: [
       {
-        title: 'Daily',
+        title: 'Daily Dashboard',
         link: '/pages/dashboard/daily',
+      },
+      {
+        title: 'Historical Dashboard',
+        link: '/pages/dashboard/historical',
       },
       // {
       //   title: 'DailyMock',
@@ -166,11 +170,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   ],
   // },
   {
-    title: 'ข้อมูลพนักงาน',
+    title: 'Employee',
     icon: 'people-outline',
     children: [
       {
-        title: 'แสดงข้อมูลพนักงาน',
+        title: 'Employee Profile',
         icon: 'clipboard-outline',
         link: '/pages/tables/smart-table',
       },
@@ -179,7 +183,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       //   link: '/pages/tables/smart-table2',
       // },
       {
-        title: 'เพิ่มข้อมูลพนักงาน',
+        title: 'Add New Employee',
         icon: 'person-add-outline',
         link: '/pages/tables/tree-grid',
       }

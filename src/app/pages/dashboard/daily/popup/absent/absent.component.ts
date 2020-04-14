@@ -12,8 +12,10 @@ interface DialogData {
 })
 export class AbsentComponent implements OnInit {
 
-  displayedColumns = ['รหัสพนักงาน', 'ชื่อ-สกุล'];
+  displayedColumns = ['No.','รหัสพนักงาน', 'ชื่อ-สกุล', 'รูปภาพ'];
   dataSource: any[];
+  p: number = 1;
+  itemsPerPage: number = 15;
   
 
   constructor(
@@ -25,6 +27,10 @@ export class AbsentComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  absoluteIndex(indexOnPage: number): number {
+    return this.itemsPerPage * (this.p - 1) + indexOnPage;
   }
 
   ngOnInit() {

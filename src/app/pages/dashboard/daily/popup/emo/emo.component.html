@@ -1,5 +1,5 @@
 <div style="background-color: white;">
-    <h1 mat-dialog-title>Overtime data</h1>
+    <h1 mat-dialog-title>Employee data</h1>
     <!-- <div mat-dialog-content>
   <p>What's your email?</p>
   <mat-form-field>
@@ -17,11 +17,9 @@
                 <th scope="row">{{ itemsPerPage * (p - 1) + i + 1}}</th>
                 <td>{{el.id}}</td>
                 <td>{{el.title}} {{el.name}} {{el.surname}}</td>
-                <td>{{el.checkout}}</td>
                 <td><img [src]="el.image" /></td>
             </tr>
         </tbody>
-
     </table>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
 

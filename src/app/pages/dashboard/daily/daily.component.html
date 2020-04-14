@@ -24,86 +24,110 @@
 </ng-template> -->
 <nb-card>
   <nb-card-header>
-    Daily Dashboard
+    <div style="color: #ff7701;">&#9125; DAILY DASHBOARD </div>
   </nb-card-header>
 
   <nb-card-body>
-
-
+   
     <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Employee</b>
+        <div class="card1" (click)="empDialog()">
+          <div class="card-title1">
+            <table class="t_detail1">
+              <tr>
+                <td style="padding: 20px 10px 0 10px;">Employee</td>
+                <td rowspan="2" class="tc1_2"><img src="assets/images/m_overall.png" width="60px" /></td>
+              </tr>
+              <tr>
+                <td class="tc1_1">{{empcount}}</td>
+              </tr>
+            </table>
+
           </div>
-          <button class="btn btn-lg btn-outline-primary" (click)="empDialog()">{{empcount}}</button>
         </div>
       </div>
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Ontime</b>
+        <div class="card2" (click)="ontimeDialog()">
+          <div class="card-title2">
+            <table class="t_detail2">
+              <tr>
+                <td style="padding: 20px 10px 0 10px;">Ontime</td>
+                <td rowspan="2" class="tc2_2"><img src="assets/images/m_ontime.png" width="60px" /></td>
+              </tr>
+              <tr>
+                <td class="tc2_1">{{ontimecount}}</td>
+              </tr>
+            </table>
           </div>
-          <button class="btn btn-lg btn-outline-primary" (click)="ontimeDialog()">{{ontimecount}}</button>
         </div>
       </div>
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Late</b>
+        <div class="card3" (click)="lateDialog()">
+          <div class="card-title3">
+            <table class="t_detail3">
+              <tr>
+                <td style="padding: 20px 10px 0 10px;">Late</td>
+                <td rowspan="2" class="tc3_2"><img src="assets/images/m_late.png" width="50px" /></td>
+              </tr>
+              <tr>
+                <td class="tc3_1">{{latecount}}</td>
+              </tr>
+            </table>
+
           </div>
-          <button class="btn btn-lg btn-outline-primary" (click)="lateDialog()">{{latecount}}</button>
         </div>
       </div>
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Absent</b>
+        <div class="card4" (click)="absentDialog()">
+          <div class="card-title4">
+            <table class="t_detail4">
+              <tr>
+                <td style="padding: 20px 10px 0 10px;">Absent</td>
+                <td rowspan="2" class="tc4_2"><img src="assets/images/m_absent.png" width="60px" /></td>
+              </tr>
+              <tr>
+                <td class="tc4_1">{{ansentcount}}</td>
+              </tr>
+            </table>
           </div>
-          <button class="btn btn-lg btn-outline-primary" (click)="absentDialog()">{{ansentcount}}</button>
         </div>
       </div>
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Overtime</b>
+        <div class="card5" (click)="overtimeDialog()">
+          <div class="card-title5">
+            <table class="t_detail5">
+              <tr>
+                <td style="padding: 20px 10px 0 10px;">Overtime</td>
+                <td rowspan="2" class="tc5_2"><img src="assets/images/m_overtime.png" width="60px" /></td>
+              </tr>
+              <tr>
+                <td class="tc5_1">{{overtimecount}}</td>
+              </tr>
+            </table>
           </div>
-          <button class="btn btn-lg btn-outline-primary" (click)="overtimeDialog()">{{overtimecount}}</button>
         </div>
       </div>
     </div>
+    <!------------------------- Session Two - Emotional Graph ---------------------------------->
+
     <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
-      <div class="col-lg-1">
-      </div>
-      <img src="assets/images/Happy_O.png" height="40" width="40"><img src="assets/images/Surprised_O.png" height="40"
-        width="40">
-      <div class="col-lg-1">
-      </div>
-    </div>
-    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-          [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors">
+          [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors" height="50px">
         </canvas>
       </div>
     </div>
     <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
       <div class="col-lg-1">
       </div>
-      <img src="assets/images/Sadness_O.png" height="40" width="40"><img src="assets/images/Fear_O.png" height="40"
-        width="40">
-      <img src="assets/images/Disgust_O.png" height="40" width="40"><img src="assets/images/Contempt_O.png" height="40"
-        width="40">
-      <img src="assets/images/Angry_O.png" height="40" width="40">
+
       <div class="col-lg-1">
       </div>
     </div>
 
 
-    <!-- <a style="color:#2993d9; font-size: 30px; ">Happy </a>
-    <a style="color: #d93229; font-size: 30px; ">Unhappy </a>
-    <a style="color: #adadaa; font-size: 30px; ">Neutral </a> -->
-    <mat-button-toggle-group #group="matButtonToggleGroup" [value]="selectedVal" (change)="onValChange(group.value)" >
+    <!------------------SESSION TREE EMOTIONAL GROUP ---------------->
+    <mat-button-toggle-group #group="matButtonToggleGroup" [value]="selectedVal" (change)="onValChange(group.value)">
       <mat-button-toggle value="Overall">
         Overall
       </mat-button-toggle>
@@ -118,18 +142,27 @@
       </mat-button-toggle>
     </mat-button-toggle-group>
     <!-- <div class="example-selected-value">Selected value: {{group.value}}</div>     -->
-    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2" style="border-style: groove;">
+    <div class="row d-flex justify-content-around align-items-stretch mb-auto"
+      style="border-color:#ece2e2; border-style:ridge; border-width: 1px; width: 100%; margin: -1.5px 0 0 0">
       <div class="col-lg-8">
         <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
 
-          <div class="col-lg-2"><img src="assets/images/male.png" height="100" width="100"></div>
+          <div class="col-lg-2" style="background-color: rgba(22, 92, 188, 0.6); border-radius: 10px 0  0 10px; display:flex; align-items: center;
+          justify-content: center; ">
+            <div (click)="emoDialog('male')">
+              <img src="{{'assets/images/male_'+emoicon+'.png'}}" width="32">
+            </div>
+          </div>
 
-          <div class="col-lg-2">
-            <h4 style="margin-top: auto; color: #7a7877; font-size: 50px; align-self: center; ">{{malecount}}</h4>
+          <div class="col-lg-2" style="background-color: rgba(22, 92, 188, 1); border-radius: 0 10px  10px 0; display:flex; align-items: center;
+          justify-content: center;">
+            <div (click)="emoDialog('male')">
+              <h4 style="color: #ffffff; font-size: 50px; ">{{malecount}}</h4>
+            </div>
           </div>
           <div class="col-lg-8">
             <canvas baseChart [datasets]="maleBarChartData" [labels]="ChartLabels" [options]="barChartOptions"
-              [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors2">
+              [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors1" height="70px">
             </canvas>
           </div>
           <div class="col-lg-4">
@@ -137,22 +170,33 @@
         </div>
       </div>
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Entry</b>
-          </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{maleentrycount}}</h4>
+        <div class="card6">
+          <div class="card-title6">
+            <table class="t_detail6">
+              <tr>
+                <td style="padding: 20px 0px 0 10px;">Average <br />Walk-In</td>
+                <td rowspan="2" class="tc6_2"><img src="assets/images/entry.png" width="40px" /></td>
+              </tr>
+              <tr>
+                <td class="tc6_1">{{maleentrycount}}</td>
+              </tr>
+            </table>
           </div>
         </div>
+
       </div>
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Exit</b>
-          </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{maleexitcount}}</h4>
+        <div class="card6">
+          <div class="card-title6">
+            <table class="t_detail6">
+              <tr>
+                <td style="padding: 20px 0px 0 10px;">Average <br />Walk-Out </td>
+                <td rowspan="2" class="tc6_2"><img src="assets/images/exit.png" width="40px" /></td>
+              </tr>
+              <tr>
+                <td class="tc6_1">{{maleexitcount}}</td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
@@ -162,18 +206,26 @@
 
 
 
-    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2" style="border-style: groove;">
+    <div class="row d-flex justify-content-around align-items-stretch mb-auto"
+      style="border-color:#ece2e2; border-style:ridge; border-width: 1px; width: 100%; margin: -1px 0 0 0">
       <div class="col-lg-8">
         <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
 
-          <div class="col-lg-2"><img src="assets/images/female.png" height="100" width="100"></div>
-
-          <div class="col-lg-2">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{femalecount}}</h4>
+          <div class="col-lg-2" style="background-color: rgba(235, 71, 70, 0.6); border-radius: 10px 0  0 10px; display:flex; align-items: center;
+          justify-content: center; ">
+            <div (click)="emoDialog('female')">
+              <img src="{{'assets/images/female_'+emoicon+'.png'}}" width="40">
+            </div>
+          </div>
+          <div class="col-lg-2" style="background-color: rgba(235, 71, 70, 1); border-radius: 0 10px  10px 0; display:flex; align-items: center;
+          justify-content: center;">
+            <div (click)="emoDialog('female')">
+              <h4 style="color: #ffffff; font-size: 50px; ">{{femalecount}}</h4>
+            </div>
           </div>
           <div class="col-lg-8">
             <canvas baseChart [datasets]="femaleBarChartData" [labels]="ChartLabels" [options]="barChartOptions"
-              [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors2">
+              [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors2" height="70px">
             </canvas>
           </div>
           <div class="col-lg-4">
@@ -181,60 +233,129 @@
         </div>
       </div>
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Entry</b>
-          </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{femaleentrycount}}</h4>
+        <div class="card7">
+          <div class="card-title7">
+            <table class="t_detail7">
+              <tr>
+                <td style="padding: 20px 0px 0 10px;">Average <br />Walk-In </td>
+                <td rowspan="2" class="tc7_2"><img src="assets/images/entry.png" width="40px" /></td>
+              </tr>
+              <tr>
+                <td class="tc7_1">{{femaleentrycount}}</td>
+              </tr>
+            </table>
           </div>
         </div>
+
       </div>
       <div class="col-lg-2">
-        <div class="card">
-          <div class="card-title" style="background-color: #e8e4e1; padding-bottom: 5px;">
-            <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">Exit</b>
+        <div class="card7">
+          <div class="card-title7">
+            <table class="t_detail7">
+              <tr>
+                <td style="padding: 20px 0px 0 10px;">Average <br />Walk-Out </td>
+                <td rowspan="2" class="tc7_2"><img src="assets/images/exit.png" width="40px" /></td>
+              </tr>
+              <tr>
+                <td class="tc7_1">{{femaleexitcount}}</td>
+              </tr>
+            </table>
           </div>
-          <div class="card-body">
-            <h4 style="color: #7a7877; font-size: 50px; align-self: center; ">{{femaleexitcount}}</h4>
-          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 2% 0;">
+      <span style="color: #f7661e; font-size: 28px; font-weight: bold; ">&#9733; Super Star of The Day</span>
+    </div>
+
+    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2"
+      style="border-color:#ece2e2; border-style:solid; border-width: 1px; width: 100%; margin: 10px 0 0 0; border-radius: 10px;">
+      <div class="col-lg-2" style="display:flex; align-items: center; justify-content: center; ">
+        <img src="assets/images/thebest.png" width="100px" />
+      </div>
+      <div class="col-lg-1" style="display:flex; align-items: center; justify-content: center; ">
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 100%;">
+          <span style="color: #676767; font-size: 22px; font-weight: bold; ">The&nbsp;Best </span>
+          <span style="color: #7a7877; font-size: 22px; "> Employee</span>
+        </div>
+      </div>
+      <div class="col-lg-6" style="display:flex; align-items: center; justify-content:flex-start;padding-left: 12% ">
+        <img [src]="bestempimg" width="80px" style="border-radius: 15px;" />
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
+          <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{bestempname}}</span><br />
+          <span style="color: #7a7877; font-size: 14px; ">ID: {{bestemp}}</span>
+        </div>
+      </div>
+      <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
+        <div style="display: block; text-align: left;">
+          <span style="color: #ff7701;font-size: 14px; "><b>Walk-In Time</b>: {{bestempin}} </span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b>Walk-Out Time</b>: {{bestempout}}</span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Average
+              Happiness</b>: {{bestemphap}}</span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b>Working Hours</b>: {{bestemphour}}hrs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2"
+      style="border-color:#ece2e2; border-style:solid; border-width: 1px; width: 100%; margin: 10px 0 0 0; border-radius: 10px;">
+      <div class="col-lg-2" style="display:flex; align-items: center; justify-content: center; ">
+        <img src="assets/images/happyperson.png" width="100px" />
+      </div>
+      <div class="col-lg-1" style="display:flex; align-items: center; justify-content: center; ">
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 90%;">
+          <span style="color: #676767; font-size: 22px; font-weight: bold; ">Happiness </span>
+          <span style="color: #7a7877; font-size: 22px; "> Person</span>
+        </div>
+      </div>
+      <div class="col-lg-6" style="display:flex; align-items: center; justify-content:flex-start;padding-left: 12% ">
+        <img [src]="happypersonimg" width="80px" style="border-radius: 15px;" />
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
+          <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{happypersonname}} </span><br />
+          <span style="color: #7a7877; font-size: 14px; ">ID: {{happyperson}}</span>
+        </div>
+      </div>
+      <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
+        <div style="display: block; text-align: left;">
+          <!-- <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-In
+              Time</b>: 09:30 </span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-Out
+              Time</b>: 17:45</span><br /> -->
+          <!-- <span style="color: #ff7701;font-size: 14px; "><b>Average Happiness</b>: 0.75%</span><br /> -->
+          <bar-rating [(rate)]="rate" [max]="5" [readOnly]="true"></bar-rating>
+          <!-- <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Working
+              Hours</b>: 8.3hrs</span> -->
         </div>
       </div>
     </div>
 
 
-    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
-      <div class="col-lg-6">
-        <h4 style="color: #7a7877; font-size: 30px; align-self: center; ">The best employee</h4>
+    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2"
+      style="border-color:#ece2e2; border-style:solid; border-width: 1px; width: 100%; margin: 10px 0 0 0; border-radius: 10px;">
+      <div class="col-lg-2" style="display:flex; align-items: center; justify-content: center; ">
+        <img src="assets/images/mealover.png" width="100px" />
       </div>
-      <div class="col-lg-6">
-        <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
-          <img [src]="bestempimg" height="117" width="100"/>
-          <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">name: {{bestemp}}</b>
+      <div class="col-lg-1" style="display:flex; align-items: center; justify-content: center; ">
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 140%;">
+          <span style="color: #676767; font-size: 22px; font-weight: bold; ">Mea </span>
+          <span style="color: #7a7877; font-size: 22px; "> Lover</span>
         </div>
       </div>
-    </div>
-
-    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
-      <div class="col-lg-6">
-        <h4 style="color: #7a7877; font-size: 30px; align-self: center; ">Happiness Person</h4>
-      </div>
-      <div class="col-lg-6">
-        <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
-          <img [src]="happypersonimg" height="117" width="100"/>
-          <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">name: {{happyperson}}</b>
+      <div class="col-lg-6" style="display:flex; align-items: center; justify-content:flex-start;padding-left: 12% ">
+        <img [src]="mealoverimg" width="80px" style="border-radius: 15px;" />
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
+          <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{mealovername}}</span><br />
+          <span style="color: #7a7877; font-size: 14px; ">ID: {{mealover}}</span>
         </div>
       </div>
-    </div>
-
-    <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
-      <div class="col-lg-6">
-        <h4 style="color: #7a7877; font-size: 30px; align-self: center; ">MEA Lovers</h4>
-      </div>
-      <div class="col-lg-6">
-        <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
-          <img [src]="mealoverimg" height="117" width="100" />
-          <b style="color: #7a7877;padding-left: 3%; font-size: 15px; align-self: center; ">name: {{mealover}}</b>
+      <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
+        <div style="display: block; text-align: left;">
+          <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-In
+              Time</b>: {{mealoverin}} </span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-Out
+              Time</b>: {{mealoverout}}</span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b>Average Happiness</b>: {{mealoverhap}}</span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b>Working Hours</b>: {{mealoverhour}}hrs</span>
         </div>
       </div>
     </div>

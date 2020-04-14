@@ -13,10 +13,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr mdbTableCol *ngFor="let el of dataSource | paginate: { itemsPerPage: 20, currentPage: p }">
-                <th scope="row">{{el.id}}</th>
+            <tr mdbTableCol *ngFor="let el of dataSource |  paginate: { currentPage: p, itemsPerPage: itemsPerPage }; let i= index; ">
+                <th scope="row">{{ itemsPerPage * (p - 1) + i + 1}}</th>
+                <td>{{el.id}}</td>
                 <td>{{el.title}} {{el.name}} {{el.surname}}</td>
                 <td>{{el.checkin}}</td>
+                <td><img [src]="el.image" /></td>
             </tr>
         </tbody>
 

@@ -12,9 +12,14 @@ interface DialogData {
 })
 export class LateComponent implements OnInit {
 
-  displayedColumns = ['รหัสพนักงาน', 'ชื่อ-สกุล','เวลาเข้างาน'];
+
+  displayedColumns = ['No.','รหัสพนักงาน', 'ชื่อ-สกุล','เวลาเข้างาน', 'รูปภาพ'];
   dataSource: any[];
-  
+  p: number = 1;
+  itemsPerPage: number = 15;
+  absoluteIndex(indexOnPage: number): number {
+    return this.itemsPerPage * (this.p - 1) + indexOnPage;
+  }
 
   constructor(
     private http: HttpClient,
