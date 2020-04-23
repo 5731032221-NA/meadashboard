@@ -21,7 +21,7 @@ import { LateComponent } from './daily/popup/late/late.component';
 import { OntimeComponent } from './daily/popup/ontime/ontime.component';
 import { OvertimeComponent } from './daily/popup/overtime/overtime.component';
 import { EmoComponent } from './daily/popup/emo/emo.component';
-import { BarRatingModule } from "ngx-bar-rating";
+// import { BarRatingModule } from "ngx-bar-rating";
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
@@ -52,7 +52,7 @@ export function highchartsModules() {
     MatButtonToggleModule,
     MatDialogModule,
     MatButtonModule,
-    BarRatingModule,
+    // BarRatingModule,
     ProgressbarModule,
     HighchartsChartModule,
     ChartModule,
