@@ -21,6 +21,7 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +44,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     }),
     CoreModule.forRoot(),
     ButtonsModule.forRoot(),
+    ProgressbarModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })

@@ -1,74 +1,75 @@
-<nb-card>
-  <nb-card-header>
+<div class="frame">
+  <h1 mat-dialog-title class="hd">แก้ไขข้อมูลพนักงาน</h1>
+  <nb-card>
+    <!-- <nb-card-header>
     แก้ไขข้อมูลพนักงาน
-  </nb-card-header>
-  <nb-card-body>
+  </nb-card-header> -->
+    <div class="row"></div>
+    <div class="col-sm-6">
+      <nb-card-body>
 
-    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-      
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
 
-      <div>
-        <label for="name">
-          คำนำหน้าชื่อ: &nbsp;
-        </label>
-        <input id="name" type="text" formControlName="title">
-      </div>
 
-      <div>
-        <label for="address">
-          ชื่อ: &nbsp;
-        </label>
-        <input id="address" type="text" formControlName="name">
-      </div>
+          <div>
+            <label for="title">
+              คำนำหน้าชื่อ: &nbsp;
+            </label>
+            <input id="title" type="text" formControlName="title">
+          </div>
 
-      <div>
-        <label for="address">
-          นามสกุล: &nbsp;
-        </label>
-        <input id="address" type="text" formControlName="surname">
-      </div>
+          <div>
+            <label for="name">
+              ชื่อ: &nbsp;
+            </label>
+            <input id="name" type="text" formControlName="name">
+          </div>
 
-      <div>
-        <label for="address">
-          อีเมล: &nbsp;
-        </label>
-        <input id="address" type="text" formControlName="email">
-      </div>
+          <div>
+            <label for="surname">
+              นามสกุล: &nbsp;
+            </label>
+            <input id="surname" type="text" formControlName="surname">
+          </div>
 
-      
+          <div>
+            <label for="position">
+              ตำแหน่ง: &nbsp;
+            </label>
+            <input id="position" type="text" formControlName="position">
+          </div>
 
-      <button class="button" type="submit">แก้ไขข้อมูล</button>
+          <div>
+            <label for="email">
+              อีเมล: &nbsp;
+            </label>
+            <input id="email" type="text" formControlName="email">
+          </div>
 
-    </form>
 
-    <!-- <label class="search-label" for="search">Search:</label>
-    <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input">
 
-    <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+          <button class="button" type="submit">แก้ไขข้อมูล</button>
 
-      <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
-      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+        </form>
 
-      <ng-container [nbTreeGridColumnDef]="customColumn">
-        <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
-          {{customColumn}}
-        </th>
-        <td nbTreeGridCell *nbTreeGridCellDef="let row">
-          <ngx-fs-icon [kind]="row.data.kind" [expanded]="row.expanded"></ngx-fs-icon>
-          {{row.data[customColumn]}}
-        </td>
-      </ng-container>
+      </nb-card-body>
+    </div>
+    <div class="col-sm-6">
+      <!-- <form [formGroup]="changepic" (ngSubmit)="(changepic.value)"> -->
+        
+        <div>
+          <label for="image">
+            รูปภาพ: &nbsp;
+          </label>
+          <input nbButton type="file" (change)="onFileChanged($event)">
+        </div>
 
-      <ng-container *ngFor="let column of defaultColumns; let index = index"
-                    [nbTreeGridColumnDef]="column"
-                    [showOn]="getShowOn(index)">
-        <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
-          {{column}}
-        </th>
-        <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
-      </ng-container>
 
-    </table> -->
+        <button nbButton status="primary" type="submit"  (click)="onSubmitPic()">แก้ไขรูปภาพ</button>
+        <!-- <button nbButton >เพิ่มข้อมูล</button> -->
 
-  </nb-card-body>
-</nb-card>
+      <!-- </form> -->
+    </div>
+
+  </nb-card>
+</div>

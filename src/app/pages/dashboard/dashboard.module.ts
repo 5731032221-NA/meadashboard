@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {NbSelectModule,NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule } from '@nebular/theme';
+import { NbSelectModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule } from '@nebular/theme';
 // import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -8,10 +8,10 @@ import { TablesRoutingModule, routedComponents } from './dashboard-routing.modul
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { BlobModule } from 'angular-azure-blob-service';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ChartsModule } from 'ng2-charts';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonToggleModule} from '@angular/material/button-toggle'
+import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatDialogModule, MatButtonModule } from '@angular/material';
 // import {EmployeeComponent} from './daily/popup/employee/employee.component'
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +22,16 @@ import { OntimeComponent } from './daily/popup/ontime/ontime.component';
 import { OvertimeComponent } from './daily/popup/overtime/overtime.component';
 import { EmoComponent } from './daily/popup/emo/emo.component';
 import { BarRatingModule } from "ngx-bar-rating";
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
+import stock from 'highcharts/modules/stock.src';
+import more from 'highcharts/highcharts-more.src';
+import * as exporting from 'highcharts/modules/exporting.src';
+import * as exportData from 'highcharts/modules/export-data.src';
+export function highchartsModules() {
+  return [stock, more,exporting,exportData];
+}
 
 @NgModule({
   imports: [
@@ -43,6 +53,9 @@ import { BarRatingModule } from "ngx-bar-rating";
     MatDialogModule,
     MatButtonModule,
     BarRatingModule,
+    ProgressbarModule,
+    HighchartsChartModule,
+    ChartModule,
     // EmployeeComponent,
     // BlobModule,
   ],
@@ -55,10 +68,13 @@ import { BarRatingModule } from "ngx-bar-rating";
     OvertimeComponent,
     EmoComponent
   ],
-  entryComponents: [EmployeeComponent,AbsentComponent,
+  entryComponents: [EmployeeComponent, AbsentComponent,
     OntimeComponent,
     LateComponent,
     OvertimeComponent,
     EmoComponent],
+  providers: [
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } // add as factory to your providers
+  ]
 })
 export class DashboardModule { }

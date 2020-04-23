@@ -9,7 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { BlobModule } from 'angular-azure-blob-service';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {EditTableComponent} from './edittable/edittable.component'
+import {DeletetableTableComponent} from './deletetable/deletetable.component'
 
+import { MatDialogModule } from '@angular/material';
 
 
 @NgModule({
@@ -26,11 +29,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    MatDialogModule,
     // BlobModule,
   ],
   declarations: [
     ...routedComponents,
     FsIconComponent,
+    EditTableComponent,
+    DeletetableTableComponent,
   ],
+  entryComponents: [EditTableComponent,DeletetableTableComponent],
 })
 export class TablesModule { }

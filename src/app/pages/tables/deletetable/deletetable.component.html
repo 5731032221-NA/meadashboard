@@ -1,0 +1,10 @@
+<nb-card-body style="background-color: white;">
+<h1 mat-dialog-title>Warning!</h1>
+<div mat-dialog-content >
+  <p>Are you sure you want to delete id {{data.nameid}}?</p>
+  <div md-dialog-actions >
+    <button  (click)="dialogRef.close(false)">Cancel</button>
+    <button   (click)="onSubmit()">Yes</button>
+  </div>
+</div>
+</nb-card-body>

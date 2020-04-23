@@ -13,10 +13,10 @@ interface DialogData {
 export class EmployeeComponent implements OnInit {
 
 
-  displayedColumns = ['No.','รหัสพนักงาน', 'ชื่อ-สกุล', 'รูปภาพ'];
+  displayedColumns = ['No.','ID', 'First Name - Last Name', 'Profile Picture'];
   dataSource: any[];
   p: number = 1;
-  itemsPerPage: number = 15;
+  itemsPerPage: number = 10;
   absoluteIndex(indexOnPage: number): number {
     return this.itemsPerPage * (this.p - 1) + indexOnPage;
   }

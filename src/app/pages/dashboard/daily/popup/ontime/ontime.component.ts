@@ -12,10 +12,10 @@ interface DialogData {
 })
 export class OntimeComponent implements OnInit {
 
-  displayedColumns = ['No.','รหัสพนักงาน', 'ชื่อ-สกุล','เวลาเข้างาน', 'รูปภาพ'];
+  displayedColumns = ['No.','ID', 'First Name - Last Name', 'Walk-In Time', 'Profile Picture'];
   dataSource: any[];
   p: number = 1;
-  itemsPerPage: number = 15;
+  itemsPerPage: number = 10;
   absoluteIndex(indexOnPage: number): number {
     return this.itemsPerPage * (this.p - 1) + indexOnPage;
   }

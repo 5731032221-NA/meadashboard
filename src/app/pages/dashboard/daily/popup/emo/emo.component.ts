@@ -14,10 +14,10 @@ interface DialogData {
 export class EmoComponent implements OnInit {
 
 
-  displayedColumns = ['No.', 'รหัสพนักงาน', 'ชื่อ-สกุล', 'รูปภาพ'];
+  displayedColumns = ['No.','ID', 'First Name - Last Name',  'Walk-In Time', 'Walk-Out Time', 'Profile Picture'];
   dataSource: any[];
   p: number = 1;
-  itemsPerPage: number = 15;
+  itemsPerPage: number = 10;
   absoluteIndex(indexOnPage: number): number {
     return this.itemsPerPage * (this.p - 1) + indexOnPage;
   }
@@ -26,6 +26,7 @@ export class EmoComponent implements OnInit {
     private http: HttpClient,
     public dialogRef: MatDialogRef<EmoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    
     if (data.emo == "Overall") {
       this.http.get<any>('http://20.188.110.129:3000/getmeaprofile').subscribe((getmeaprofile) => {
         this.http.get<any[]>('http://20.188.110.129:3000/getmeabygender/' + data.gender).subscribe((res) => { this.dataSource = res })

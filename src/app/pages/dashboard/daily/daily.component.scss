@@ -1,7 +1,5 @@
 @import '../../../@theme/styles/themes';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '~ngx-bar-rating/themes/br-default-theme.css';
-@import '~ngx-bar-rating/themes/br-horizontal-theme';
 @include nb-install-component() {
   nb-card {
     transform: translate3d(0, 0, 0);
@@ -200,13 +198,47 @@
     border-radius: 0 0.4rem 0.4rem 0;
   }
   /*---------------Card 6 Male Session----------------------*/
+  .card6m{
+    background-color: rgba(22, 92, 188, 0.99);
+    border-radius: 0.5rem;
+    width: 150px;
+    margin-top: 8px;
+  }
+  .card6m:hover{
+    background-color:rgb(1, 85, 202);
+    border-radius: 0.5rem;
+  }
+  .card6m:hover .tc6m_1{
+    background-color:rgb(1, 85, 202);
+  } 
+  .t_detail6m{
+    border-radius: 0.4rem;
+    color: #ffffff;
+    width: 150px;
+    height: 100%;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .tc6m_1{
+    background-color: rgba(22, 92, 188, 0.99);
+    border-radius: 0 0 0.4rem 0.4rem;
+    padding: 5% 0% 10% 0%;
+    font-size: 22px;
+  }
+  .tc6m_2{
+    padding:10% 5% 10% 5%; 
+    background-color: #467bc5;
+    border-radius: 0 0.4rem 0.4rem 0;
+  }
+
+
   .card6{
     background-color: rgba(22, 92, 188, 0.99);
     border-radius: 0.5rem;
     width: 150px;
     margin-top: 8px;
   }
-   
   .t_detail6{
     border-radius: 0.4rem;
     color: #ffffff;
@@ -266,4 +298,5 @@
   // th.id {
   //   width: 40% ;
   // }
+
 }

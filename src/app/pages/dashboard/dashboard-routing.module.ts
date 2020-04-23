@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { DailyComponent as d1} from './daily/daily.component';
-import { DailyComponent as d2} from './dailymock/daily.component';
+// import { DailyComponent as d2} from './dailymock/daily.component';
+import { HistoricalComponent} from './historical/historical.component';
 
 
 
@@ -16,8 +17,8 @@ const routes: Routes = [{
       component: d1,
     },
     {
-      path: 'dailymock',
-      component: d2,
+      path: 'historical',
+      component: HistoricalComponent,
     }
   ],
 }];
@@ -30,5 +31,5 @@ export class TablesRoutingModule { }
 
 export const routedComponents = [
   DashboardComponent,
-  d1,d2,
+  d1,HistoricalComponent,
 ];

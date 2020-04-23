@@ -28,7 +28,7 @@
   </nb-card-header>
 
   <nb-card-body>
-   
+
     <div class="row d-flex justify-content-around align-items-stretch mb-auto p-2">
       <div class="col-lg-2">
         <div class="card1" (click)="empDialog()">
@@ -178,7 +178,7 @@
                 <td rowspan="2" class="tc6_2"><img src="assets/images/entry.png" width="40px" /></td>
               </tr>
               <tr>
-                <td class="tc6_1">{{maleentrycount}}</td>
+                <td class="tc6_1">{{maleavgwalkin}}</td>
               </tr>
             </table>
           </div>
@@ -194,7 +194,7 @@
                 <td rowspan="2" class="tc6_2"><img src="assets/images/exit.png" width="40px" /></td>
               </tr>
               <tr>
-                <td class="tc6_1">{{maleexitcount}}</td>
+                <td class="tc6_1">{{maleavgwalkout}}</td>
               </tr>
             </table>
           </div>
@@ -241,7 +241,7 @@
                 <td rowspan="2" class="tc7_2"><img src="assets/images/entry.png" width="40px" /></td>
               </tr>
               <tr>
-                <td class="tc7_1">{{femaleentrycount}}</td>
+                <td class="tc7_1">{{femaleavgwalkin}}</td>
               </tr>
             </table>
           </div>
@@ -257,7 +257,7 @@
                 <td rowspan="2" class="tc7_2"><img src="assets/images/exit.png" width="40px" /></td>
               </tr>
               <tr>
-                <td class="tc7_1">{{femaleexitcount}}</td>
+                <td class="tc7_1">{{femaleavgwalkout}}</td>
               </tr>
             </table>
           </div>
@@ -283,6 +283,7 @@
         <img [src]="bestempimg" width="80px" style="border-radius: 15px;" />
         <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{bestempname}}</span><br />
+          <span style="color: #7a7877; font-size: 14px; ">{{bestemppo}}</span><br />
           <span style="color: #7a7877; font-size: 14px; ">ID: {{bestemp}}</span>
         </div>
       </div>
@@ -312,19 +313,26 @@
         <img [src]="happypersonimg" width="80px" style="border-radius: 15px;" />
         <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{happypersonname}} </span><br />
+          <span style="color: #7a7877; font-size: 14px; ">{{happypersonpo}}</span><br />
           <span style="color: #7a7877; font-size: 14px; ">ID: {{happyperson}}</span>
         </div>
       </div>
       <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
         <div style="display: block; text-align: left;">
-          <!-- <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-In
-              Time</b>: 09:30 </span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-In
+              Time</b>: {{happyin}} </span><br />
           <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-Out
-              Time</b>: 17:45</span><br /> -->
-          <!-- <span style="color: #ff7701;font-size: 14px; "><b>Average Happiness</b>: 0.75%</span><br /> -->
-          <bar-rating [(rate)]="rate" [max]="5" [readOnly]="true"></bar-rating>
-          <!-- <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Working
-              Hours</b>: 8.3hrs</span> -->
+              Time</b>: {{happyout}}</span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Working
+              Hours</b>: {{happyhour}}hrs</span><br />
+              
+          <span style="color: #ff7701;font-size: 14px; "><b>Average Happiness:</b></span><br />
+          <div style="width: 200px;">
+            
+              <progressbar class="probar" [value]="happypersonhap" type="warning" >{{happypersonhap}}</progressbar>
+            
+          </div>
+          
         </div>
       </div>
     </div>
@@ -345,6 +353,7 @@
         <img [src]="mealoverimg" width="80px" style="border-radius: 15px;" />
         <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{mealovername}}</span><br />
+          <span style="color: #7a7877; font-size: 14px; ">{{mealoverpo}}</span><br />
           <span style="color: #7a7877; font-size: 14px; ">ID: {{mealover}}</span>
         </div>
       </div>

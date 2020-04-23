@@ -1,12 +1,13 @@
-<div style="background-color: white;">
-    <h1 mat-dialog-title>Employee data</h1>
+<div class="{{'frame_'+data.gender}}">
+    <h1 mat-dialog-title class="{{'hd_'+data.gender}}">Employee List</h1>
     <!-- <div mat-dialog-content>
   <p>What's your email?</p>
   <mat-form-field>
     <input matInput [(ngModel)]="data.email">
   </mat-form-field>
 </div> -->
-    <table mdbTable>
+<div class="{{'tablebg_'+data.gender}}">
+    <table mdbTable style="width: 100%;">
         <thead>
             <tr>
                 <th *ngFor="let head of displayedColumns" scope="col">{{head}} </th>
@@ -14,14 +15,17 @@
         </thead>
         <tbody>
             <tr mdbTableCol *ngFor="let el of dataSource |  paginate: { currentPage: p, itemsPerPage: itemsPerPage }; let i= index; ">
-                <th scope="row">{{ itemsPerPage * (p - 1) + i + 1}}</th>
+                <td scope="row" style="padding-right: 5%; padding-left: 5%;">{{ itemsPerPage * (p - 1) + i + 1}}</td>
                 <td>{{el.id}}</td>
-                <td>{{el.title}} {{el.name}} {{el.surname}}</td>
-                <td><img [src]="el.image" /></td>
+                <td style="text-align: left; padding-left: 2%;">{{el.title}} {{el.name}} {{el.surname}}</td>
+                <td class="{{'hl_'+data.gender}}}">{{el.checkin}}</td>
+                <td class="{{'hl_'+data.gender}}}">{{el.checkout}}</td>
+                <td style="padding-right: 5%; padding-left: 5%;"><img [src]="el.image" /></td>
             </tr>
         </tbody>
     </table>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>    
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 
     <!-- <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()">Close</button>

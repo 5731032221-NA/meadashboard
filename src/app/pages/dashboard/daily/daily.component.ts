@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { Color } from 'ng2-charts';
+import { Label, Color } from 'ng2-charts';
 
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -13,8 +13,9 @@ import { LateComponent } from './popup/late/late.component'
 import { OntimeComponent } from './popup/ontime/ontime.component'
 import { OvertimeComponent } from './popup/overtime/overtime.component'
 import { EmoComponent } from './popup/emo/emo.component'
+import { ThrowStmt } from '@angular/compiler';
 
-
+// import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 // import { NbIconLibraries } from '@nebular/theme';
 
 @Component({
@@ -23,6 +24,21 @@ import { EmoComponent } from './popup/emo/emo.component'
   styleUrls: ['./daily.component.scss'],
 })
 export class DailyComponent {
+
+  // public barChartOptions: ChartOptions = {
+  //   responsive: true,
+  // };
+  // public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  // public barChartType: ChartType = 'bar';
+  // public barChartLegend = true;
+  // public barChartPlugins = [];
+
+  // public barChartData: ChartDataSets[] = [
+  //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+  //   { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+  // ];
+
+
   empcount: number = 0;
   ontimecount: number = 0;
   latecount: number = 0;
@@ -34,32 +50,45 @@ export class DailyComponent {
   femaleentrycount: number = 0;
   maleexitcount: number = 0;
   femaleexitcount: number = 0;
+  maleavgwalkin: string = "00:00";
+  maleavgwalkout: string = "00:00";
+  femaleavgwalkin: string = "00:00";
+  femaleavgwalkout: string = "00:00";
+
   emoicon: string = "all";
 
-  bestemp: string = "";
-  happyperson: string = "";
-  mealover: string = "";
+  bestemp: string = "-";
+  happyperson: string = "-";
+  mealover: string = "-";
   rate: number = 3;
 
   bestempimg: string = "";
   happypersonimg: string = "";
   mealoverimg: string = "";
 
-  bestempname: string = "";
-  happypersonname: string = "";
-  mealovername: string = "";
+  bestempname: string = "-";
+  happypersonname: string = "-";
+  mealovername: string = "-";
 
-  bestempin: string = "";
-  mealoverin: string = "";
+  bestempin: string = "-";
+  mealoverin: string = "-";
+  happyin: string = "-";
 
-  bestempout: string = "";
-  mealoverout: string = "";
+  bestempout: string = "-";
+  mealoverout: string = "-";
+  happyout: string = "-";
 
-  bestemphour: string = "";
-  mealoverhour: string = "";
+  bestemphour: string = "-";
+  mealoverhour: string = "-";
+  happyhour: string = "-";
 
-  bestemphap: string = "";
-  mealoverhap: string = "";
+  bestemphap: string = "-";
+  mealoverhap: string = "-";
+  happypersonhap: number = 65.5;
+
+  happypersonpo: string = "-";
+  bestemppo: string = "-";
+  mealoverpo: string = "-";
 
   public happy = [];
   public unhappy = [];
@@ -68,6 +97,51 @@ export class DailyComponent {
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
+
+  };
+
+  public barChartOptions2 = {
+    // scaleShowVerticalLines: false,
+    responsive: true,
+    legend: {
+      display: false,
+      labels: {
+        fontColor: 'rgb(255, 99, 132)'
+      }
+    },
+    tooltips: {
+      enabled: false,
+      callbacks: {
+        label: function (tooltipItem) {
+          return tooltipItem.yLabel;
+        }
+      }
+    },
+    hover: { mode: null },
+    scales: {
+      xAxes: [{
+        stacked: true, display: false, gridLines: {
+          color: "rgba(0, 0, 0, 0)",
+        }
+      }],
+      yAxes: [{
+        stacked: true, gridLines: {
+          color: "rgba(0, 0, 0, 0)",
+        }
+      }],
+
+    }
+
+
+    //   scales: {
+    //     yAxis: [{
+    //         ticks: {
+    //             beginAtZero:true,
+    //             min: 0,
+    //             max: 100
+    //         }
+    //     }]
+    // }
   };
   //public barChartLabels = ['06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00'];
   public barChartLabels = ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
@@ -97,6 +171,9 @@ export class DailyComponent {
     { data: [0, 0, 0, 0, 0, 0, 0, 0], label: 'Unhappy' }
   ];
 
+  public happbarType = 'horizontalBar';
+  public happybardata = [{ data: [10] }, { data: [90] }];
+
   public barChartColors: Color[] = [
     { backgroundColor: 'rgba(255, 119, 1, 0.6)', borderColor: 'rgba(255, 119, 1, 0.9)', borderWidth: 0.8, hoverBackgroundColor: 'rgba(255, 119, 1, 0.75)', },
     { backgroundColor: 'rgba(125, 125, 125, 0.5)', borderColor: 'rgba(125, 125, 125, 0.9)', borderWidth: 0.8, hoverBackgroundColor: 'rgba(125, 125, 125, 0.75)' },
@@ -109,6 +186,11 @@ export class DailyComponent {
   ]
 
   public barChartColors2: Color[] = [
+    { backgroundColor: 'rgba(235, 71, 70, 0.6)', borderColor: 'rgba(235, 71, 70, 0.9)', borderWidth: 0.8, hoverBackgroundColor: 'rgba(235, 71, 70, 0.9)' },
+
+  ]
+
+  public barChartColors3: Color[] = [
     { backgroundColor: 'rgba(235, 71, 70, 0.6)', borderColor: 'rgba(235, 71, 70, 0.9)', borderWidth: 0.8, hoverBackgroundColor: 'rgba(235, 71, 70, 0.9)' },
 
   ]
@@ -304,10 +386,9 @@ export class DailyComponent {
 
   emoDialog(gender): void {
     const dialogRef = this.dialog.open(EmoComponent, {
-      width: '500px',
+      width: '820px',
       data: { emo: this.selectedVal, gender: gender }
     });
-
     // dialogRef.afterClosed().subscribe(result => {
     // this.email = result;
     // });
@@ -315,7 +396,7 @@ export class DailyComponent {
 
   empDialog(): void {
     const dialogRef = this.dialog.open(EmployeeComponent, {
-      width: '500px',
+      width: '600px',
       data: {}
     });
 
@@ -326,28 +407,28 @@ export class DailyComponent {
 
   absentDialog(): void {
     const dialogRef = this.dialog.open(AbsentComponent, {
-      width: '500px',
+      width: '600px',
       data: {}
     });
 
   }
   lateDialog(): void {
     const dialogRef = this.dialog.open(LateComponent, {
-      width: '500px',
+      width: '700px',
       data: {}
     });
 
   }
   ontimeDialog(): void {
     const dialogRef = this.dialog.open(OntimeComponent, {
-      width: '500px',
+      width: '700px',
       data: {}
     });
 
   }
   overtimeDialog(): void {
     const dialogRef = this.dialog.open(OvertimeComponent, {
-      width: '500px',
+      width: '700px',
       data: {}
     });
 
@@ -367,12 +448,29 @@ export class DailyComponent {
       this.malecount = res.entry + res.exit;
       this.maleentrycount = res.entry;
       this.maleexitcount = res.exit;
+      let ihh = res.entryhh / parseInt(res.entry);
+      let imm = (ihh - Math.floor(ihh)) * 60 + (res.entrymm / parseInt(res.entry))
+
+      let ohh = res.exithh / parseInt(res.exit);
+      let omm = (ohh - Math.floor(ohh)) * 60 + (res.exitmm / parseInt(res.exit))
+
+      this.maleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
+      this.maleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
+
     })
 
     this.http.get<any>('http://20.188.110.129:3000/getcountexitbygender/female').subscribe((res) => {
       this.femalecount = res.entry + res.exit;
       this.femaleentrycount = res.entry;
       this.femaleexitcount = res.exit;
+      let ihh = res.entryhh / parseInt(res.entry);
+      let imm = (ihh - Math.floor(ihh)) * 60 + (res.entrymm / parseInt(res.entry))
+
+      let ohh = res.exithh / parseInt(res.exit);
+      let omm = (ohh - Math.floor(ohh)) * 60 + (res.exitmm / parseInt(res.exit))
+
+      this.femaleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
+      this.femaleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
     })
 
 
@@ -434,23 +532,35 @@ export class DailyComponent {
             let bestemp = {};
             let happy = {};
             let MEAlover = {};
+            let MEAlover2 = {};
 
 
             Object.keys(gethappy).forEach((element) => {
               if (happy[element] == null) happy[element] = gethappy[element];
               else happy[element] += gethappy[element];
 
-              if (MEAlover[element] == null) MEAlover[element] = gethappy[element];
-              else MEAlover[element] += gethappy[element];
+              if (getworktime[element] > 480) {
+                if (MEAlover[element] == null) MEAlover[element] = gethappy[element];
+                else MEAlover[element] += gethappy[element];
+              }
+
+              if (MEAlover2[element] == null) MEAlover2[element] = gethappy[element];
+                else MEAlover2[element] += gethappy[element];
 
             })
 
             Object.keys(getworktime).forEach((element) => {
-              if (bestemp[element] == null) bestemp[element] = getworktime[element];
-              else bestemp[element] += getworktime[element];
+              // if (bestemp[element] == null) bestemp[element] = getworktime[element];
+              // else bestemp[element] += getworktime[element];
+              bestemp[element] = getworktime[element];
+              if (getworktime[element] > 480) {
+                if (MEAlover[element] == null) MEAlover[element] = Math.abs(getworktime[element]) / 4.80;
+                else MEAlover[element] += Math.abs(getworktime[element]) / 4.80;
+              }
 
-              if (MEAlover[element] == null) MEAlover[element] = gethappy[element];
-              else MEAlover[element] += gethappy[element];
+              if (MEAlover2[element] == null) MEAlover2[element] = Math.abs(getworktime[element]) / 4.80;
+              else MEAlover2[element] += Math.abs(getworktime[element]) / 4.80;
+
 
             })
 
@@ -458,6 +568,13 @@ export class DailyComponent {
               bestempval = Object.keys(bestemp).find(function (a) {
                 return bestemp[a] === bestemphighestVal;
               });
+            if (bestemphighestVal < 0) {
+              var bestemphighestVal = Math.min.apply(null, Object.values(bestemp)),
+                bestempval = Object.keys(bestemp).find(function (a) {
+                  return bestemp[a] === bestemphighestVal;
+                });
+            }
+
 
             var happyhighestVal = Math.max.apply(null, Object.values(happy)),
               happyval = Object.keys(happy).find(function (a) {
@@ -469,47 +586,86 @@ export class DailyComponent {
                 return MEAlover[a] === MEAloverhighestVal;
               });
 
+              var MEAloverhighestVal2 = Math.max.apply(null, Object.values(MEAlover2)),
+              MEAloverval2 = Object.keys(MEAlover2).find(function (a) {
+                return MEAlover2[a] === MEAloverhighestVal2;
+              });
+
+            console.log("Mealovve",MEAlover);
+            console.log("Mealovveval",MEAloverval2);
+
             getmeaprofile.forEach((element) => {
               if (element.id == bestempval) {
-                this.bestempname = element.name + " " +element.surname;
+                this.bestempname = element.name + " " + element.surname;
                 this.bestemp = bestempval;
                 this.bestempimg = element.image;
+                this.bestemppo = element.position;
               }
               if (element.id == happyval && happyhighestVal != 0) {
-                this.happypersonname = element.name + " " +element.surname;
+                this.happypersonname = element.name + " " + element.surname;
                 this.happyperson = happyval;
                 this.happypersonimg = element.image;
-                if (happyhighestVal >= 750) this.rate = 5;
-                else if (happyhighestVal >= 600) this.rate = 4;
-                else if (happyhighestVal >= 400) this.rate = 3;
-                else if (happyhighestVal >= 200) this.rate = 2;
-                else this.rate = 1;
-
+                if (happyhighestVal >= 100) this.happypersonhap = 100;
+                // else if (happyhighestVal >= 60) this.rate = 4;
+                // else if (happyhighestVal >= 40) this.rate = 3;
+                // else if (happyhighestVal >= 20) this.rate = 2;
+                else this.happypersonhap = happyhighestVal;
+                this.happypersonpo = element.position;
               }
               if (element.id == MEAloverval) {
-                this.mealovername = element.name + " " +element.surname;
+                this.mealovername = element.name + " " + element.surname;
                 this.mealover = MEAloverval;
                 this.mealoverimg = element.image;
+                this.mealoverpo = element.position;
+              }
+              if(Object.keys(MEAlover).length === 0){
+                if (element.id == MEAloverval2) {
+                  this.mealovername = element.name + " " + element.surname;
+                  this.mealover = MEAloverval2;
+                  this.mealoverimg = element.image;
+                  this.mealoverpo = element.position;
+                }
               }
             });
-
+            console.log("len",Object.keys(MEAlover).length === 0);
             getcheckin.forEach((element) => {
               if (element.id == bestempval) {
                 this.bestempin = element.checkin;
                 this.bestempout = element.checkout;
-                let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise)*100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise)*200)/2;
-                if(hap > 100) hap = 100;
-                this.bestemphap = hap +"%";
-                this.bestemphour = ( bestemphighestVal/60) +"."+ ("0" + ( bestemphighestVal%60)).slice(-2);
+                let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
+                if (hap > 100) hap = 100;
+                this.bestemphap = hap + "%";
+                this.bestemphour = (bestemphighestVal / 60) + "." + ("0" + (bestemphighestVal % 60)).slice(-2);
+
               }
-             
+
               if (element.id == MEAloverval) {
                 this.mealoverin = element.checkin;
                 this.mealoverout = element.checkout;
-                let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise)*100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise)*200)/2;
-                if(hap > 100) hap = 100;
-                this.mealoverhap = hap +"%";
-                this.mealoverhour = (  getworktime[MEAloverval]/60) +"."+ ("0" + ( getworktime[MEAloverval]%60)).slice(-2);
+                let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
+                if (hap > 100) hap = 100;
+                this.mealoverhap = hap + "%";
+                this.mealoverhour = (getworktime[MEAloverval] / 60) + "." + ("0" + (getworktime[MEAloverval] % 60)).slice(-2);
+              }
+
+              if(Object.keys(MEAlover).length === 0){
+                if (element.id == MEAloverval2) {
+                  this.mealoverin = element.checkin;
+                  this.mealoverout = element.checkout;
+                  let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
+                  if (hap > 100) hap = 100;
+                  this.mealoverhap = hap + "%";
+                  this.mealoverhour = (getworktime[MEAloverval2] / 60) + "." + ("0" + (getworktime[MEAloverval2] % 60)).slice(-2);
+                }
+              }
+
+              if (element.id == happyval) {
+                this.happyin = element.checkin;
+                this.happyout = element.checkout;
+                let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
+                if (hap > 100) hap = 100;
+                this.happypersonhap = hap;
+                this.happyhour = (getworktime[happyval] / 60) + "." + ("0" + (getworktime[happyval] % 60)).slice(-2);
               }
             });
           });
