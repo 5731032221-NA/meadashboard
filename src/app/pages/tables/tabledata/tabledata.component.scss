@@ -7,9 +7,11 @@
   img {
     width: 100px;
     height: 117px;
+    border-radius: 60%;
   }
-  tr {text-align: center;}
-  tr:nth-child(even) {background-color: #FFEE99;
+  tr {text-align: center; border-radius: 30px; border-collapse: collapse; overflow: hidden;}
+  tr:nth-child(even) {background-color: #F8F8F8;
+    border-radius: 30px;border-collapse: collapse; overflow: hidden;
     }
     .form-inline [fullWidth] {
       flex: 1;

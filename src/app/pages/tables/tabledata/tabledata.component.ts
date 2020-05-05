@@ -18,7 +18,7 @@ import { DeletetableTableComponent } from '../deletetable/deletetable.component'
   styleUrls: ['./tabledata.component.scss'],
 })
 export class SmartTableComponent {
-  displayedColumns = ['ID', 'First Name - Last Name', 'Position', 'Email','Walk-In Time','Walk-Out Time', 'Profile Picture', 'Action'];
+  displayedColumns = ['#','รหัสพนักงาน', 'ชื่อ - สกุล', 'ตำแหน่ง', 'อีเมล์','เวลาเข้างาน','เวลาออกงาน',  'แก้ไข'];
   dataSource: any[];
   p: number = 1;
 
@@ -36,7 +36,8 @@ export class SmartTableComponent {
             
             if(element.id == tt.id){
               element['checkin'] =  tt.checkin;
-              element['checkout'] =  tt.checkout;
+              if(tt.checkout == '') element['checkout'] =  '-';
+              else element['checkout'] =  tt.checkout;
             }
   
           })

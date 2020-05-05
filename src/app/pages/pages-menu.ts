@@ -173,11 +173,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   ],
   // },
   {
-    title: 'Employee',
+    title: 'ข้อมูลพนักงาน',
     icon: 'people-outline',
     children: [
       {
-        title: 'Employee Profile',
+        title: 'แสดงข้อมูลพนักงาน',
         icon: 'clipboard-outline',
         link: '/pages/tables/smart-table',
       },
@@ -186,7 +186,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       //   link: '/pages/tables/smart-table2',
       // },
       {
-        title: 'Add New Employee',
+        title: 'เพิ่มข้อมูลพนักงาน',
         icon: 'person-add-outline',
         link: '/pages/tables/tree-grid',
       }

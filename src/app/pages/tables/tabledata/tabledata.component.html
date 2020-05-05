@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header>
-    <div style="color: #ff7701;">&#9125; EMPLOYEE PROFILE </div>
+    <div style="color: #ff7701;">&#9125; แสดงข้อมูลพนักงาน </div>
   </nb-card-header>
 
   <nb-card-body>
@@ -8,28 +8,29 @@
     </ng2-smart-table> -->
   <table mdbTable style="width: 100%;">
     <thead>
-      <tr>
-        <th style="font-size: 20px; height: 40px; background-color: #FFA500; color: white;  text-align: center;" *ngFor="let head of displayedColumns"
+      <tr >
+        <th style="font-size: 20px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;" *ngFor="let head of displayedColumns"
           scope="col">{{head}} </th>
       </tr>
     </thead>
     <tbody>
       <tr mdbTableCol *ngFor="let el of dataSource | paginate: { itemsPerPage: 6, currentPage: p }"
         [ngStyle]="{'width':column === 'รหัสพนักงาน' ? '100px' : '' }">
+        <td><img [src]="el.decimage" /></td>
         <td style="text-align: center;" scope="row"  >{{el.id}}</td>
         <td>{{el.title}} {{el.name}} {{el.surname}}</td>
         <td>{{el.position}}</td>
         <td>{{el.email}}</td>
         <td>{{el.checkin}}</td>
         <td>{{el.checkout}}</td>
-        <td><img [src]="el.decimage" /></td>
+      
         <div style="margin: auto; padding: 30px;">
-          <button nbButton status="warning" style=" background-color: rgb(240, 236, 9); color: black;" id="edit"
-            (click)="emoDialog(el._id)">EDIT</button>
+          <button nbButton status="warning" style=" background-color: #FF7701; color: white;" id="edit"
+            (click)="emoDialog(el._id)"> Edit </button>
           &nbsp;
           &nbsp;
-          <button nbButton status="danger" style=" background-color: rgb(240, 75, 10); color: white;" id="remove"
-            (click)="deleteDialog(el._id, el.id)">DELETE</button>
+          <button nbButton status="danger" style=" background-color: #C7C7C7; border-color: #C7C7C7; color: white;" id="remove"
+            (click)="deleteDialog(el._id, el.id)">Delete</button>
 
           <!-- <nb-icon id="edit" (click)="editRow(el._id)" [icon]="arrow-down-c" pack="ion"></nb-icon> -->
         </div>

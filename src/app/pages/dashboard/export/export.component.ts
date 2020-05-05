@@ -28,7 +28,7 @@ export class ExportComponent {
   // }];
 
 
-  displayedColumns = ['ID', 'First Name - Last Name', 'Gender', 'Age','Walk-In Time','Walk-In Emotion','Walk-Out Time','Walk-Out Emotion'];
+  displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'เพศ', 'อายุ','เวลาเข้างาน','Emotion เข้างาน','เวลาออกงาน','Emotion ออกงาน'];
   dataSource: any[];
   p: number = 1;
 
