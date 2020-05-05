@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Label, Color } from 'ng2-charts';
-
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-
-import * as Highcharts from 'highcharts';
+import {formatDate} from '@angular/common';
+// import * as Highcharts from 'highcharts';
 import { StockChart } from 'angular-highcharts';
 // declare var require: any;
 // let Boost = require('highcharts/modules/boost');
@@ -19,15 +19,22 @@ import { StockChart } from 'angular-highcharts';
 
 
 
+
 @Component({
   selector: 'ngx-historical',
   templateUrl: './historical.component.html',
   styleUrls: ['./historical.component.scss'],
 })
 export class HistoricalComponent {
+  startDate = new Date();
+  endDate = new Date();
   stock: StockChart;
   stock2: StockChart;
   dataemo: any;
+  from: any = "20200401";
+  to: any = formatDate(new Date(), 'yyyyMMdd', 'en');;
+  topdata: any[];
+
   // Highcharts: typeof Highcharts = Highcharts;
   ngOnInit() {
     this.http.get<any>('http://20.188.110.129:3000/gethistoricalemo').subscribe((res) => {
@@ -175,18 +182,68 @@ export class HistoricalComponent {
         series: res
       });
     })
+    console.log("profile2");
+    this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
+      this.http.get<any[]>('http://20.188.110.129:3000/gethistoricaltop/').subscribe((topdata) => {
+        profile.forEach((element) => {
+
+          if (topdata[element.id] == null) {
+            element['topdata'] = { "thebest": 0, "happiness": 0, "mealover": 0, "total": 0 };
+          } else {
+            element['topdata'] = topdata[element.id];
+          }
+
+
+        })
+        profile.sort((a, b) => (b.topdata.total - a.topdata.total));
+        this.topdata = profile;
+        console.log("profile", profile);
+      })
+    })
+  }
+
+  toplist(type: string, event: MatDatepickerInputEvent<Date>) {
+    // this.events.push(`${type}: ${event.value}`);
+    // console.log(type, event);
+    let date_ob = event.value;
+    let date = ("0" + date_ob.getDate()).slice(-2);
+
+    // current month
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    let year = date_ob.getFullYear();
+    if(type == "startDate"){
+      this.from = year+month+date
+    }else if(type == "EndDate"){
+      this.to = year+month+date
+    }
+
+    this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
+      this.http.get<any[]>('http://20.188.110.129:3000/gethistoricaltop/'+this.from+"/"+this.to).subscribe((topdata) => {
+        profile.forEach((element) => {
+
+          if (topdata[element.id] == null) {
+            element['topdata'] = { "thebest": 0, "happiness": 0, "mealover": 0, "total": 0 };
+          } else {
+            element['topdata'] = topdata[element.id];
+          }
+
+
+        })
+        profile.sort((a, b) => (b.topdata.total - a.topdata.total));
+        this.topdata = profile;
+        console.log("profile", profile);
+      })
+    })
   }
 
 
 
-
-  
-  
   constructor(private http: HttpClient, private router: Router) {
 
 
     // this.http.get<any>('http://20.188.110.129:3000/countmeaprofile').subscribe((res) => { console.log(res) })
-
 
 
   }

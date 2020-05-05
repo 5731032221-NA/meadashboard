@@ -125,7 +125,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Historical Dashboard',
         link: '/pages/dashboard/historical',
-      },
+      }, {
+        title: 'Export',
+        link: '/pages/dashboard/export',
+      }
       // {
       //   title: 'DailyMock',
       //   link: '/pages/dashboard/dailymock',

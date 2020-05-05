@@ -63,6 +63,7 @@
     "highcharts-angular": "^2.4.0",
     "intl": "1.2.5",
     "ionicons": "2.0.1",
+    "jspdf": "^1.5.3",
     "leaflet": "1.2.0",
     "nebular-icons": "1.1.0",
     "ng2-charts": "^2.3.0",
@@ -76,11 +77,13 @@
     "roboto-fontface": "0.8.0",
     "rxjs": "6.5.2",
     "rxjs-compat": "6.3.0",
+    "save": "^2.4.0",
     "socicon": "3.0.5",
     "tinymce": "4.5.7",
     "tslib": "^1.9.0",
     "typeface-exo": "0.0.22",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
+    "xlsx": "^0.15.6",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

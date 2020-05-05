@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 // import { Observable, of } from 'rxjs';
 // import { map, catchError, tap, switchMap } from 'rxjs/operators';
-import { AES } from 'crypto-js';
+import { AES,enc } from 'crypto-js';
 import { ActivatedRoute } from '@angular/router';
 interface DialogData {
   id: string;
@@ -78,24 +78,24 @@ export class EditTableComponent {
 
 
 
-  onSubmit(customerData) {
-    let formData: any = new FormData();
+  // onSubmit(customerData) {
+  //   let formData: any = new FormData();
 
-    // formData.append('photo', this.imageFile);
-    // let options2 = {
-    //   // method: 'POST',
-    //   // body: formData,
-    //   headers: httpHeaders2,
-    // };
+  //   // formData.append('photo', this.imageFile);
+  //   // let options2 = {
+  //   //   // method: 'POST',
+  //   //   // body: formData,
+  //   //   headers: httpHeaders2,
+  //   // };
 
-    this.checkoutForm.reset();
-     this.route.queryParams.subscribe(params => {
-      this.http.post<any>('http://20.188.110.129:3000/postmeaprofile/' + this.data.id, customerData, options).subscribe(done => console.log(done))
-    });
-     this.dialogRef.close();
+  //   this.checkoutForm.reset();
+  //    this.route.queryParams.subscribe(params => {
+  //     this.http.post<any>('http://20.188.110.129:3000/postmeaprofile/' + this.data.id, customerData, options).subscribe(done => console.log(done))
+  //   });
+  //    this.dialogRef.close();
 
    
-  }
+  // }
 
   onSubmitPic() {
     // let formData: any = new FormData();
@@ -109,9 +109,13 @@ export class EditTableComponent {
     const reader = new FileReader();
     reader.readAsDataURL(this.imageFile);
     reader.onload = () => {
-        console.log("reader",reader.result);
-        var ciphertext = AES.encrypt(reader.result, 'meaprofilepic').toString().substring(23);
+        // console.log("reader",reader.result);
+        // var ciphertext2 = AES.encrypt(reader.result, 'meaprofilepic').toString(enc.Utf8)
+        var text = reader.result.toString().substring(23);
+        var ciphertext = AES.encrypt(text, 'meaprofilepic').toString();
         // this.route.queryParams.subscribe(params => {
+          // console.log("ciphertext2",ciphertext2);  
+        // console.log("ciphertext",ciphertext);
           this.http.post<any>('http://20.188.110.129:3000/postmeapic/' + this.data.id, {'image': ciphertext}, options).subscribe(done => 
           
           this.dialogRef.close()

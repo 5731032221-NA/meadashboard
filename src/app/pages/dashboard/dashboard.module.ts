@@ -6,13 +6,16 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { TablesRoutingModule, routedComponents } from './dashboard-routing.module';
 // import { FsIconComponent } from './tree-grid/tree-grid.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 // import { BlobModule } from 'angular-azure-blob-service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ChartsModule } from 'ng2-charts';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonToggleModule } from '@angular/material/button-toggle'
-import { MatDialogModule, MatButtonModule } from '@angular/material';
+import {  MatInputModule,MatNativeDateModule, MatDatepickerModule,MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+// import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// import { MatInputModule } from '@angular/material/input';
 // import {EmployeeComponent} from './daily/popup/employee/employee.component'
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeComponent } from './daily/popup/employee/employee.component';
@@ -20,10 +23,12 @@ import { AbsentComponent } from './daily/popup/absent/absent.component';
 import { LateComponent } from './daily/popup/late/late.component';
 import { OntimeComponent } from './daily/popup/ontime/ontime.component';
 import { OvertimeComponent } from './daily/popup/overtime/overtime.component';
+// import { IntlModule } from '@progress/kendo-angular-intl';
+// import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { EmoComponent } from './daily/popup/emo/emo.component';
 // import { BarRatingModule } from "ngx-bar-rating";
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-import { HighchartsChartModule } from 'highcharts-angular';
+// import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import stock from 'highcharts/modules/stock.src';
 import more from 'highcharts/highcharts-more.src';
@@ -52,9 +57,15 @@ export function highchartsModules() {
     MatButtonToggleModule,
     MatDialogModule,
     MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    // FormsModule,
+    // IntlModule, DateInputsModule,
     // BarRatingModule,
     ProgressbarModule,
-    HighchartsChartModule,
+    // HighchartsChartModule,
     ChartModule,
     // EmployeeComponent,
     // BlobModule,
