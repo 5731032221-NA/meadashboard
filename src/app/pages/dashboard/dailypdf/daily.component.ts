@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Label, Color } from 'ng2-charts';
-import * as jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
+// import * as jspdf from 'jspdf';
+// import html2canvas from 'html2canvas';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 // import { Observable, of } from 'rxjs';
 // import { map, catchError, tap } from 'rxjs/operators';
@@ -732,31 +732,31 @@ export class DailyComponent {
 
 
   }
-  ngAfterContentChecked() {
-    // waits(60)
-    // let data = document.getElementById('MyDIv');
-    // html2canvas(data).then(canvas => {
-    //   var imgWidth = 208;
-    //   var pageHeight = 295;
-    //   var imgHeight = canvas.height * imgWidth / canvas.width;
-    //   var heightLeft = imgHeight;
+  // ngAfterContentChecked() {
+  //   // waits(60)
+  //   // let data = document.getElementById('MyDIv');
+  //   // html2canvas(data).then(canvas => {
+  //   //   var imgWidth = 208;
+  //   //   var pageHeight = 295;
+  //   //   var imgHeight = canvas.height * imgWidth / canvas.width;
+  //   //   var heightLeft = imgHeight;
 
-    //   const contentDataURL = canvas.toDataURL('image/png')
-    //   let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
-    //   var position = 0;
-    //   pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-    //   pdf.save('new-file.pdf'); // Generated PDF
-    //   console.log("whereee")
-    // });
-    let data = document.getElementById('MyDIv');
-    html2canvas(data).then(canvas => {
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
-      // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
-      pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);
-      pdf.save('Filename.pdf');
-    });
-  }
+  //   //   const contentDataURL = canvas.toDataURL('image/png')
+  //   //   let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+  //   //   var position = 0;
+  //   //   pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+  //   //   pdf.save('new-file.pdf'); // Generated PDF
+  //   //   console.log("whereee")
+  //   // });
+  //   let data = document.getElementById('MyDIv');
+  //   html2canvas(data).then(canvas => {
+  //     const contentDataURL = canvas.toDataURL('image/png')
+  //     let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+  //     // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
+  //     pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);
+  //     pdf.save('Filename.pdf');
+  //   });
+  // }
   // deleteRow(id){
   //   this.http.delete<any>('http://20.188.110.129:3000/deletemeaprofile/'+id,{}).subscribe((delet) => { 
   //     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((res) => { })
