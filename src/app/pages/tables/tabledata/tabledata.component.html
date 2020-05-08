@@ -9,7 +9,7 @@
   <table mdbTable style="width: 100%;">
     <thead>
       <tr >
-        <th style="font-size: 20px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;" *ngFor="let head of displayedColumns"
+        <th style="font-size: 15px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;" *ngFor="let head of displayedColumns"
           scope="col">{{head}} </th>
       </tr>
     </thead>
@@ -18,19 +18,19 @@
         [ngStyle]="{'width':column === 'รหัสพนักงาน' ? '100px' : '' }">
         <td><img [src]="el.decimage" /></td>
         <td style="text-align: center;" scope="row"  >{{el.id}}</td>
-        <td>{{el.title}} {{el.name}} {{el.surname}}</td>
-        <td>{{el.position}}</td>
-        <td>{{el.email}}</td>
-        <td>{{el.checkin}}</td>
-        <td>{{el.checkout}}</td>
+        <td style="text-align: left;">{{el.title}} {{el.name}} {{el.surname}}</td>
+        <td style="text-align: left;">{{el.position}}</td>
+        <td style="text-align: left;">{{el.email}}</td>
+        <td style="color:#1e76fa;">{{el.checkin}}</td>
+        <td style="color:#04d632;">{{el.checkout}}</td>
       
-        <div style="margin: auto; padding: 30px;">
-          <button nbButton status="warning" style=" background-color: #FF7701; color: white;" id="edit"
-            (click)="emoDialog(el._id)"> Edit </button>
+        <div style="margin: auto; padding: 15px;">
+          <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;" id="edit"
+            (click)="emoDialog(el._id)"> <img src="../assets/images/edit.png"  style="width: 15px; height: 15px;"/>&nbsp;Edit</button>
           &nbsp;
           &nbsp;
-          <button nbButton status="danger" style=" background-color: #C7C7C7; border-color: #C7C7C7; color: white;" id="remove"
-            (click)="deleteDialog(el._id, el.id)">Delete</button>
+          <button nbButton status="danger" style=" font-size: 12px; background-color: #C7C7C7; border-color: #C7C7C7; color: white;" id="remove"
+            (click)="deleteDialog(el._id, el.id)"><img src="../assets/images/delete.png"  style="width: 14px; height: 13px;"/>&nbsp;Delete</button>
 
           <!-- <nb-icon id="edit" (click)="editRow(el._id)" [icon]="arrow-down-c" pack="ion"></nb-icon> -->
         </div>

@@ -18,7 +18,7 @@ import { DeletetableTableComponent } from '../deletetable/deletetable.component'
   styleUrls: ['./tabledata.component.scss'],
 })
 export class SmartTableComponent {
-  displayedColumns = ['#','รหัสพนักงาน', 'ชื่อ - สกุล', 'ตำแหน่ง', 'อีเมล์','เวลาเข้างาน','เวลาออกงาน',  'แก้ไข'];
+  displayedColumns = ['#','รหัสพนักงาน', 'ชื่อ - สกุล', 'ตำแหน่ง', 'อีเมล์','เข้างาน','ออกงาน',  'แก้ไข'];
   dataSource: any[];
   p: number = 1;
 

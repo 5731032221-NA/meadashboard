@@ -6,14 +6,14 @@
 
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
       <div>
-        <label for="id">
+        <label for="id" style="padding-top: 10px;">
           รหัสพนักงาน: &nbsp;
         </label>
         <input nbInput fullWidth id="id" type="text" formControlName="id">
       </div>
 
       <div>
-        <label for="title">
+        <label for="title" style="padding-top: 10px;">
           คำนำหน้าชื่อ: &nbsp;
         </label>
         
@@ -29,35 +29,35 @@
         <!-- <input id="name" type="text" formControlName="title"> -->
       </div>
       <div>
-        <label for="name">
+        <label for="name" style="padding-top: 10px;">
           ชื่อ: &nbsp;
         </label>
         <input nbInput fullWidth id="name" type="text" formControlName="name">
       </div>
 
       <div>
-        <label for="surname">
+        <label for="surname" style="padding-top: 10px;">
           นามสกุล: &nbsp;
         </label>
         <input  nbInput fullWidth id="surname" type="text" formControlName="surname">
       </div>
 
       <div>
-        <label for="email">
+        <label for="email" style="padding-top: 10px;">
           อีเมล: &nbsp;
         </label>
         <input  nbInput fullWidth id="email" type="text" formControlName="email">
       </div>
 
       <div>
-        <label for="position">
+        <label for="position" style="padding-top: 10px;">
           ตำแหน่ง: &nbsp;
         </label>
         <input  nbInput fullWidth id="position" type="text" formControlName="position">
       </div>
 
-      <div>
-        <label for="image">
+      <div style="padding-bottom: 10px;">
+        <label for="image" style="padding-top: 20px;">
           รูปภาพ: &nbsp;
         </label>
         <input nbButton  type="file" (change)="onFileChanged($event)">

@@ -1,6 +1,9 @@
 @import '../../../@theme/styles/themes';
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+//@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @include nb-install-component() {
+  nb-card {
+    width: 100%;
+  }
   // button[nbTreeGridRowToggle] {
   //   background: transparent;
   //   border: none;
