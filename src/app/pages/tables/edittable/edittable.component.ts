@@ -78,24 +78,24 @@ export class EditTableComponent {
 
 
 
-  // onSubmit(customerData) {
-  //   let formData: any = new FormData();
+  onSubmit(customerData) {
+    let formData: any = new FormData();
 
-  //   // formData.append('photo', this.imageFile);
-  //   // let options2 = {
-  //   //   // method: 'POST',
-  //   //   // body: formData,
-  //   //   headers: httpHeaders2,
-  //   // };
+    // formData.append('photo', this.imageFile);
+    // let options2 = {
+    //   // method: 'POST',
+    //   // body: formData,
+    //   headers: httpHeaders2,
+    // };
 
-  //   this.checkoutForm.reset();
-  //    this.route.queryParams.subscribe(params => {
-  //     this.http.post<any>('http://20.188.110.129:3000/postmeaprofile/' + this.data.id, customerData, options).subscribe(done => console.log(done))
-  //   });
-  //    this.dialogRef.close();
+    this.checkoutForm.reset();
+     this.route.queryParams.subscribe(params => {
+      this.http.post<any>('http://20.188.110.129:3000/postmeaprofile/' + this.data.id, customerData, options).subscribe(done => console.log(done))
+    });
+     this.dialogRef.close();
 
    
-  // }
+  }
 
   onSubmitPic() {
     // let formData: any = new FormData();
