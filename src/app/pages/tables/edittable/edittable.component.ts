@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 // import { Observable, of } from 'rxjs';
 // import { map, catchError, tap, switchMap } from 'rxjs/operators';
-import { AES,enc } from 'crypto-js';
+import { AES, enc } from 'crypto-js';
 import { ActivatedRoute } from '@angular/router';
 interface DialogData {
   id: string;
@@ -32,18 +32,18 @@ export class EditTableComponent {
 
   items;
   checkoutForm;
-  imageFile: File
+  imageFile: File;
   dataSource: any[];
-  myDefaultValue: String = "a"
+  profileimage: any;
+  myDefaultValue: String = "a";
 
   constructor(
-    
+
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private route: ActivatedRoute,
     public dialogRef: MatDialogRef<EditTableComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData)
-   {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.checkoutForm = this.formBuilder.group({
       // id: '',
       title: '',
@@ -61,15 +61,20 @@ export class EditTableComponent {
     this.route.queryParams.subscribe(params => {
       // console.log("params",params);
       this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile/' + this.data.id).subscribe((res) => {
-        this.myDefaultValue = res[0].id
-        this.checkoutForm = this.formBuilder.group({
-          // id: res[0].id,
-          title: res[0].title,
-          name: res[0].name,
-          surname: res[0].surname,
-          position: res[0].position,
-          email: res[0].email,
-        });
+        this.http.get<any[]>('http://20.188.110.129:3000/getimagebyid/' + res[0].id).subscribe((resimage) => {
+          console.log("resimage",resimage);
+          this.profileimage = 'data:image/jpg;base64,' + resimage[0]['encimage'];
+
+          this.myDefaultValue = res[0].id
+          this.checkoutForm = this.formBuilder.group({
+            // id: res[0].id,
+            title: res[0].title,
+            name: res[0].name,
+            surname: res[0].surname,
+            position: res[0].position,
+            email: res[0].email,
+          });
+        })
       })
     })
 
@@ -89,12 +94,12 @@ export class EditTableComponent {
     // };
 
     this.checkoutForm.reset();
-     this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       this.http.post<any>('http://20.188.110.129:3000/postmeaprofile/' + this.data.id, customerData, options).subscribe(done => console.log(done))
     });
-     this.dialogRef.close();
+    this.dialogRef.close();
 
-   
+
   }
 
   onSubmitPic() {
@@ -109,27 +114,27 @@ export class EditTableComponent {
     const reader = new FileReader();
     reader.readAsDataURL(this.imageFile);
     reader.onload = () => {
-        // console.log("reader",reader.result);
-        // var ciphertext2 = AES.encrypt(reader.result, 'meaprofilepic').toString(enc.Utf8)
-        var text = reader.result.toString().substring(23);
-        var ciphertext = AES.encrypt(text, 'meaprofilepic').toString();
-        // this.route.queryParams.subscribe(params => {
-          // console.log("ciphertext2",ciphertext2);  
-        // console.log("ciphertext",ciphertext);
-          this.http.post<any>('http://20.188.110.129:3000/postmeapic/' + this.data.id, {'image': ciphertext}, options).subscribe(done => 
-          
-          this.dialogRef.close()
-         
-          )
-        // });
-         
+      // console.log("reader",reader.result);
+      // var ciphertext2 = AES.encrypt(reader.result, 'meaprofilepic').toString(enc.Utf8)
+      var text = reader.result.toString().substring(23);
+      var ciphertext = AES.encrypt(text, 'meaprofilepic').toString();
+      // this.route.queryParams.subscribe(params => {
+      // console.log("ciphertext2",ciphertext2);  
+      // console.log("ciphertext",ciphertext);
+      this.http.post<any>('http://20.188.110.129:3000/postmeapic/' + this.data.id, { 'image': ciphertext }, options).subscribe(done =>
+
+        this.dialogRef.close()
+
+      )
+      // });
+
     };
-    
+
 
     // this.checkoutForm.reset();
-    
 
-   
+
+
   }
 
   // onNoClick(): void {
