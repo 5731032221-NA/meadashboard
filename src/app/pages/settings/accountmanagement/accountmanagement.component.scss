@@ -1,0 +1,22 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .delete-icon {
+    color: #A11;
+  }
+  // button:hover {
+  //   background-color: rgb(243, 200, 119); /* Green */
+  //   color: black;
+  // }
+  // th {
+  //   background-color: #FFA500;
+  //   color: white;
+  // }
+  // th.id {
+  //   width: 40% ;
+  // }
+}

@@ -13,11 +13,11 @@ const routes: Routes = [{
   component: TablesComponent,
   children: [
     {
-      path: 'smart-table',
+      path: 'table',
       component: s1,
     },
     {
-      path: 'tree-grid',
+      path: 'insert',
       component: t1,
     }
    

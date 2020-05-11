@@ -1,0 +1,26 @@
+<div class="frame">
+  <nb-card>
+    <nb-card-header>
+      Sign Up
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="checkoutForm" (ngSubmit)="addTodo(checkoutForm.value)">
+        <div>
+          <label for="username" style="padding-top: 10px;">
+            Username: &nbsp;
+          </label>
+          <input nbInput fullWidth id="username" class="textfield" formControlName="username">
+        </div>
+        <div>
+          <label for="password" style="padding-top: 10px;">
+            Password: &nbsp;
+          </label>
+          <input nbInput fullWidth id="password" type="password" class="textfield" formControlName="password">
+        </div>
+        <button nbButton status="primary" type="submit">Comfirm</button>
+      </form>
+
+    </nb-card-body>
+
+  </nb-card>
+</div>

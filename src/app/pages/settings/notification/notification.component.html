@@ -1,0 +1,25 @@
+<nb-card>
+  <nb-card-header>
+    เพิ่มข้อมูลพนักงาน
+  </nb-card-header>
+  <nb-card-body>
+
+   
+
+    <ul>
+      <li *ngFor="let email of emails; let i=index">
+        <a>{{ email.email }}</a>
+          <span (click)="deleteDialog(email._id, email.email)" class="delete-icon"> delete</span>
+      </li>
+    </ul>
+
+    <br>
+    <a>Add New Email</a>
+    <div>
+      <form [formGroup]="checkoutForm" (ngSubmit)="addTodo(checkoutForm.value)">
+        <input id="email"  class="textfield" formControlName="email">
+       <button nbButton status="primary"  type="submit">Add email</button>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -68,6 +68,11 @@ const routes: Routes = [{
       loadChildren: () => import('./tables/tables.module')
         .then(m => m.TablesModule),
     },
+    {
+      path: 'settings',
+      loadChildren: () => import('./settings/settings.module')
+        .then(m => m.SettingsModule),
+    },
     // {
     //   path: 'miscellaneous',
     //   loadChildren: () => import('./miscellaneous/miscellaneous.module')

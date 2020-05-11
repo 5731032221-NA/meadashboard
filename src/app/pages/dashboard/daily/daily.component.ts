@@ -613,6 +613,7 @@ export class DailyComponent {
             console.log("Mealovveval", MEAloverval2);
 
             getmeaprofile.forEach((element) => {
+              console.log("eiei")
               if (element.id == bestempval) {
                 this.bestempname = element.name + " " + element.surname;
                 this.bestemp = bestempval;
@@ -668,7 +669,7 @@ export class DailyComponent {
 
               if (Object.keys(MEAlover).length === 0) {
                 if (element.id == MEAloverval2) {
-                  console.log("eiei")
+                  
                   this.mealoverin = element.checkin;
                   // this.mealoverout = element.checkout;
                   if (element.checkout != "") this.mealoverout = element.checkout;

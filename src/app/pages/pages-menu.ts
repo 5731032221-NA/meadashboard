@@ -197,6 +197,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
       // },
     ],
   },
+  {
+    title: 'Settings',
+    icon: 'settings-2-outline',
+    children: [
+      {
+        title: 'Account Management',
+        link: '/pages/settings/accountmanagement',
+      },
+      {
+        title: 'Notification',
+        link: '/pages/settings/notification',
+      }
+      // {
+      //   title: 'DailyMock',
+      //   link: '/pages/dashboard/dailymock',
+      // }
+    ],
+  },
   // {
   //   title: 'Face detecion',
   //   icon: 'video-outline',

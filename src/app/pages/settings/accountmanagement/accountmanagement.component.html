@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header>
+    <div style="color: #ff7701;">&#9125; Account Management </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <!-- <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table> -->
+    <!-- <div>
+      <form [formGroup]="checkoutForm" (ngSubmit)="addTodo(checkoutForm.value)">
+        <input id="username"  class="textfield" formControlName="username">
+        <input id="password" type="password"  class="textfield" formControlName="password">
+        <button nbButton status="primary"  type="submit">Add Username</button>
+      </form>
+    </div> -->
+
+    <ul>
+      <li *ngFor="let account of accounts; let i=index">
+        <a>{{ account.username }}</a>
+          <!-- <span (click)="deleteDialog(account._id, account.username)" class="delete-icon" >delete</span> -->
+          <img src="../assets/images/trash-2-outline.png"  (click)="deleteDialog(account._id, account.username)" style="width: 28px; height: 28px; color: red"/>
+      </li>
+    </ul>
+
+    <button nbButton status="primary"  type="submit" (click)="signupDialog()" >Add Account</button>
+  </nb-card-body>
+</nb-card>
