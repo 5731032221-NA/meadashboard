@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material';
 import {DeleteAccountComponent} from './deleteaccount/deleteaccount.component'
 import {DeleteNNotificationComponent} from './deletenotification/deletenotification.component';
 import {SignupComponent} from './signup/signup.component'
+import {ResetAccountComponent} from './resetaccount/resetaccount.component'
 
 @NgModule({
   imports: [
@@ -39,9 +40,10 @@ import {SignupComponent} from './signup/signup.component'
     AccountManagementComponent,
     DeleteAccountComponent,
     DeleteNNotificationComponent,
-    SignupComponent
+    SignupComponent,
+    ResetAccountComponent
   ],
   entryComponents: [NotificationComponent,AccountManagementComponent,DeleteAccountComponent,
-    DeleteNNotificationComponent,SignupComponent],
+    DeleteNNotificationComponent,SignupComponent,ResetAccountComponent],
 })
 export class SettingsModule { }

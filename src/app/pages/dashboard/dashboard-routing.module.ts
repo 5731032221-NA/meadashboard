@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { DailyComponent as d1} from './daily/daily.component';
-import { DailyComponent as d2} from './dailypdf/daily.component';
+// import { DailyComponent as d2} from './dailypdf/daily.component';
 // import { DailyComponent as d2} from './dailymock/daily.component';
 import { HistoricalComponent} from './historical/historical.component';
 
@@ -27,10 +27,10 @@ const routes: Routes = [{
       path: 'export',
       component: ExportComponent,
     },
-    {
-      path: 'pdf',
-      component: d2,
-    }
+    // {
+    //   path: 'pdf',
+    //   component: d2,
+    // }
   ],
 }];
 
@@ -42,5 +42,5 @@ export class TablesRoutingModule { }
 
 export const routedComponents = [
   DashboardComponent,
-  d1,HistoricalComponent,ExportComponent,d2,
+  d1,HistoricalComponent,ExportComponent,
 ];

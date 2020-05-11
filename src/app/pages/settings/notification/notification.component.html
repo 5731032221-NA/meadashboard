@@ -1,24 +1,40 @@
 <nb-card>
   <nb-card-header>
-    Notification
+    <div style="color: #ff7701;">&#9125; Notification </div>
   </nb-card-header>
   <nb-card-body>
 
-   
 
-    <ul>
-      <li *ngFor="let email of emails; let i=index">
-        <a>{{ email.email }}</a>
-          <span (click)="deleteDialog(email._id, email.email)" class="delete-icon"> delete</span>
-      </li>
-    </ul>
+
+    <table mdbTable style="width: 100%;">
+      <thead>
+        <tr>
+          <th style="font-size: 15px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;"
+            *ngFor="let head of displayedColumns" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let email of emails; let i=index">
+          <td style="text-align: center;">{{i+1}}</td>
+          <th style="text-align: center;">{{ email.email }}</th>
+          <td style="text-align: center;">
+            <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
+              id="edit" (click)="deleteDialog(email._id, email.email)">Delete</button> </td>
+        </tr>
+      </tbody>
+
+    </table>
 
     <br>
-    <a>Add New Email</a>
+    <br>
+    <!-- <a>Add New Email: </a> -->
     <div>
       <form [formGroup]="checkoutForm" (ngSubmit)="addTodo(checkoutForm.value)">
-        <input id="email"  class="textfield" formControlName="email">
-       <button nbButton status="primary"  type="submit">Add email</button>
+        <label  for="addemail" style="padding-top: 10px; color: royalblue;">
+          Add New Email: &nbsp;
+        </label>
+        <input id="email" class="textfield" formControlName="email">
+        <button nbButton status="primary" type="submit">Add Email</button>
       </form>
     </div>
   </nb-card-body>

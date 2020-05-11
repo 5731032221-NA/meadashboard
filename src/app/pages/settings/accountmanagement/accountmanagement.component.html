@@ -14,14 +14,30 @@
       </form>
     </div> -->
 
-    <ul>
-      <li *ngFor="let account of accounts; let i=index">
-        <a>{{ account.username }}</a>
+    <table mdbTable style="width: 100%;">
+      <thead>
+        <tr>
+          <th style="font-size: 15px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;"
+            *ngFor="let head of displayedColumns" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let account of accounts; let i=index">
+          <td style="text-align: center;">{{i+1}}</td>
+          <td style="text-align: center;">{{ account.username }}</td>
           <!-- <span (click)="deleteDialog(account._id, account.username)" class="delete-icon" >delete</span> -->
-          <img src="../assets/images/trash-2-outline.png"  (click)="deleteDialog(account._id, account.username)" style="width: 28px; height: 28px; color: red"/>
-      </li>
-    </ul>
+          <td style="text-align: center;">
+            <button nbButton status="primary" id="edit" (click)="resetDialog(account._id)"> &nbsp;Reset
+              Password</button>
+            &nbsp;
+            &nbsp;
+            <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
+              id="edit" (click)="deleteDialog(account._id, account.username)">Delete</button> </td>
+        </tr>
+      </tbody>
 
-    <button nbButton status="primary"  type="submit" (click)="signupDialog()" >Add Account</button>
+    </table>
+
+    <button nbButton status="primary" type="submit" (click)="signupDialog()">Add Account</button>
   </nb-card-body>
 </nb-card>

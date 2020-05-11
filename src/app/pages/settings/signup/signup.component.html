@@ -17,6 +17,13 @@
           </label>
           <input nbInput fullWidth id="password" type="password" class="textfield" formControlName="password">
         </div>
+        <div>
+          <label for="cpassword" style="padding-top: 10px;">
+            Confirm Password: &nbsp;
+          </label>
+          <input nbInput fullWidth id="cpassword" type="password" class="textfield" formControlName="cpassword">
+        </div>
+        <a style="color: red;"  *ngIf="showerr">Password do not match</a><br>
         <button nbButton status="primary" type="submit">Comfirm</button>
       </form>
 

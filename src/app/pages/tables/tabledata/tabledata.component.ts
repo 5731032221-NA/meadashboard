@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
 // import { SmartTableData } from '../../../@core/data/smart-table';
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+// import { Observable, of } from 'rxjs';
+// import { map, catchError, tap } from 'rxjs/operators';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // import { NbIconLibraries } from '@nebular/theme';

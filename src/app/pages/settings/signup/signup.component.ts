@@ -28,6 +28,7 @@ export class SignupComponent {
   username: string = '';
   password: string = '';
   Obj: any;
+  showerr: boolean = false;
   // evaIcons = [];
   checkoutForm;
 
@@ -40,24 +41,30 @@ export class SignupComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.checkoutForm = this.formBuilder.group({
       username: '',
-      password: ''
+      password: '',
+      cpassword: ''
     });
 
   }
 
 
   addTodo(event) {
-    console.log("event", event);
-    this.Obj = {
-      username: event.username,
-      password: Md5.hashStr(event.password)
+    // console.log("event", event);
+    if (event.cpassword == event.password) {
+      this.Obj = {
+        username: event.username,
+        password: Md5.hashStr(event.password)
+      }
+      // console.log(this.Obj);
+
+      this.http.post<any>('http://20.188.110.129:3000/postaccount', this.Obj, options).subscribe(done => {
+        this.dialogRef.close();
+      })
+
+    } else {
+      // console.log("not change")
+      this.showerr = true
     }
-    // console.log(this.Obj);
-
-    this.http.post<any>('http://20.188.110.129:3000/postaccount', this.Obj, options).subscribe(done => {
-      this.dialogRef.close();
-    })
-
   }
 
 

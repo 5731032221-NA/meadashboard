@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 // import { Observable, of } from 'rxjs';
 // import { map, catchError, tap, switchMap } from 'rxjs/operators';
-import { AES, enc, ae } from 'crypto-js';
+import { AES, enc } from 'crypto-js';
 import { ActivatedRoute } from '@angular/router';
 interface DialogData {
   id: string;

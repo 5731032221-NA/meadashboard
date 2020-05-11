@@ -173,22 +173,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   ],
   // },
   {
-    title: 'ข้อมูลพนักงาน',
+    title: 'Employee',
     icon: 'people-outline',
     children: [
       {
-        title: 'แสดงข้อมูลพนักงาน',
-        icon: 'clipboard-outline',
-        link: '/pages/tables/smart-table',
+        title: 'Employee info',
+        // icon: 'clipboard-outline',
+        link: '/pages/tables/table',
       },
       // {
       //   title: 'Smart Table2',
       //   link: '/pages/tables/smart-table2',
       // },
       {
-        title: 'เพิ่มข้อมูลพนักงาน',
-        icon: 'person-add-outline',
-        link: '/pages/tables/tree-grid',
+        title: 'Add new employee',
+        // icon: 'person-add-outline',
+        link: '/pages/tables/insert',
       }
       ,
       // {

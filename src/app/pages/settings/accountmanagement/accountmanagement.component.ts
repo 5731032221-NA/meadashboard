@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { DeleteAccountComponent } from '../deleteaccount/deleteaccount.component'
+import { ResetAccountComponent} from '../resetaccount/resetaccount.component'
 import { SignupComponent } from '../signup/signup.component'
 
 import { FormBuilder } from '@angular/forms';
@@ -29,6 +30,8 @@ const options = {
 export class AccountManagementComponent {
   accounts: any[];
   p: number = 1;
+  displayedColumns = ['#','Username', 'แก้ไข'];
+
   // username: string = '';
   // password: string = '';
   // Obj: any;
@@ -80,6 +83,21 @@ export class AccountManagementComponent {
     const dialogRef = this.dialog.open(DeleteAccountComponent, {
       width: '820px',
       data: { id, username }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.http.get<any[]>('http://20.188.110.129:3000/getaccount').subscribe((accounts) => {
+
+        this.accounts = accounts;
+
+      })
+
+    });
+  }
+
+  resetDialog(id): void {
+    const dialogRef = this.dialog.open(ResetAccountComponent, {
+      width: '820px',
+      data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.http.get<any[]>('http://20.188.110.129:3000/getaccount').subscribe((accounts) => {

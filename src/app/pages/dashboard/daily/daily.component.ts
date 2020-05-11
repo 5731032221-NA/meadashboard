@@ -60,7 +60,11 @@ export class DailyComponent {
   bestemp: string = "-";
   happyperson: string = "-";
   mealover: string = "-";
-  rate: number = 3;
+  // rate: number = 3;
+
+  mealovershow: boolean = false;
+  bestempshow: boolean = false;
+  happypersonshow: boolean = false;
 
   bestempimg: string = "";
   happypersonimg: string = "";
@@ -84,7 +88,7 @@ export class DailyComponent {
 
   bestemphap: string = "-";
   mealoverhap: string = "-";
-  happypersonhap: number = 65.5;
+  happypersonhap: number = 0;
 
   happypersonpo: string = "-";
   bestemppo: string = "-";
@@ -649,6 +653,7 @@ export class DailyComponent {
             console.log("len", Object.keys(MEAlover).length === 0);
             getcheckin.forEach((element) => {
               if (element.id == bestempval) {
+                this.bestempshow = true;
                 this.bestempin = element.checkin;
                 if (element.checkout === "") this.bestempout = "--:--";
                 else this.bestempout = element.checkout;
@@ -669,7 +674,7 @@ export class DailyComponent {
 
               if (Object.keys(MEAlover).length === 0) {
                 if (element.id == MEAloverval2) {
-                  
+                  this.mealovershow = true;
                   this.mealoverin = element.checkin;
                   // this.mealoverout = element.checkout;
                   if (element.checkout != "") this.mealoverout = element.checkout;
@@ -686,6 +691,7 @@ export class DailyComponent {
                 }
               } else {
                 if (element.id == MEAloverval) {
+                  this.mealovershow = true;
                   this.mealoverin = element.checkin;
                   // this.mealoverout = element.checkout;
                   if (element.checkout != "") this.mealoverout = element.checkout;
@@ -705,6 +711,7 @@ export class DailyComponent {
               }
 
               if (element.id == happyval) {
+                this.happypersonshow = true;
                 this.happyin = element.checkin;
                 // this.happyout = element.checkout;
                 if (element.checkout != "") this.happyout = element.checkout;
