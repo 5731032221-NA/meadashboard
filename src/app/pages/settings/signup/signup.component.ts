@@ -29,6 +29,9 @@ export class SignupComponent {
   password: string = '';
   Obj: any;
   showerr: boolean = false;
+  showerr1: boolean = false;
+  showerr2: boolean = false;
+  showerr3: boolean = false;
   // evaIcons = [];
   checkoutForm;
 
@@ -49,8 +52,35 @@ export class SignupComponent {
 
 
   addTodo(event) {
+    // let patt = false;
+    let patt1 = '(?=.*[a-z])'
+    let patt2 = '(?=.*[A-Z])'
+    let patt3 = '[a-zA-Z0-9]{8,}'
+    let res1 = event.password.match(patt1);
+    let res2 = event.password.match(patt2);
+    let res3 = event.password.match(patt3);
+    console.log("res1",res1);
+    console.log("res2",res2);
+    console.log("res3",res3);
     // console.log("event", event);
     if (event.cpassword == event.password) {
+      this.showerr = false;
+      if(res1){
+        this.showerr1 = false;
+      }else{
+        this.showerr1 = true;
+      }
+      if(res2){
+        this.showerr2 = false;
+      }else{
+        this.showerr2 = true;
+      }
+      if(res3){
+        this.showerr3 = false;
+      }else{
+        this.showerr3 = true;
+      }
+      if(res1 && res2 && res3){
       this.Obj = {
         username: event.username,
         password: Md5.hashStr(event.password)
@@ -59,7 +89,8 @@ export class SignupComponent {
 
       this.http.post<any>('http://20.188.110.129:3000/postaccount', this.Obj, options).subscribe(done => {
         this.dialogRef.close();
-      })
+      })}
+      
 
     } else {
       // console.log("not change")

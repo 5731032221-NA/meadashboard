@@ -5,6 +5,8 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../pages/auth/_services';
 
 @Component({
   selector: 'ngx-header',
@@ -37,18 +39,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ];
 
   currentTheme = 'default';
+  currentUser: any;
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserData,
+    private layoutService: LayoutService,
+    private breakpointService: NbMediaBreakpointsService,
+    private router: Router,
+    private authenticationService: AuthenticationService) {
+    // if (this.currentUser != null) {
+    //   this.currentUser = this.authenticationService.currentUser.username;
+    // }
+    // console.log("this user",this.currentUser);
   }
 
   ngOnInit() {
+    // console.log("headername",this.currentUser)
+    if (this.authenticationService.currentUser != null) {
+      this.currentUser = this.authenticationService.currentUser.username;
+    }
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()
@@ -90,5 +103,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.currentUser = null;
+    this.router.navigate(['/pages/auth/login']);
   }
 }

@@ -24,6 +24,9 @@
           <input nbInput fullWidth id="cpassword" type="password" class="textfield" formControlName="cpassword">
         </div>
         <a style="color: red;"  *ngIf="showerr">Password do not match</a><br>
+        <a style="color: red;"  *ngIf="showerr1">Password should contain at least one lower case</a><br>
+        <a style="color: red;"  *ngIf="showerr2">Password should contain at least one upper case</a><br>
+        <a style="color: red;"  *ngIf="showerr3">Password should contain at least 8 characters</a><br>
         <button nbButton status="primary" type="submit">Comfirm</button>
       </form>
 

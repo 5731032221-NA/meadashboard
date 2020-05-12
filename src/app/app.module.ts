@@ -20,8 +20,11 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +33,7 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    ReactiveFormsModule,
     ThemeModule.forRoot(),
 
     NbSidebarModule.forRoot(),
