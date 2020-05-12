@@ -59,9 +59,9 @@ export class SignupComponent {
     let res1 = event.password.match(patt1);
     let res2 = event.password.match(patt2);
     let res3 = event.password.match(patt3);
-    console.log("res1",res1);
-    console.log("res2",res2);
-    console.log("res3",res3);
+    // console.log("res1",res1);
+    // console.log("res2",res2);
+    // console.log("res3",res3);
     // console.log("event", event);
     if (event.cpassword == event.password) {
       this.showerr = false;
