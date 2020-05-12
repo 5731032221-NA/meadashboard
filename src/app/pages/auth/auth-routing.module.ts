@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthComponent} from './auth.component';
 import { LoginComponent as s1 } from './login/login.component';
-// import { NotificationComponent as t1 } from './notification/notification.component';
+import { LogoutComponent as t1 } from './logout/logout.component';
 
 
 
@@ -16,10 +16,10 @@ const routes: Routes = [{
       path: 'login',
       component: s1,
     },
-    // {
-    //   path: 'notification',
-    //   component: t1,
-    // }
+    {
+      path: 'logout',
+      component: t1,
+    }
    
   ],
 }];
@@ -33,5 +33,5 @@ export class settingsRoutingModule { }
 export const routedComponents = [
   AuthComponent,
   s1,
-  // t1
+  t1
 ];

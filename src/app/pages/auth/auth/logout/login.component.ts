@@ -7,7 +7,6 @@ import { AuthenticationService } from '../_services';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Md5 } from 'ts-md5/dist/md5';
 // import { ActivatedRoute } from '@angular/router';
-
 const httpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'
 });
@@ -42,14 +41,6 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private authenticationService: AuthenticationService
   ) {
-    if (window.localStorage) {
-      if (!localStorage.getItem('firstLoad')) {
-        localStorage['firstLoad'] = true;
-        window.location.reload();
-      }
-      else
-        localStorage.removeItem('firstLoad');
-    }
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -57,9 +48,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    
-
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -74,7 +62,6 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-
     this.submitted = true;
 
     // stop here if form is invalid

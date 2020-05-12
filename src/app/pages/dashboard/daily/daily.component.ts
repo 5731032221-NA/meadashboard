@@ -201,6 +201,7 @@ export class DailyComponent {
 
   public selectedVal: string;
   ngOnInit() {
+
     this.selectedVal = 'Overall';
   }
 
@@ -439,7 +440,14 @@ export class DailyComponent {
   }
 
   constructor(private http: HttpClient, private router: Router, public dialog: MatDialog) {
-
+    if (window.localStorage) {
+      if (!localStorage.getItem('firstLoad')) {
+        localStorage['firstLoad'] = true;
+        window.location.reload();
+      }
+      else
+        localStorage.removeItem('firstLoad');
+    }
 
     this.http.get<any>('http://20.188.110.129:3000/countmeaprofile').subscribe((res) => { this.empcount = res; })
     this.http.get<any>('http://20.188.110.129:3000/getcountlate').subscribe((res) => {
