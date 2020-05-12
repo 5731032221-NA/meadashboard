@@ -527,7 +527,7 @@ export class DailyComponent {
       // this.happy = [];
       let resdata = [];
       // this.nuetural = [];
-      console.log(res)
+      // console.log(res)
       res.forEach((element) => {
         resdata.push(element.count);
 
@@ -542,7 +542,7 @@ export class DailyComponent {
       // this.happy = [];
       let resdata = [];
       // this.nuetural = [];
-      console.log(res)
+      // console.log(res)
       res.forEach((element) => {
         resdata.push(element.count);
 
@@ -621,11 +621,11 @@ export class DailyComponent {
                 return MEAlover2[a] === MEAloverhighestVal2;
               });
 
-            console.log("Mealovve", MEAlover);
-            console.log("Mealovveval", MEAloverval2);
+            // console.log("Mealovve", MEAlover);
+            // console.log("Mealovveval", MEAloverval2);
 
             getmeaprofile.forEach((element) => {
-              console.log("eiei")
+              // console.log("eiei")
               if (element.id == bestempval) {
                 this.bestempname = element.name + " " + element.surname;
                 this.bestemp = bestempval;
@@ -658,7 +658,7 @@ export class DailyComponent {
                 }
               }
             });
-            console.log("len", Object.keys(MEAlover).length === 0);
+            // console.log("len", Object.keys(MEAlover).length === 0);
             getcheckin.forEach((element) => {
               if (element.id == bestempval) {
                 this.bestempshow = true;
