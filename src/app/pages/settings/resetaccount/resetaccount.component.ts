@@ -35,6 +35,9 @@ export class ResetAccountComponent {
   Obj: any;
   checkoutForm;
   showerr: boolean = false;
+  showerr1: boolean = false;
+  showerr2: boolean = false;
+  showerr3: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -79,7 +82,31 @@ export class ResetAccountComponent {
 
 
   resetpass(formdata) {
+    let patt1 = '(?=.*[a-z])'
+    let patt2 = '(?=.*[A-Z])'
+    let patt3 = '[a-zA-Z0-9]{8,}'
+    let res1 = formdata.password.match(patt1);
+    let res2 = formdata.password.match(patt2);
+    let res3 = formdata.password.match(patt3);
+
     if (formdata.username == formdata.password) {
+      this.showerr = false;
+      if(res1){
+        this.showerr1 = false;
+      }else{
+        this.showerr1 = true;
+      }
+      if(res2){
+        this.showerr2 = false;
+      }else{
+        this.showerr2 = true;
+      }
+      if(res3){
+        this.showerr3 = false;
+      }else{
+        this.showerr3 = true;
+      }
+      if(res1 && res2 && res3){
       this.Obj = {
         password: Md5.hashStr(formdata.password)
       }
@@ -87,7 +114,7 @@ export class ResetAccountComponent {
       console.log(this.Obj);
       this.http.post<any>('http://20.188.110.129:3000/postaccount/' + this.data.id,this.Obj, options).subscribe((delet) => {
         this.dialogRef.close();
-      })
+      })}
     }else{
       // console.log("not change")
       this.showerr = true
