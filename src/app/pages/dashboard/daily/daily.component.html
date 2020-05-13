@@ -265,7 +265,7 @@
       </div>
     </div>
 
-    
+
     <div style="padding: 2% 0;">
       <span style="color: #f7661e; font-size: 28px; font-weight: bold; ">&#9733; Super Star of The Day</span>
     </div>
@@ -290,12 +290,17 @@
         </div>
       </div>
       <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
-        <div style="display: block; text-align: left;"  *ngIf="bestempshow">
+        <div style="display: block; text-align: left;" *ngIf="bestempshow">
           <span style="color: #ff7701;font-size: 14px; "><b>Walk-In Time</b>: {{bestempin}} </span><br />
           <span style="color: #ff7701;font-size: 14px; "><b>Walk-Out Time</b>: {{bestempout}}</span><br />
+          <span style="color: #ff7701;font-size: 14px; "><b>Working Hours</b>: {{bestemphour}}hrs</span><br />
           <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Average
-              Happiness</b>: {{bestemphap}}</span><br />
-          <span style="color: #ff7701;font-size: 14px; "><b>Working Hours</b>: {{bestemphour}}hrs</span>
+              Happiness</b>: </span><br />
+          <div style="width: 200px;">
+
+            <progressbar class="probar" [value]="happypersonhap" type="warning">{{bestemphap}}</progressbar>
+
+          </div><br />
         </div>
       </div>
     </div>
@@ -320,21 +325,21 @@
         </div>
       </div>
       <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
-        <div style="display: block; text-align: left;"  *ngIf="happypersonshow">
+        <div style="display: block; text-align: left;" *ngIf="happypersonshow">
           <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-In
               Time</b>: {{happyin}} </span><br />
           <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-Out
               Time</b>: {{happyout}}</span><br />
           <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Working
               Hours</b>: {{happyhour}}hrs</span><br />
-              
+
           <span style="color: #ff7701;font-size: 14px; "><b>Average Happiness:</b></span><br />
           <div style="width: 200px;">
-            
-              <progressbar class="probar" [value]="happypersonhap" type="warning" >{{happypersonhap}}</progressbar>
-            
+
+            <progressbar class="probar" [value]="happypersonhap" type="warning">{{happypersonhap}}</progressbar>
+
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -360,13 +365,19 @@
         </div>
       </div>
       <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
-        <div style="display: block; text-align: left; " *ngIf="mealovershow" >
+        <div style="display: block; text-align: left; " *ngIf="mealovershow">
           <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-In
               Time</b>: {{mealoverin}} </span><br />
           <span style="color: #ff7701;font-size: 14px; "><b style="color: #a09a96; font-weight: normal;">Walk-Out
               Time</b>: {{mealoverout}}</span><br />
-          <span style="color: #ff7701;font-size: 14px; "><b>Average Happiness</b>: {{mealoverhap}}</span><br />
-          <span style="color: #ff7701;font-size: 14px; "><b>Working Hours</b>: {{mealoverhour}}hrs</span>
+          <span style="color: #ff7701;font-size: 14px; "><b>Working Hours</b>: {{mealoverhour}}hrs</span><br />
+
+          <span style="color: #ff7701;font-size: 14px; "><b>Average Happiness</b>: </span><br />
+          <div style="width: 200px;">
+
+            <progressbar class="probar" [value]="happypersonhap" type="warning">{{mealoverhap}}</progressbar>
+
+          </div><br />
         </div>
       </div>
     </div>

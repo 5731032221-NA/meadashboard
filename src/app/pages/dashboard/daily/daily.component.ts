@@ -473,10 +473,10 @@ export class DailyComponent {
       }
       if (res.exit == 0) {
         this.maleavgwalkout = "--:--";
-        console.log("zeroo");
+        // console.log("zeroo");
       } else {
         this.maleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
-        console.log("wrong");
+        // console.log("wrong");
       }
 
     })
@@ -665,7 +665,7 @@ export class DailyComponent {
                 this.bestempin = element.checkin;
                 if (element.checkout === "") this.bestempout = "--:--";
                 else this.bestempout = element.checkout;
-                var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50
+                var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50;
                 if (element.checkoutEmo != "") {
                   // let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
 
@@ -687,6 +687,7 @@ export class DailyComponent {
                   // this.mealoverout = element.checkout;
                   if (element.checkout != "") this.mealoverout = element.checkout;
                   else this.mealoverout = "--:--";
+                  var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50;
                   if (element.checkoutEmo != "") {
                     // let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
 
@@ -705,7 +706,7 @@ export class DailyComponent {
                   if (element.checkout != "") this.mealoverout = element.checkout;
                   else this.mealoverout = "--:--";
                   // let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
-                  var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50
+                  var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50;
                   if (element.checkoutEmo != "") {
                     // let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
 
@@ -725,7 +726,7 @@ export class DailyComponent {
                 if (element.checkout != "") this.happyout = element.checkout;
                 else this.happyout = "--:--";
                 // let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
-                var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50
+                var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50;
                 if (element.checkoutEmo != "") {
                   // let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
 
