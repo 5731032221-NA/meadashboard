@@ -24,20 +24,20 @@
       <tbody>
         <tr mdbTableCol *ngFor="let account of accounts; let i=index">
           <td style="text-align: center;">{{i+1}}</td>
-          <td style="text-align: center;">{{ account.username }}</td>
+          <td style="text-align: left; padding-left: 5%; font-weight:bold;">{{ account.username }}</td>
           <!-- <span (click)="deleteDialog(account._id, account.username)" class="delete-icon" >delete</span> -->
-          <td style="text-align: center;">
-            <button nbButton status="primary" id="edit" (click)="resetDialog(account._id)"> &nbsp;Reset
+          <td style="text-align: center; padding: 10px 0px;">
+            <button nbButton status="primary" id="edit" (click)="resetDialog(account._id)" style=" font-size: 12px; background-color: #FF7701; color: white; border-color: #FF7701;"> <img src="../assets/images/reset.png"  style="width: 15px; height: 15px;"/>&nbsp;Reset
               Password</button>
             &nbsp;
             &nbsp;
-            <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
-              id="edit" (click)="deleteDialog(account._id, account.username)">Delete</button> </td>
+            <button nbButton status="warning" style=" font-size: 12px; background-color: #C7C7C7; border-color: #C7C7C7; color: white;"
+              id="edit" (click)="deleteDialog(account._id, account.username)"><img src="../assets/images/delete.png"  style="width: 14px; height: 13px;"/>&nbsp;Delete</button> </td>
         </tr>
       </tbody>
 
     </table>
-
-    <button nbButton status="primary" type="submit" (click)="signupDialog()">Add Account</button>
+    <br>
+    <button nbButton status="primary" type="submit" (click)="signupDialog()" style=" font-size: 12px; background-color: #FF7701; color: white; border-color: #FF7701;"><img src="../assets/images/addacc.png"  style="width: 16px; height: 16px;"/>&nbsp;Add Account</button>
   </nb-card-body>
 </nb-card>

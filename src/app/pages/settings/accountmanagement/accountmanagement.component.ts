@@ -30,7 +30,7 @@ const options = {
 export class AccountManagementComponent {
   accounts: any[];
   p: number = 1;
-  displayedColumns = ['#','Username', 'แก้ไข'];
+  displayedColumns = ['#','username', 'action'];
 
   // username: string = '';
   // password: string = '';

@@ -18,11 +18,12 @@
           </label>
           <input nbInput fullWidth id="password" type="password" class="textfield" formControlName="password">
         </div>
-        <a style="color: red;"  *ngIf="showerr">Password do not match</a><br>
-        <a style="color: red;"  *ngIf="showerr1">Password should contain at least one lower case</a><br>
-        <a style="color: red;"  *ngIf="showerr2">Password should contain at least one upper case</a><br>
-        <a style="color: red;"  *ngIf="showerr3">Password should contain at least 8 characters</a><br>
-        <button nbButton status="primary" type="submit">Comfirm</button>
+        <a style="color: red;"  *ngIf="showerr">Password do not match<br></a>
+        <a style="color: red;"  *ngIf="showerr1">Password should contain at least one lower case<br></a>
+        <a style="color: red;"  *ngIf="showerr2">Password should contain at least one upper case<br></a>
+        <a style="color: red;"  *ngIf="showerr3">Password should contain at least 8 characters<br></a>
+        <br>
+        <button nbButton status="primary" type="submit" style=" font-size: 12px; background-color: #FF7701; color: white; border-color: #FF7701;"> <img src="../assets/images/confirm.png"  style="width: 15px; height: 15px;"/>&nbsp;Comfirm</button>
       </form>
     </nb-card-body>
   </nb-card>

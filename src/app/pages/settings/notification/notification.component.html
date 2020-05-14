@@ -16,25 +16,23 @@
       <tbody>
         <tr mdbTableCol *ngFor="let email of emails; let i=index">
           <td style="text-align: center;">{{i+1}}</td>
-          <th style="text-align: center;">{{ email.email }}</th>
+          <th style="text-align: left; padding-left: 30%; ">{{ email.email }}</th>
           <td style="text-align: center;">
-            <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
-              id="edit" (click)="deleteDialog(email._id, email.email)">Delete</button> </td>
+            <button nbButton status="warning" style=" font-size: 12px; background-color: #C7C7C7; border-color: #C7C7C7; color: white;"
+              id="edit" (click)="deleteDialog(email._id, email.email)"><img src="../assets/images/delete.png"  style="width: 14px; height: 13px;"/>&nbsp;Delete</button> </td>
         </tr>
       </tbody>
 
     </table>
-
-    <br>
     <br>
     <!-- <a>Add New Email: </a> -->
     <div>
       <form [formGroup]="checkoutForm" (ngSubmit)="addTodo(checkoutForm.value)">
-        <label  for="addemail" style="padding-top: 10px; color: royalblue;">
+        <label  for="addemail" style="padding-top: 10px; color: #FF7701; font-weight: bold;">
           Add New Email: &nbsp;
         </label>
         <input id="email" class="textfield" formControlName="email">
-        <button nbButton status="primary" type="submit">Add Email</button>
+        <button nbButton status="primary" type="submit" style=" font-size: 12px; background-color: #FF7701; color: white; border-color: #FF7701;"><img src="../assets/images/addacc.png"  style="width: 16px; height: 16px;"/>&nbsp;Add Email</button>
       </form>
     </div>
   </nb-card-body>

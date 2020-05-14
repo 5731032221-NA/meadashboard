@@ -44,7 +44,7 @@ export class NotificationComponent {
   Obj: any;
   evaIcons = [];
   checkoutForm;
-  displayedColumns = ['#','Email', 'แก้ไข'];
+  displayedColumns = ['#','email', 'action'];
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, public dialog: MatDialog) {
 
     this.checkoutForm = this.formBuilder.group({
