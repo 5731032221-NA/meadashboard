@@ -735,7 +735,7 @@ export class DailyComponent {
                 }
                 if (hap > 100) hap = 100;
                 this.happypersonhap = hap;
-                this.happyhour = Math.floor(Math.abs(getworktime[happyval] / 60)) + "." + ("0" + (getworktime[happyval] % 60)).slice(-2);
+                this.happyhour = Math.abs(Math.floor(getworktime[happyval] / 60)) + "." + ("0" + (getworktime[happyval] % 60)).slice(-2);
               }
             });
           });
