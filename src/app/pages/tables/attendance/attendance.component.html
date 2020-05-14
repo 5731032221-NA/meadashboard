@@ -1,0 +1,54 @@
+<div class="frame">
+  <img [src]="profileimage" />
+  <h1 mat-dialog-title class="hd">{{title}} {{name}} {{surname}}</h1>
+
+  <div class="tablebg">
+    <table mdbTable style="width: 100%;">
+      <thead>
+
+        <tr>
+         
+          <th rowspan="2">วัน</th>
+          <th colspan="4">เข้างาน</th>
+          <th colspan="4">ออกงาน</th>
+
+        </tr>
+        
+          
+
+        <tr>
+          <th>เพศ</th>
+          <th>อายุ</th>
+          <th>เวลาเข้า</th>
+          <th>Emotion</th>
+          <th>เพศ</th>
+          <th>อายุ</th>
+          <th>เวลาออก</th>
+          <th>Emotion</th>
+        </tr>
+
+
+      </thead>
+      <tbody>
+        <tr mdbTableCol
+          *ngFor="let el of dataSource ">
+          <td>{{el.Date}}</td>
+          <td>{{el.checkin.emotion.gender}}</td>
+          <td>{{el.checkin.emotion.age}}</td>
+          <td>{{el.checkin.time}}</td>
+          <td>{{el.emotion1}}</td>
+          <td>{{el.checkout.emotion.gender}}</td>
+          <td>{{el.checkout.emotion.age}}</td>
+          <td>{{el.checkout.time}}</td>
+          <td>{{el.emotion2}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+
+  <!-- <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Close</button>
+  </div> -->
+</div>

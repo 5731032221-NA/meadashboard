@@ -16,13 +16,13 @@
     <tbody>
       <tr mdbTableCol *ngFor="let el of dataSource | paginate: { itemsPerPage: 6, currentPage: p }"
         [ngStyle]="{'width':column === 'รหัสพนักงาน' ? '100px' : '' }">
-        <td><img [src]="el.decimage" /></td>
-        <td style="text-align: center;" scope="row"  >{{el.id}}</td>
-        <td style="text-align: left;">{{el.title}} {{el.name}} {{el.surname}}</td>
-        <td style="text-align: left;">{{el.position}}</td>
-        <td style="text-align: left;">{{el.email}}</td>
-        <td style="color:#1e76fa;">{{el.checkin}}</td>
-        <td style="color:#04d632;">{{el.checkout}}</td>
+        <td  (click)="attendanceDialog(el.id)"><img [src]="el.decimage" ></td>
+        <td style="text-align: center; " scope="row"  (click)="attendanceDialog(el.id)" >{{el.id}}</td>
+        <td style="text-align: left;"  (click)="attendanceDialog(el.id)" >{{el.title}} {{el.name}} {{el.surname}}</td>
+        <td style="text-align: left;"  (click)="attendanceDialog(el.id)" >{{el.position}}</td>
+        <td style="text-align: left;"  (click)="attendanceDialog(el.id)">{{el.email}}</td>
+        <td style="color:#1e76fa;"   (click)="attendanceDialog(el.id)">{{el.checkin}}</td>
+        <td style="color:#04d632;" (click)="attendanceDialog(el.id)" >{{el.checkout}}</td>
       
         <div style="margin: auto; padding: 15px;">
           <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;" id="edit"

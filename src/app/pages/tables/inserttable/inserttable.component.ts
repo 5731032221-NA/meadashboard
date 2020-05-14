@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 // import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { FormBuilder } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
@@ -105,6 +105,7 @@ export class TreeGridComponent {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
+    private router: Router,
     // private blob: BlobService,
     // private Config: UploadParams = {
     //   sas: '?sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=2020-03-12T13:54:45Z&st=2020-03-12T05:54:45Z&spr=https&sig=LU0kQzzSgGKBEE6n4jsx0la7P%2BKdPYW%2FNstCz%2BhppZY%3D',
@@ -120,6 +121,7 @@ export class TreeGridComponent {
       name: '',
       surname: '',
       email: '',
+      position: ''
     });
   }
 
@@ -143,9 +145,10 @@ export class TreeGridComponent {
     this.http.post<any>('http://20.188.110.129:3000/uploadid/' + customerData.id, {}).subscribe(uploadid =>
       this.http.post<any>('http://20.188.110.129:3000/upload', formData, options2).subscribe(upload =>
         this.http.post<any>('http://20.188.110.129:3000/postmeaprofile', customerData, options).subscribe(done => //console.log(done)
-        this.http.post<any>('http://20.188.110.129:3000/posttrainimage', '{"id": "'+customerData.id+'","imageUrl": "'+customerData.image+'" }', options).subscribe(az1 =>
-            console.log(az1)
-          )
+        // this.http.post<any>('http://20.188.110.129:3000/posttrainimage', '{"id": "'+customerData.id+'","imageUrl": "'+customerData.image+'" }', options).subscribe(az1 =>
+            // console.log(az1)
+            this.router.navigate(['/pages/tables/table'])
+          // )
         )
       )
     );

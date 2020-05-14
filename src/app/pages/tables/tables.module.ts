@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {EditTableComponent} from './edittable/edittable.component'
 import {DeletetableTableComponent} from './deletetable/deletetable.component'
-
+import {AttendanceComponent} from './attendance/attendance.component'
 import { MatDialogModule } from '@angular/material';
 
 
@@ -37,7 +37,8 @@ import { MatDialogModule } from '@angular/material';
     FsIconComponent,
     EditTableComponent,
     DeletetableTableComponent,
+    AttendanceComponent,
   ],
-  entryComponents: [EditTableComponent,DeletetableTableComponent],
+  entryComponents: [EditTableComponent,DeletetableTableComponent,AttendanceComponent],
 })
 export class TablesModule { }
