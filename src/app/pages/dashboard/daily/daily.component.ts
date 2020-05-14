@@ -86,8 +86,8 @@ export class DailyComponent {
   mealoverhour: string = "-";
   happyhour: string = "-";
 
-  bestemphap: string = "-";
-  mealoverhap: string = "-";
+  bestemphap: number = 0;
+  mealoverhap: number = 0;
   happypersonhap: number = 0;
 
   happypersonpo: string = "-";
@@ -673,7 +673,7 @@ export class DailyComponent {
 
                 }
                 if (hap > 100) hap = 100;
-                this.bestemphap = hap + "%";
+                this.bestemphap = hap;
                 this.bestemphour = Math.floor(bestemphighestVal / 60) + "." + ("0" + (bestemphighestVal % 60)).slice(-2);
 
               }
@@ -695,7 +695,7 @@ export class DailyComponent {
 
                   }
                   if (hap > 100) hap = 100;
-                  this.mealoverhap = hap + "%";
+                  this.mealoverhap = hap;
                   this.mealoverhour = Math.floor(getworktime[MEAloverval2] / 60) + "." + ("0" + (getworktime[MEAloverval2] % 60)).slice(-2);
                 }
               } else {
@@ -714,7 +714,7 @@ export class DailyComponent {
 
                   }
                   if (hap > 100) hap = 100;
-                  this.mealoverhap = hap + "%";
+                  this.mealoverhap = hap;
                   this.mealoverhour = Math.floor(getworktime[MEAloverval] / 60) + "." + ("0" + (getworktime[MEAloverval] % 60)).slice(-2);
                 }
               }
