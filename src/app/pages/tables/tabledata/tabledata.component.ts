@@ -96,25 +96,25 @@ export class SmartTableComponent {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
-      this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
-        profile.forEach((element) => {
-          element['checkin'] = '-';
-          element['checkout'] =  '-';
-          element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
-          checkin.forEach((tt) => {
+    //   this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
+    //   this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
+    //     profile.forEach((element) => {
+    //       element['checkin'] = '-';
+    //       element['checkout'] =  '-';
+    //       element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
+    //       checkin.forEach((tt) => {
           
-            if(element.id == tt.id){
-              element['checkin'] =  tt.checkin;
-              element['checkout'] =  tt.checkout;
-            }
+    //         if(element.id == tt.id){
+    //           element['checkin'] =  tt.checkin;
+    //           element['checkout'] =  tt.checkout;
+    //         }
   
-          })
+    //       })
 
-        })
-        this.dataSource = profile;
-      })
-    })
+    //     })
+    //     this.dataSource = profile;
+    //   })
+    // })
     });
   }
 
