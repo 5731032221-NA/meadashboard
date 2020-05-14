@@ -1,5 +1,5 @@
 // @import '../../../@theme/styles/themes';
-// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 
 // table {
@@ -10,7 +10,7 @@
 
 tr {text-align: center; border-radius: 30px; border-collapse: collapse; overflow: hidden;}
   tr:nth-child(even) {background-color: #F8F8F8;
-    border-radius: 30px;border-collapse: collapse; overflow: hidden;
+    border-radius: 30px; border-collapse: collapse; overflow: hidden;
     }
     .form-inline [fullWidth] {
       flex: 1;

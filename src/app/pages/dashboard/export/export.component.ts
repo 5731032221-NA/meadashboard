@@ -29,7 +29,7 @@ export class ExportComponent {
   // }];
 
 
-  displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'เพศ', 'อายุ','เวลาเข้างาน','Emotion เข้างาน','เวลาออกงาน','Emotion ออกงาน'];
+  displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'เพศ', 'อายุ-ขาเข้า','วันเวลา-ขาเข้า','อารมณ์เข้างาน', 'อายุ-ขาออก','วันเวลา-ขาออก','อารมณ์ออกงาน'];
   dataSource: any[];
   p: number = 1;
   from: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
