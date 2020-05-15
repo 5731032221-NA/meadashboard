@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import {formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 
@@ -30,7 +30,7 @@ export class ExportComponent {
   // }];
 
 
-  displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล','วันที่' ,'เพศ', 'อายุ-ขาเข้า','วันเวลา-ขาเข้า','อารมณ์เข้างาน', 'อายุ-ขาออก','วันเวลา-ขาออก','อารมณ์ออกงาน'];
+  displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'วันที่', 'เพศ', 'อายุ-ขาเข้า', 'วันเวลา-ขาเข้า', 'อารมณ์เข้างาน', 'อายุ-ขาออก', 'วันเวลา-ขาออก', 'อารมณ์ออกงาน'];
   dataSource: any[];
   p: number = 1;
   from: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
@@ -47,8 +47,28 @@ export class ExportComponent {
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }
   private saveAsExcelFile(buffer: any, fileName: string): void {
+    let date_ob = new Date();
+
+    // current date
+    // adjust 0 before single digit date
+    let date = ("0" + date_ob.getDate()).slice(-2);
+
+    // current month
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    let year = date_ob.getFullYear();
+
+    // current hours
+    let hours = ("0" + date_ob.getHours()).slice(-2);
+
+    // current minutes
+    let minutes = ("0" + date_ob.getMinutes()).slice(-2);
+
+    // current seconds
+    let seconds = date_ob.getSeconds();
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
-    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+    FileSaver.saveAs(data, fileName + '_export_' + date + month + year + '_' + hours + minutes + EXCEL_EXTENSION);
   }
 
   exportAsXLSX(): void {
@@ -58,7 +78,7 @@ export class ExportComponent {
       let arr = []
       // console.log(el)
       arr['รหัสพนักงาน'] = el.id;
-      arr['ชื่อ - สกุล'] = el.title+" "+el.name+" "+el.surname;
+      arr['ชื่อ - สกุล'] = el.title + " " + el.name + " " + el.surname;
       arr['วันที่'] = el.checkindatetime.substring(6, 8) + "-" + el.checkindatetime.substring(4, 6) + "-" + el.checkindatetime.substring(0, 4);
       arr['เพศ'] = el.checkinEmotion.gender;
       arr['อายุ-ขาเข้า'] = el.checkinEmotion.age;
@@ -72,30 +92,30 @@ export class ExportComponent {
       // console.log(data);
     })
     // console.log("fi")
-    
+
     // console.log("tt");
-    this.exportAsExcelFile(data, 'sample');
+    this.exportAsExcelFile(data, 'sfra_report_');
   }
 
   constructor(private http: HttpClient, private router: Router) {
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
         checkin.forEach((element) => {
-          
-            element['date'] =  element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
-           
-          if(element.checkout == ''){
-            element.checkout =  '-';
-            element.checkoutEmo =  '-';
+
+          element['date'] = element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
+
+          if (element.checkout == '') {
+            element.checkout = '-';
+            element.checkoutEmo = '-';
           }
           profile.forEach((element2) => {
 
-            if(element.id == element2.id){
+            if (element.id == element2.id) {
               element['title'] = element2.title;
               element['name'] = element2.name;
               element['surname'] = element2.surname;
             }
-  
+
           })
 
         })
@@ -119,28 +139,28 @@ export class ExportComponent {
 
     // current year
     let year = date_ob.getFullYear();
-    if(type == "startDate"){
-      this.from = year+month+date
-    }else if(type == "EndDate"){
-      this.to = year+month+date
+    if (type == "startDate") {
+      this.from = year + month + date
+    } else if (type == "EndDate") {
+      this.to = year + month + date
     }
 
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
-      this.http.get<any[]>('http://20.188.110.129:3000/getexport/'+this.from+'/'+this.to).subscribe((checkin) => {
+      this.http.get<any[]>('http://20.188.110.129:3000/getexport/' + this.from + '/' + this.to).subscribe((checkin) => {
         checkin.forEach((element) => {
 
-          if(element.checkout == ''){
-            element.checkout =  '-';
-            element.checkoutEmo =  '-';
+          if (element.checkout == '') {
+            element.checkout = '-';
+            element.checkoutEmo = '-';
           }
           profile.forEach((element2) => {
 
-            if(element.id == element2.id){
+            if (element.id == element2.id) {
               element['title'] = element2.title;
               element['name'] = element2.name;
               element['surname'] = element2.surname;
             }
-  
+
           })
 
         })
