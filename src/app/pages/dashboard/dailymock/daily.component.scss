@@ -8,6 +8,9 @@
   //   width: 100px;
   //   height: 117px;
   // }
+  img {
+    pointer-events: none;
+  }
   tr {text-align: center;}
   tr:nth-child(even) {background-color: #FFEE99;
     }

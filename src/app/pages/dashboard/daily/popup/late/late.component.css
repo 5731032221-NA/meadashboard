@@ -3,6 +3,8 @@ img {
   width: 50px;
   height: 58px;
   border-radius: 5px;
+  pointer-events: none;
+
 }
 .frame {
 background-color: rgb(248, 231, 231); 
