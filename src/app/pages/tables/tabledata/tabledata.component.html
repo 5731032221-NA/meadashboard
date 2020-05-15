@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr mdbTableCol *ngFor="let el of dataSource | paginate: { itemsPerPage: 6, currentPage: p }"
+      <tr mdbTableCol *ngFor="let el of dataSource | paginate: {id: 'main', itemsPerPage: 6, currentPage: p }"
         [ngStyle]="{'width':column === 'รหัสพนักงาน' ? '100px' : '' }">
         <td  (click)="attendanceDialog(el.id)"><img [src]="el.decimage" ></td>
         <td style="text-align: center; " scope="row"  (click)="attendanceDialog(el.id)" >{{el.id}}</td>
@@ -38,6 +38,6 @@
     </tbody>
     
   </table>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <pagination-controls id="main" (pageChange)="p = $event"></pagination-controls>
   </nb-card-body>
 </nb-card>

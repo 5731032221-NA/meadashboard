@@ -15,8 +15,8 @@ export class AttendanceComponent implements OnInit {
 
   // displayedColumns = ['No.','ID', 'First Name - Last Name', 'Profile Picture'];
   dataSource: any[];
-  p: number = 1;
-  itemsPerPage: number = 10;
+  p2: number = 1;
+  itemsPerPage2: number = 10;
   title: string;
   name: string;
   surname: string;

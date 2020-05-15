@@ -33,7 +33,7 @@
       </thead>
       <tbody>
         <tr mdbTableCol
-          *ngFor="let el of dataSource ">
+          *ngFor="let el of dataSource |  paginate: {id: 'popup', currentPage: p2, itemsPerPage: itemsPerPage2 };">
           <!-- <td>{{el.Date}}</td>
           <td>{{el.checkin.emotion.gender}}</td>
           <td>{{el.checkin.emotion.age}}</td>
@@ -61,7 +61,7 @@
 
     </table>
   </div>
-  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+  <pagination-controls id="popup" (pageChange)="p2 = $event"></pagination-controls>
 
   <!-- <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Close</button>
