@@ -32,7 +32,7 @@
       <tbody>
         <tr mdbTableCol
           *ngFor="let el of dataSource ">
-          <td>{{el.Date}}</td>
+          <!-- <td>{{el.Date}}</td>
           <td>{{el.checkin.emotion.gender}}</td>
           <td>{{el.checkin.emotion.age}}</td>
           <td>{{el.checkin.time}}</td>
@@ -40,7 +40,18 @@
           <td>{{el.checkout.emotion.gender}}</td>
           <td>{{el.checkout.emotion.age}}</td>
           <td>{{el.checkout.time}}</td>
-          <td>{{el.emotion2}}</td>
+          <td>{{el.emotion2}}</td> -->
+          <td>{{el.checkindatetime}}</td>
+          <td>{{el.checkinEmotion.gender}}</td>
+          <td>{{el.checkinEmotion.age}}</td>
+          <td>{{el.checkin}}</td>
+          <td>{{el.checkinEmo}}</td>
+          <!-- <td>{{el.checkoutdatetime}}</td> -->
+          <td>{{el.checkoutEmotion.gender}}</td>
+          <td>{{el.checkoutEmotion.age}}</td>
+          <td>{{el.checkout}}</td>
+          <td>{{el.checkoutEmo}}</td>
+
         </tr>
       </tbody>
 
