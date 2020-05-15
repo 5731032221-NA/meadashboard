@@ -1,4 +1,5 @@
 <div class="frame">
+  <ngx-spinner></ngx-spinner>
   <nb-card>
     <nb-card-header>
       แก้ไขข้อมูลพนักงาน
@@ -59,8 +60,8 @@
             </label>
             <br />
             <img [src]="profileimage" />
-            <input nbButton type="file" style="margin-top: 15px; margin-bottom: 15px;" (change)="onFileChanged($event)"> <button
-              style="background-color: #808080; border-color: #ffffff;" nbButton status="primary" type="submit"
+            <input nbButton type="file" style="margin-top: 15px; margin-bottom: 15px;" (change)="onFileChanged($event)">
+            <button style="background-color: #808080; border-color: #ffffff;" nbButton status="primary" type="submit"
               (click)="onSubmitPic()">เทรนรูปใหม่</button>
           </div>
         </div>

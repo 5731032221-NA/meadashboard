@@ -30,7 +30,7 @@ export class ExportComponent {
   // }];
 
 
-  displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'เพศ', 'อายุ-ขาเข้า','วันเวลา-ขาเข้า','อารมณ์เข้างาน', 'อายุ-ขาออก','วันเวลา-ขาออก','อารมณ์ออกงาน'];
+  displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล','วันที่' ,'เพศ', 'อายุ-ขาเข้า','วันเวลา-ขาเข้า','อารมณ์เข้างาน', 'อายุ-ขาออก','วันเวลา-ขาออก','อารมณ์ออกงาน'];
   dataSource: any[];
   p: number = 1;
   from: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
@@ -59,7 +59,9 @@ export class ExportComponent {
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
         checkin.forEach((element) => {
-
+          
+            element['date'] =  element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
+           
           if(element.checkout == ''){
             element.checkout =  '-';
             element.checkoutEmo =  '-';

@@ -65,10 +65,10 @@ export class SmartTableComponent {
 
   // }
 
-  emoDialog(id): void {
+  emoDialog(id, nameid, faceid): void {
     const dialogRef = this.dialog.open(EditTableComponent, {
       width: '820px',
-      data: { id }
+      data: { id ,nameid,faceid}
     });
     dialogRef.afterClosed().subscribe(result => {
       this.spinner.show();

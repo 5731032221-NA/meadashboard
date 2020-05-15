@@ -6,8 +6,11 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 // import { map, catchError, tap, switchMap } from 'rxjs/operators';
 import { AES, enc } from 'crypto-js';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 interface DialogData {
   id: string;
+  nameid: string;
+  faceid: string;
 }
 
 const httpHeaders = new HttpHeaders({
@@ -38,7 +41,7 @@ export class EditTableComponent {
   myDefaultValue: String = "a";
 
   constructor(
-
+    private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -86,13 +89,11 @@ export class EditTableComponent {
   onSubmit(customerData) {
     let formData: any = new FormData();
 
-    // formData.append('photo', this.imageFile);
-    // let options2 = {
-    //   // method: 'POST',
-    //   // body: formData,
-    //   headers: httpHeaders2,
-    // };
+    formData.append('photo', this.imageFile);
+    let options2 = {
 
+      headers: httpHeaders2,
+    };
     this.checkoutForm.reset();
     this.route.queryParams.subscribe(params => {
       this.http.post<any>('http://20.188.110.129:3000/postmeaprofile/' + this.data.id, customerData, options).subscribe(done => console.log(done))
@@ -103,14 +104,15 @@ export class EditTableComponent {
   }
 
   onSubmitPic() {
-    // let formData: any = new FormData();
+    this.spinner.show();
+    let formData: any = new FormData();
 
-    // formData.append('photo', this.imageFile);
-    // let options2 = {
-    //   // method: 'POST',
-    //   // body: formData,
-    //   headers: httpHeaders2,
-    // };
+    formData.append('photo', this.imageFile);
+    let options2 = {
+      // method: 'POST',
+      // body: formData,
+      headers: httpHeaders2,
+    };
     const reader = new FileReader();
     reader.readAsDataURL(this.imageFile);
     reader.onload = () => {
@@ -122,11 +124,18 @@ export class EditTableComponent {
       // console.log("ciphertext2",ciphertext2);  
       // console.log("ciphertext",ciphertext);
       this.http.post<any>('http://20.188.110.129:3000/postmeapic/' + this.data.id, { 'image': ciphertext }, options).subscribe(done =>
+        this.http.post<any>('http://20.188.110.129:3000/uploadid/' + this.data.nameid, {}).subscribe(uploadid =>
+          this.http.post<any>('http://20.188.110.129:3000/upload', formData, options2).subscribe(upload =>
+            this.http.post<any>('http://20.188.110.129:3000/updatetrainimage', '{"faceid": "' + this.data.faceid + '","id": "' + this.data.nameid + '","imageUrl": "' + "https://oneteamblob.blob.core.windows.net/meapicture/" + this.data.nameid + ".jpg" + '" }', options).subscribe(az1 => {
+              console.log("hmm",az1);
+              this.spinner.hide();
+              this.dialogRef.close()
+            }
+            )
+          )
 
-        this.dialogRef.close()
-
-      )
-      // });
+        )
+      );
 
     };
 
