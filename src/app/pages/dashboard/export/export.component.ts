@@ -68,7 +68,7 @@ export class ExportComponent {
     // current seconds
     let seconds = date_ob.getSeconds();
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
-    FileSaver.saveAs(data, fileName + '_export_' + date + month + year + '_' + hours + minutes + EXCEL_EXTENSION);
+    FileSaver.saveAs(data, fileName  + date + month + year + '_' + hours + minutes + EXCEL_EXTENSION);
   }
 
   exportAsXLSX(): void {
