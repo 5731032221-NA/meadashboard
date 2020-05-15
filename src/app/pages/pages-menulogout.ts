@@ -26,7 +26,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'people-outline',
         children: [
             {
-                title: 'Employee info',
+                title: 'Employee Info',
                 // icon: 'clipboard-outline',
                 link: '/pages/tables/table',
             },
@@ -35,7 +35,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
             //   link: '/pages/tables/smart-table2',
             // },
             {
-                title: 'Add new employee',
+                title: 'Add New Employee',
                 // icon: 'person-add-outline',
                 link: '/pages/tables/insert',
             }
@@ -65,7 +65,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         ],
     },
     {
-        title: 'logout',
+        title: 'Logout',
         icon: 'log-out-outline',
 
 

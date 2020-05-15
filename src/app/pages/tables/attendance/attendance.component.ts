@@ -34,11 +34,12 @@ export class AttendanceComponent implements OnInit {
       this.name = profile[0].name;
       this.surname = profile[0].surname;
       this.profileimage = 'data:image/jpg;base64,' + profile[0].encimage;
-      this.http.get<any[]>('http://20.188.110.129:3000/attendanceimage/' + data.id).subscribe((attendance) => {
+      this.http.get<any[]>('http://20.188.110.129:3000/attendanceimage/' + data.id).subscribe(async (attendance) => {
+        // await attendance.sort(function(a, b) { return a.checkindatetime - b.checkindatetime; });  
         console.log("bb", attendance);
 
         attendance.forEach((element) => {
-          element['date'] = element.checkindatetime.substring(0, 2) + "-" + element.checkindatetime.substring(2, 2) + "-" + element.checkindatetime.substring(4, 2);
+          element['date'] = element.checkindatetime.substring(0, 4) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(6, 8);
          
           if (element.checkout != '') {
             // console.log(element['showimg']);

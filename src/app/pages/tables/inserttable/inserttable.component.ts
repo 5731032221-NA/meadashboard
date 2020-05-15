@@ -3,9 +3,8 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
-
+import { AES } from 'crypto-js';
+import { NgxSpinnerService } from "ngx-spinner";
 const httpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'
 });
@@ -103,6 +102,7 @@ export class TreeGridComponent {
 
 
   constructor(
+    private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
@@ -127,6 +127,7 @@ export class TreeGridComponent {
 
 
   onSubmit(customerData) {
+    this.spinner.show();
     let formData: any = new FormData();
 
     formData.append('photo', this.imageFile);
@@ -144,11 +145,26 @@ export class TreeGridComponent {
     console.log(customerData.name)
     this.http.post<any>('http://20.188.110.129:3000/uploadid/' + customerData.id, {}).subscribe(uploadid =>
       this.http.post<any>('http://20.188.110.129:3000/upload', formData, options2).subscribe(upload =>
-        this.http.post<any>('http://20.188.110.129:3000/postmeaprofile', customerData, options).subscribe(done => //console.log(done)
-        // this.http.post<any>('http://20.188.110.129:3000/posttrainimage', '{"id": "'+customerData.id+'","imageUrl": "'+customerData.image+'" }', options).subscribe(az1 =>
+        this.http.post<any>('http://20.188.110.129:3000/posttrainimage', '{"id": "' + customerData.id + '","imageUrl": "' + customerData.image + '" }', options).subscribe(async (az1) => {
+          customerData.faceid = await az1.personId;
+          const reader = new FileReader();
+          reader.readAsDataURL(this.imageFile);
+          reader.onload = async () => {
+            // console.log("reader",reader.result);
+            // var ciphertext2 = AES.encrypt(reader.result, 'meaprofilepic').toString(enc.Utf8)
+            var text = await reader.result.toString().substring(23);
+            customerData.encimage = await AES.encrypt(text, 'meaprofilepic').toString();
+            this.http.post<any>('http://20.188.110.129:3000/postmeaprofile', customerData, options).subscribe(done => //console.log(done)
             // console.log(az1)
-            this.router.navigate(['/pages/tables/table'])
-          // )
+            {
+              this.spinner.hide();
+              this.router.navigate(['/pages/tables/table'])
+            }
+            )
+            // });
+
+          }
+        }
         )
       )
     );

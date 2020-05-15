@@ -13,7 +13,7 @@ import {EditTableComponent} from './edittable/edittable.component'
 import {DeletetableTableComponent} from './deletetable/deletetable.component'
 import {AttendanceComponent} from './attendance/attendance.component'
 import { MatDialogModule } from '@angular/material';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   imports: [
@@ -30,6 +30,7 @@ import { MatDialogModule } from '@angular/material';
     ReactiveFormsModule,
     NgxPaginationModule,
     MatDialogModule,
+    NgxSpinnerModule,
     // BlobModule,
   ],
   declarations: [

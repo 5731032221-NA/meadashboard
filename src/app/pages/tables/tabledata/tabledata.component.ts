@@ -13,6 +13,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EditTableComponent } from '../edittable/edittable.component'
 import { DeletetableTableComponent } from '../deletetable/deletetable.component'
 import { AttendanceComponent } from '../attendance/attendance.component'
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'ngx-tabledata',
   templateUrl: './tabledata.component.html',
@@ -25,8 +27,8 @@ export class SmartTableComponent {
 
   evaIcons = [];
 
-  constructor(private http: HttpClient, private router: Router, public dialog: MatDialog) {
-
+  constructor(private spinner: NgxSpinnerService,private http: HttpClient, private router: Router, public dialog: MatDialog) {
+    this.spinner.show();
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
         profile.forEach((element) => {
@@ -45,6 +47,7 @@ export class SmartTableComponent {
 
         })
         this.dataSource = profile;
+        this.spinner.hide();
       })
     })
     // this.evaIcons = Array.from(iconsLibrary.getPack('eva').icons.keys())
@@ -68,6 +71,7 @@ export class SmartTableComponent {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.spinner.show();
       this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
         profile.forEach((element) => {
@@ -85,6 +89,7 @@ export class SmartTableComponent {
 
         })
         this.dataSource = profile;
+        this.spinner.hide();
       })
     })
     });
@@ -124,6 +129,7 @@ export class SmartTableComponent {
       data: { id,nameid }
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.spinner.show();
       this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
         profile.forEach((element) => {
@@ -141,6 +147,7 @@ export class SmartTableComponent {
 
         })
         this.dataSource = profile;
+        this.spinner.hide();
       })
     })
     });
