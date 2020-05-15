@@ -53,6 +53,7 @@ export class ExportComponent {
 
   exportAsXLSX(): void {
     let data = []
+    // this.dataSource.sort((a, b) => (b['วันที่'] - a['วันที่']));
     this.dataSource.forEach((el) => {
       let arr = []
       // console.log(el)
@@ -63,7 +64,7 @@ export class ExportComponent {
       arr['อายุ-ขาเข้า'] = el.checkinEmotion.age;
       arr['วันเวลา-ขาเข้า'] = el.checkin;
       arr['อารมณ์เข้างาน'] = el.checkinEmo;
-      arr['อายุ-ขาออก'] = el.checkinEmotion.age;
+      arr['อายุ-ขาออก'] = el.checkoutEmotion.age;
       arr['วันเวลา-ขาออก'] = el.checkout;
       arr['อารมณ์ออกงาน'] = el.checkoutEmo;
       // console.log(arr)
@@ -71,7 +72,7 @@ export class ExportComponent {
       // console.log(data);
     })
     // console.log("fi")
-    data.sort((a, b) => (b['วันที่'] - a['วันที่']));
+    
     // console.log("tt");
     this.exportAsExcelFile(data, 'sample');
   }
