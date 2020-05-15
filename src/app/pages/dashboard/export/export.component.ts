@@ -52,7 +52,28 @@ export class ExportComponent {
   }
 
   exportAsXLSX(): void {
-    this.exportAsExcelFile(this.dataSource, 'sample');
+    let data = []
+    this.dataSource.forEach((el) => {
+      let arr = []
+      // console.log(el)
+      arr['รหัสพนักงาน'] = el.id;
+      arr['ชื่อ - สกุล'] = el.title+" "+el.name+" "+el.surname;
+      arr['วันที่'] = el.checkindatetime.substring(6, 8) + "-" + el.checkindatetime.substring(4, 6) + "-" + el.checkindatetime.substring(0, 4);
+      arr['เพศ'] = el.checkinEmotion.gender;
+      arr['อายุ-ขาเข้า'] = el.checkinEmotion.age;
+      arr['วันเวลา-ขาเข้า'] = el.checkin;
+      arr['อารมณ์เข้างาน'] = el.checkinEmo;
+      arr['อายุ-ขาออก'] = el.checkinEmotion.age;
+      arr['วันเวลา-ขาออก'] = el.checkout;
+      arr['อารมณ์ออกงาน'] = el.checkoutEmo;
+      // console.log(arr)
+      data = [...data, arr];
+      // console.log(data);
+    })
+    // console.log("fi")
+    data.sort((a, b) => (b['วันที่'] - a['วันที่']));
+    // console.log("tt");
+    this.exportAsExcelFile(data, 'sample');
   }
 
   constructor(private http: HttpClient, private router: Router) {
