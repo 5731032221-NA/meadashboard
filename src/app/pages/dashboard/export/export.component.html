@@ -10,17 +10,20 @@
     <nb-card-body>
       <table>
         <tr>
-        <td style="color: #ff7701;">Please Select Date &nbsp;</td>  
-        <td> From :: </td>
+        <td style="font-weight: bold; color: #717171;">Please Select Date &nbsp;</td>  
+        <td style="color: #ff7701;"> From :: </td>
         <td>
           <mat-form-field>
             <mat-label></mat-label>
             <input matInput [matDatepicker]="picker" (dateChange)="toplist('startDate', $event)">
+                     
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+
            </mat-form-field>
+
         </td>
-        <td>To :: </td>
+        <td style="color: #ff7701;">To :: </td>
         <td>
           <mat-form-field>
             <mat-label></mat-label>
