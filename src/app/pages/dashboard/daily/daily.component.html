@@ -286,7 +286,8 @@
         <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{bestempname}}</span><br />
           <span style="color: #7a7877; font-size: 14px; ">{{bestemppo}}</span><br />
-          <span style="color: #7a7877; font-size: 14px; ">ID: {{bestemp}}</span>
+          <span style="color: #7a7877; font-size: 14px; " *ngIf="bestempshow">ID: </span>
+          <span style="color: #7a7877; font-size: 14px; " >{{bestemp}}</span>
         </div>
       </div>
       <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
@@ -321,7 +322,8 @@
         <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{happypersonname}} </span><br />
           <span style="color: #7a7877; font-size: 14px; ">{{happypersonpo}}</span><br />
-          <span style="color: #7a7877; font-size: 14px; ">ID: {{happyperson}}</span>
+          <span style="color: #7a7877; font-size: 14px; " *ngIf="happypersonshow">ID: </span>
+          <span style="color: #7a7877; font-size: 14px; " >{{happyperson}}</span>
         </div>
       </div>
       <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">
@@ -361,7 +363,8 @@
         <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{mealovername}}</span><br />
           <span style="color: #7a7877; font-size: 14px; ">{{mealoverpo}}</span><br />
-          <span style="color: #7a7877; font-size: 14px; ">ID: {{mealover}}</span>
+          <span style="color: #7a7877; font-size: 14px; " *ngIf="mealovershow">ID: </span>
+          <span style="color: #7a7877; font-size: 14px; ">{{mealover}}</span>
         </div>
       </div>
       <div class="col-lg-3" style="display:flex; align-items:center; justify-content:flex-start; ">

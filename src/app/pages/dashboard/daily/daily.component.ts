@@ -57,9 +57,9 @@ export class DailyComponent {
 
   emoicon: string = "all";
 
-  bestemp: string = "-";
-  happyperson: string = "-";
-  mealover: string = "-";
+  bestemp: string = " ";
+  happyperson: string = " ";
+  mealover: string = " ";
   // rate: number = 3;
 
   mealovershow: boolean = false;
@@ -70,9 +70,9 @@ export class DailyComponent {
   happypersonimg: string = "";
   mealoverimg: string = "";
 
-  bestempname: string = "-";
-  happypersonname: string = "-";
-  mealovername: string = "-";
+  bestempname: string = " ";
+  happypersonname: string = " ";
+  mealovername: string = " ";
 
   bestempin: string = "--:--";
   mealoverin: string = "--:--";
@@ -90,9 +90,9 @@ export class DailyComponent {
   mealoverhap: number = 0;
   happypersonhap: number = 0;
 
-  happypersonpo: string = "-";
-  bestemppo: string = "-";
-  mealoverpo: string = "-";
+  happypersonpo: string = " ";
+  bestemppo: string = " ";
+  mealoverpo: string = " ";
 
   public happy = [];
   public unhappy = [];
