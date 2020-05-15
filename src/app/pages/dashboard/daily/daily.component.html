@@ -283,7 +283,7 @@
       </div>
       <div class="col-lg-6" style="display:flex; align-items: center; justify-content:flex-start;padding-left: 12% ">
         <img [src]="bestempimg" width="80px" style="border-radius: 15px;" />
-        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;" *ngIf="bestempshow">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{bestempname}}</span><br />
           <span style="color: #7a7877; font-size: 14px; ">{{bestemppo}}</span><br />
           <span style="color: #7a7877; font-size: 14px; " *ngIf="bestempshow">ID: </span>
@@ -317,9 +317,9 @@
           <span style="color: #7a7877; font-size: 22px; "> Person</span>
         </div>
       </div>
-      <div class="col-lg-6" style="display:flex; align-items: center; justify-content:flex-start;padding-left: 12% ">
+      <div class="col-lg-6" style="display:flex; align-items: center; justify-content:flex-start;padding-left: 12% " >
         <img [src]="happypersonimg" width="80px" style="border-radius: 15px;" />
-        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;" *ngIf="happypersonshow">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{happypersonname}} </span><br />
           <span style="color: #7a7877; font-size: 14px; ">{{happypersonpo}}</span><br />
           <span style="color: #7a7877; font-size: 14px; " *ngIf="happypersonshow">ID: </span>
@@ -360,7 +360,7 @@
       </div>
       <div class="col-lg-6" style="display:flex; align-items: center; justify-content:flex-start;padding-left: 12% ">
         <img [src]="mealoverimg" width="80px" style="border-radius: 15px;" />
-        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;">
+        <div style="display: block; border-color:#ece2e2;border-right:ridge 1.5px; padding: 20px 50px;" *ngIf="mealovershow">
           <span style="color: #838383; font-size: 17px; font-weight: bold; ">{{mealovername}}</span><br />
           <span style="color: #7a7877; font-size: 14px; ">{{mealoverpo}}</span><br />
           <span style="color: #7a7877; font-size: 14px; " *ngIf="mealovershow">ID: </span>
