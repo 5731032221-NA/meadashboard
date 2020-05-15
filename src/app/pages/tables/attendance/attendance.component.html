@@ -8,9 +8,9 @@
 
         <tr>
          
-          <th rowspan="2">วัน</th>
-          <th colspan="4">เข้างาน</th>
-          <th colspan="4">ออกงาน</th>
+          <th rowspan="2">วันที่</th>
+          <th colspan="5">เข้างาน</th>
+          <th colspan="5">ออกงาน</th>
 
         </tr>
         
@@ -21,10 +21,12 @@
           <th>อายุ</th>
           <th>เวลาเข้า</th>
           <th>Emotion</th>
+          <th>#</th>
           <th>เพศ</th>
           <th>อายุ</th>
           <th>เวลาออก</th>
           <th>Emotion</th>
+          <th>#</th>
         </tr>
 
 
@@ -41,16 +43,18 @@
           <td>{{el.checkout.emotion.age}}</td>
           <td>{{el.checkout.time}}</td>
           <td>{{el.emotion2}}</td> -->
-          <td>{{el.checkindatetime}}</td>
+          <td>{{el.date}}</td>
           <td>{{el.checkinEmotion.gender}}</td>
           <td>{{el.checkinEmotion.age}}</td>
           <td>{{el.checkin}}</td>
           <td>{{el.checkinEmo}}</td>
+          <td> <img [src]="el.image1" /></td>
           <!-- <td>{{el.checkoutdatetime}}</td> -->
           <td>{{el.checkoutEmotion.gender}}</td>
           <td>{{el.checkoutEmotion.age}}</td>
           <td>{{el.checkout}}</td>
           <td>{{el.checkoutEmo}}</td>
+          <td  *ngIf="el.showimg"> <img [src]="el.image2" /></td>
 
         </tr>
       </tbody>

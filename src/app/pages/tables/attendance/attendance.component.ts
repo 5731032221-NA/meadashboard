@@ -34,27 +34,33 @@ export class AttendanceComponent implements OnInit {
       this.name = profile[0].name;
       this.surname = profile[0].surname;
       this.profileimage = 'data:image/jpg;base64,' + profile[0].encimage;
-      this.http.get<any[]>('http://20.188.110.129:3000/attendance/' + data.id).subscribe((attendance) => {
+      this.http.get<any[]>('http://20.188.110.129:3000/attendanceimage/' + data.id).subscribe((attendance) => {
+        console.log("bb", attendance);
 
         attendance.forEach((element) => {
+          element['date'] = element.checkindatetime.substring(0, 2) + "-" + element.checkindatetime.substring(2, 2) + "-" + element.checkindatetime.substring(4, 2);
+         
+          if (element.checkout != '') {
+            // console.log(element['showimg']);
+            element['showimg'] = true;
+            this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.checkoutImageCrop).subscribe((image2) => {
+              element['image2'] = 'data:image/jpg;base64,' + image2['data'];
+            })
+          } else {
+            element['showimg'] = false;
+            element.checkoutEmotion.age = '';
+          }
           this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.checkinImageCrop).subscribe((image) => {
+
             element['image1'] = 'data:image/jpg;base64,' + image['data'];
-            if (element.checkoutdatetime! = '') {
-              this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.checkoutImageCrop).subscribe((image2) => {
-                element['image2'] = 'data:image/jpg;base64,' + image2['data'];
-
-
-
-              })
-            }
-
+            // element['showimg'] = true;
+            // console.log("hi",element.checkout != '');
 
           })
-
-
-          
         })
+
         this.dataSource = attendance;
+        console.log("aa", this.dataSource);
       })
     })
   }
