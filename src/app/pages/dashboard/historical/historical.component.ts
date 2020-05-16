@@ -4,7 +4,7 @@ import { Label, Color } from 'ng2-charts';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import {formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 // import * as Highcharts from 'highcharts';
 import { StockChart } from 'angular-highcharts';
 // declare var require: any;
@@ -41,6 +41,10 @@ export class HistoricalComponent {
       console.log(res)
       // this.dataemo = res
       this.stock = new StockChart({
+        chart: {
+          type: 'spline'
+          // type: 'areaspline'
+        },
         rangeSelector: {
           selected: 4
         },
@@ -78,10 +82,12 @@ export class HistoricalComponent {
             color: 'silver'
           }]
         },
+
         xAxis: {
           type: 'datetime',
           gridLineWidth: 1,
           labels: {
+
             style: {
               fontSize: '12px'
             }
@@ -95,6 +101,7 @@ export class HistoricalComponent {
         },
 
         tooltip: {
+
           pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
           valueDecimals: 2,
           split: true
@@ -102,7 +109,7 @@ export class HistoricalComponent {
         legend: {
           enabled: true
         },
-
+        colors: ['#8FcBFA', '#FF7701', '#7D7D7D'],
         // series: [{ name: "Happy", data: []},
         // { name: "Happy", data: []},
         // { name: "Happy", data: []}]
@@ -114,6 +121,9 @@ export class HistoricalComponent {
       console.log(res)
       // this.dataemo = res
       this.stock2 = new StockChart({
+        chart: {
+          type: 'spline'
+        },
         rangeSelector: {
           selected: 4
         },
@@ -175,6 +185,7 @@ export class HistoricalComponent {
         legend: {
           enabled: true
         },
+        colors: ['#53A9F2', '#FF6B4D', '#BFBFBD', '#4EC873'],
 
         // series: [{ name: "Happy", data: []},
         // { name: "Happy", data: []},
@@ -213,14 +224,14 @@ export class HistoricalComponent {
 
     // current year
     let year = date_ob.getFullYear();
-    if(type == "startDate"){
-      this.from = year+month+date
-    }else if(type == "EndDate"){
-      this.to = year+month+date
+    if (type == "startDate") {
+      this.from = year + month + date
+    } else if (type == "EndDate") {
+      this.to = year + month + date
     }
 
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
-      this.http.get<any[]>('http://20.188.110.129:3000/gethistoricaltop/'+this.from+"/"+this.to).subscribe((topdata) => {
+      this.http.get<any[]>('http://20.188.110.129:3000/gethistoricaltop/' + this.from + "/" + this.to).subscribe((topdata) => {
         profile.forEach((element) => {
 
           if (topdata[element.id] == null) {
