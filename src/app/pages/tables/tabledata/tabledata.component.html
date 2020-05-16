@@ -1,11 +1,9 @@
 <nb-card>
-  <ngx-spinner></ngx-spinner>  
   <nb-card-header>
     <div style="color: #ff7701;">&#9125; Employee Info.</div>
   </nb-card-header>
 
   <nb-card-body>
-    
   <!-- <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
     </ng2-smart-table> -->
   <table mdbTable style="width: 100%;">
@@ -16,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr mdbTableCol *ngFor="let el of dataSource | paginate: {id: 'main', itemsPerPage: 8, currentPage: p }"
+      <tr mdbTableCol *ngFor="let el of dataSource | paginate: {id: 'main', itemsPerPage: 6, currentPage: p }"
         [ngStyle]="{'width':column === 'รหัสพนักงาน' ? '100px' : '' }">
         <td  (click)="attendanceDialog(el.id)"><img [src]="el.decimage" ></td>
         <td style="text-align: center; " scope="row"  (click)="attendanceDialog(el.id)" >{{el.id}}</td>
@@ -28,7 +26,7 @@
       
         <div style="margin: auto; padding: 15px;">
           <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;" id="edit"
-            (click)="emoDialog(el._id, el.id, el.faceid)"> <img src="../assets/images/edit.png"  style="width: 15px; height: 15px;"/>&nbsp;Edit</button>
+            (click)="emoDialog(el._id)"> <img src="../assets/images/edit.png"  style="width: 15px; height: 15px;"/>&nbsp;Edit</button>
           &nbsp;
           &nbsp;
           <button nbButton status="danger" style=" font-size: 12px; background-color: #C7C7C7; border-color: #C7C7C7; color: white;" id="remove"
