@@ -629,32 +629,50 @@ export class DailyComponent {
               if (element.id == bestempval) {
                 this.bestempname = element.name + " " + element.surname;
                 this.bestemp = bestempval;
-                this.bestempimg = element.image;
+                // this.bestempimg = element.image;
                 this.bestemppo = element.position;
+                this.http.get<any>('http://20.188.110.129:3000/getmeaprofilebyid/' + element.id).subscribe((res) => {
+                  // this.happy = [];
+                  this.bestempimg = 'data:image/jpg;base64,' + res[0].encimage;
+                  
+
+                });
               }
               if (element.id == happyval && happyhighestVal != 0) {
                 this.happypersonname = element.name + " " + element.surname;
                 this.happyperson = happyval;
-                this.happypersonimg = element.image;
-                if (happyhighestVal >= 100) this.happypersonhap = 100;
-                // else if (happyhighestVal >= 60) this.rate = 4;
-                // else if (happyhighestVal >= 40) this.rate = 3;
-                // else if (happyhighestVal >= 20) this.rate = 2;
-                else this.happypersonhap = happyhighestVal;
+                // this.happypersonimg = element.image;
+                this.http.get<any>('http://20.188.110.129:3000/getmeaprofilebyid/' + element.id).subscribe((res) => {
+                  // this.happy = [];
+                  this.happypersonimg = 'data:image/jpg;base64,' + res[0].encimage;
+                  
+                });
                 this.happypersonpo = element.position;
               }
               if (element.id == MEAloverval) {
                 this.mealovername = element.name + " " + element.surname;
                 this.mealover = MEAloverval;
-                this.mealoverimg = element.image;
+                // this.mealoverimg = element.image;
                 this.mealoverpo = element.position;
+                this.http.get<any>('http://20.188.110.129:3000/getmeaprofilebyid/' + element.id).subscribe((res) => {
+                  // this.happy = [];
+                  this.mealoverimg = 'data:image/jpg;base64,' + res[0].encimage;
+                  
+
+                });
               }
               if (Object.keys(MEAlover).length === 0) {
                 if (element.id == MEAloverval2) {
                   this.mealovername = element.name + " " + element.surname;
                   this.mealover = MEAloverval2;
-                  this.mealoverimg = element.image;
+                  // this.mealoverimg = element.image;
                   this.mealoverpo = element.position;
+                  this.http.get<any>('http://20.188.110.129:3000/getmeaprofilebyid/' + element.id).subscribe((res) => {
+                  // this.happy = [];
+                  this.mealoverimg = 'data:image/jpg;base64,' + res[0].encimage;
+                  
+
+                });
                 }
               }
             });
