@@ -218,7 +218,12 @@ export class ExportComponent {
       this.http.get<any[]>('http://20.188.110.129:3000/getexport/' + from + '/' + to).subscribe((checkin) => {
         checkin.forEach((element) => {
           element['date'] = element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
- 
+          if(element.checkinEmotion.age == 0){
+            element.checkinEmotion.age = '-'
+          }
+          if(element.checkoutEmotion.age == 0){
+            element.checkoutEmotion.age = '-'
+          }
           if (element.checkout == '') {
             element.checkout = '-';
             element.checkoutEmo = '-';
