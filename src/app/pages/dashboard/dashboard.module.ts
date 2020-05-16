@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 // import { MatInputModule } from '@angular/material/input';
 // import {EmployeeComponent} from './daily/popup/employee/employee.component'
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeComponent } from './daily/popup/employee/employee.component';
 import { AbsentComponent } from './daily/popup/absent/absent.component';
 import { LateComponent } from './daily/popup/late/late.component';
@@ -34,6 +35,7 @@ import stock from 'highcharts/modules/stock.src';
 import more from 'highcharts/highcharts-more.src';
 import * as exporting from 'highcharts/modules/exporting.src';
 import * as exportData from 'highcharts/modules/export-data.src';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 export function highchartsModules() {
   return [stock, more,exporting,exportData];
 }
@@ -67,6 +69,7 @@ export function highchartsModules() {
     ProgressbarModule,
     // HighchartsChartModule,
     ChartModule,
+    NgbModule,
     // EmployeeComponent,
     // BlobModule,
   ],

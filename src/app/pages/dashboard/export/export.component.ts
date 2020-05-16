@@ -7,8 +7,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { formatDate } from '@angular/common';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
-
-
+import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'ngx-export',
   templateUrl: './export.component.html',
@@ -28,14 +28,17 @@ export class ExportComponent {
   //   ename: 'rajesh',
   //   esal: 3000
   // }];
+  hoveredDate: NgbDate | null = null;
 
+  fromDate: NgbDate | null;
+  toDate: NgbDate | null;
 
   displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'วันที่', 'เพศ', 'อายุ-ขาเข้า', 'วันเวลา-ขาเข้า', 'อารมณ์เข้างาน', 'อายุ-ขาออก', 'วันเวลา-ขาออก', 'อารมณ์ออกงาน'];
   dataSource: any[];
   p: number = 1;
   from: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
   to: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
-
+  // myGroup = new FormGroup({ firstName: new FormControl() });
 
   ngOnInit() {
   }
@@ -68,7 +71,7 @@ export class ExportComponent {
     // current seconds
     let seconds = date_ob.getSeconds();
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
-    FileSaver.saveAs(data, fileName  + date + month + year + '_' + hours + minutes + EXCEL_EXTENSION);
+    FileSaver.saveAs(data, fileName + date + month + year + '_' + hours + minutes + EXCEL_EXTENSION);
   }
 
   exportAsXLSX(): void {
@@ -97,13 +100,20 @@ export class ExportComponent {
     this.exportAsExcelFile(data, 'sfra_report_');
   }
 
-  constructor(private http: HttpClient, private router: Router) {
+  myForm;
+
+  constructor(private formBuilder: FormBuilder,private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private http: HttpClient, private router: Router) {
+    this.myForm = this.formBuilder.group({
+      fromDate: null,
+      todate: null,
+    });
+    
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
         checkin.forEach((element) => {
 
           element['date'] = element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
-
+ 
           if (element.checkout == '') {
             element.checkout = '-';
             element.checkoutEmo = '-';
@@ -128,27 +138,87 @@ export class ExportComponent {
 
   }
 
-  toplist(type: string, event: MatDatepickerInputEvent<Date>) {
-    // this.events.push(`${type}: ${event.value}`);
-    // console.log(type, event);
-    let date_ob = event.value;
-    let date = ("0" + date_ob.getDate()).slice(-2);
+  // toplist(type: string, event: MatDatepickerInputEvent<Date>) {
+  //   // this.events.push(`${type}: ${event.value}`);
+  //   // console.log(type, event);
+  //   let date_ob = event.value;
+  //   let date = ("0" + date_ob.getDate()).slice(-2);
+
+  //   // current month
+  //   let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+  //   // current year
+  //   let year = date_ob.getFullYear();
+  //   if (type == "startDate") {
+  //     this.from = year + month + date
+  //   } else if (type == "EndDate") {
+  //     this.to = year + month + date
+  //   }
+
+  //   this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
+  //     this.http.get<any[]>('http://20.188.110.129:3000/getexport/' + this.from + '/' + this.to).subscribe((checkin) => {
+  //       checkin.forEach((element) => {
+  //         element['date'] = element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
+  //         if (element.checkout == '') {
+  //           element.checkout = '-';
+  //           element.checkoutEmo = '-';
+  //         }
+  //         profile.forEach((element2) => {
+
+  //           if (element.id == element2.id) {
+  //             element['title'] = element2.title;
+  //             element['name'] = element2.name;
+  //             element['surname'] = element2.surname;
+  //           }
+
+  //         })
+
+  //       })
+  //       this.dataSource = checkin;
+  //     })
+  //   })
+  // }
+
+  onDateSelection(date: NgbDate) {
+    if (!this.fromDate && !this.toDate) {
+      this.fromDate = date;
+    } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
+      this.toDate = date;
+    } else {
+      this.toDate = null;
+      this.fromDate = date;
+    }
+    let to_date = this.toDate;
+    if (to_date == null) {
+      to_date = this.fromDate
+    }
+    let date_ob = new Date(to_date.year, to_date.month - 1, to_date.day);
+    let day = ("0" + date_ob.getDate()).slice(-2);
 
     // current month
     let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 
     // current year
     let year = date_ob.getFullYear();
-    if (type == "startDate") {
-      this.from = year + month + date
-    } else if (type == "EndDate") {
-      this.to = year + month + date
-    }
+    var to = year + month + day
+
+    let date_ob2 = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
+    let day2 = ("0" + date_ob2.getDate()).slice(-2);
+
+    // current month
+    let month2 = ("0" + (date_ob2.getMonth() + 1)).slice(-2);
+
+    // current year
+    let year2 = date_ob2.getFullYear();
+    var   from = year2 + month2 + day2
+   
+    
 
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
-      this.http.get<any[]>('http://20.188.110.129:3000/getexport/' + this.from + '/' + this.to).subscribe((checkin) => {
+      this.http.get<any[]>('http://20.188.110.129:3000/getexport/' + from + '/' + to).subscribe((checkin) => {
         checkin.forEach((element) => {
-
+          element['date'] = element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
+ 
           if (element.checkout == '') {
             element.checkout = '-';
             element.checkoutEmo = '-';
@@ -169,7 +239,23 @@ export class ExportComponent {
     })
   }
 
+  isHovered(date: NgbDate) {
+    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
+  }
 
+  isInside(date: NgbDate) {
+    return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+  }
+
+  isRange(date: NgbDate) {
+    return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date);
+  }
+
+  validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
+    console.log("validateInput");
+    const parsed = this.formatter.parse(input);
+    return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
+  }
 
 
 }
