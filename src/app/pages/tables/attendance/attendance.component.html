@@ -1,32 +1,22 @@
 <div class="frame">
-  <img [src]="profileimage" />
-  <h1 mat-dialog-title class="hd">{{title}} {{name}} {{surname}}</h1>
+  
+  <h1 mat-dialog-title class="hd"> <img [src]="profileimage" /> &nbsp; &nbsp; {{title}} {{name}} {{surname}} {{ID}}</h1>
 
-  <div class="tablebg">
+  <div >
     <table mdbTable style="width: 100%;">
       <thead>
 
-        <!-- <tr> -->
-         
-          <!-- <th rowspan="1">วันที่</th> -->
-          <!-- <th colspan="5">เข้างาน</th>
-          <th colspan="5">ออกงาน</th> -->
-
-        <!-- </tr> -->
-        
-          
-
-        <tr>
+        <tr class="tablebg">
           <th>วันที่</th>
           <th>เพศขาเข้า</th>
           <th>อายุขาเข้า</th>
           <th>เวลาเข้า</th>
-          <th>Emotion ขาเข้า</th>
+          <th>อารมณ์เข้างาน</th>
           <th>#</th>
-          <th>เพศขาเข้า</th>
-          <th>อายุขาเข้า</th>
-          <th>เวลาออกขาเข้า</th>
-          <th>Emotion ขาเข้า</th>
+          <th>เพศขาออก</th>
+          <th>อายุขาออก</th>
+          <th>เวลาออก</th>
+          <th>อารมณ์ออกงาน</th>
           <th>#</th>
         </tr>
 
@@ -49,13 +39,13 @@
           <td>{{el.checkinEmotion.age}}</td>
           <td>{{el.checkin}}</td>
           <td>{{el.checkinEmo}}</td>
-          <td> <img [src]="el.image1" /></td>
+          <td> <img class="tb" [src]="el.image1" /></td>
           <!-- <td>{{el.checkoutdatetime}}</td> -->
           <td>{{el.checkoutEmotion.gender}}</td>
           <td>{{el.checkoutEmotion.age}}</td>
           <td>{{el.checkout}}</td>
           <td>{{el.checkoutEmo}}</td>
-          <td  *ngIf="el.showimg"> <img [src]="el.image2" /></td>
+          <td> <img class="tb" [src]="el.image2" /></td>
 
         </tr>
       </tbody>

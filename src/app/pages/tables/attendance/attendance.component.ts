@@ -40,7 +40,7 @@ export class AttendanceComponent implements OnInit {
 
         attendance.forEach((element) => {
           element['date'] =  element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
-         
+          //element['date'] =  element.checkindatetime.substring(6, 8) + "" + element.checkindatetime.substring(4, 6) + "" + element.checkindatetime.substring(2, 4); 
           if (element.checkout != '') {
             // console.log(element['showimg']);
             element['showimg'] = true;

@@ -97,7 +97,7 @@ export class SmartTableComponent {
 
   attendanceDialog(id): void {
     const dialogRef = this.dialog.open(AttendanceComponent, {
-      width: '820px',
+      width: '980px',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
