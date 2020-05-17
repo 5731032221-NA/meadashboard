@@ -32,6 +32,8 @@ export class ExportComponent {
 
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
+  minDate: any = {year: 2020, month: 4, day: 20}
+  maxDate: any = {year: 2048, month: 12, day: 31}
 
   displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'วันที่', 'เพศ', 'อายุ-ขาเข้า', 'วันเวลา-ขาเข้า', 'อารมณ์เข้างาน', 'อายุ-ขาออก', 'วันเวลา-ขาออก', 'อารมณ์ออกงาน'];
   dataSource: any[];
@@ -194,6 +196,7 @@ export class ExportComponent {
       to_date = this.fromDate
     }
     let date_ob = new Date(to_date.year, to_date.month - 1, to_date.day);
+    
     let day = ("0" + date_ob.getDate()).slice(-2);
 
     // current month
@@ -204,6 +207,7 @@ export class ExportComponent {
     var to = year + month + day
 
     let date_ob2 = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
+    date_ob2.setDate(date_ob2.getDate() - 1);
     let day2 = ("0" + date_ob2.getDate()).slice(-2);
 
     // current month
