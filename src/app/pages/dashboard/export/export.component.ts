@@ -38,8 +38,8 @@ export class ExportComponent {
   displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'วันที่', 'เพศ', 'อายุ-ขาเข้า', 'วันเวลา-ขาเข้า', 'อารมณ์เข้างาน', 'อายุ-ขาออก', 'วันเวลา-ขาออก', 'อารมณ์ออกงาน'];
   dataSource: any[];
   p: number = 1;
-  from: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
-  to: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+  // from: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+  // to: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
   // myGroup = new FormGroup({ firstName: new FormControl() });
   minDate: any = { year: 2020, month: 4, day: 20 }
   ngOnInit() {
