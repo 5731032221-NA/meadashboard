@@ -368,6 +368,7 @@ export class HistoricalComponent {
 
 
         })
+        profile.sort((a, b) => (a.id - b.id));
         profile.sort((a, b) => (b.topdata.total - a.topdata.total));
         this.topdata = profile;
         console.log("profile", profile);
