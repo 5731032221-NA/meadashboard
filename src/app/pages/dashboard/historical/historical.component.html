@@ -48,6 +48,7 @@
           </div>
           <div class="form-group">
             <div class="input-group">
+              <a style="margin-top: 10px; padding-right: 6px;">From </a>
               <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
                 [value]="formatter.format(fromDate)" (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
               <div class="input-group-append">
@@ -59,8 +60,7 @@
           </div>
           <div class="form-group ml-2">
             <div class="input-group">
-              <!-- <ngb-datepicker [minDate]="{year: 2020, month: 4, day: 20}" [maxDate]="{year: 2048, month: 12, day: 31}">
-            </ngb-datepicker> -->
+              <a style="margin-top: 10px; padding-right: 6px;">To </a>
               <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
                 [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)">
               <div class="input-group-append">
