@@ -5,9 +5,8 @@
         </nb-card-header>
         <nb-card-body>
             <div class="col-md-6 offset-md-3 mt-5">
-                <div class="alert alert-info">
-                    Username: admin<br />
-                    Password: P@ssw0rd
+                <div class="alert alert-info" style="background-color: rgba(255, 149, 56, 1); color:white; ">
+                    Welcome to SFRA system.
                 </div>
                 <div class="card">
                     <!-- <h4 class="card-header">Angular 8 Basic Auth Login Example</h4> -->
@@ -32,6 +31,7 @@
                             <button [disabled]="loading" class="btn btn-primary" style="background-color: #ff7701; border-color: #ff7701;">
                                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                                 Login
+                                <img src="{{'assets/images/login.png'}}" width="28" style="margin-left: 7px;">
                             </button>
                             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                         </form>
