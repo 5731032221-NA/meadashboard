@@ -83,6 +83,7 @@
       </tbody>
 
     </table>
+    <div style="height: 200px;" *ngIf="empty"></div>
     <br>
     <div style="text-align:center;">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
