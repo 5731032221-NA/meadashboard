@@ -32,8 +32,8 @@ export class ExportComponent {
 
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
-  minDate: any = {year: 2020, month: 4, day: 20}
-  maxDate: any = {year: 2048, month: 12, day: 31}
+  // minDate: any = {year: 2020, month: 4, day: 20}
+  maxDate: any;
 
   displayedColumns = ['รหัสพนักงาน', 'ชื่อ - สกุล', 'วันที่', 'เพศ', 'อายุ-ขาเข้า', 'วันเวลา-ขาเข้า', 'อารมณ์เข้างาน', 'อายุ-ขาออก', 'วันเวลา-ขาออก', 'อารมณ์ออกงาน'];
   dataSource: any[];
@@ -41,7 +41,7 @@ export class ExportComponent {
   from: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
   to: any = formatDate(new Date(), 'yyyy-MM-dd', 'en');
   // myGroup = new FormGroup({ firstName: new FormControl() });
-
+  minDate: any= {year: 2020, month: 4, day: 20}
   ngOnInit() {
   }
 
@@ -104,18 +104,28 @@ export class ExportComponent {
 
   myForm;
 
-  constructor(private formBuilder: FormBuilder,private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private http: HttpClient, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private http: HttpClient, private router: Router) {
+    var date_ob = new Date();
+    date_ob.setDate(date_ob.getDate() - 1);
+    let date = date_ob.getDate();
+
+    // current month
+    let month = (date_ob.getMonth() + 1);
+
+    // current year
+    let year = date_ob.getFullYear();
+    this.maxDate = {year: year, month: month, day: date};
     this.myForm = this.formBuilder.group({
       fromDate: null,
       todate: null,
     });
-    
+
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
         checkin.forEach((element) => {
 
           element['date'] = element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
-          
+
           if (element.checkout == '') {
             element.checkout = '-';
             element.checkoutEmo = '-';
@@ -196,7 +206,7 @@ export class ExportComponent {
       to_date = this.fromDate
     }
     let date_ob = new Date(to_date.year, to_date.month - 1, to_date.day);
-    
+
     let day = ("0" + date_ob.getDate()).slice(-2);
 
     // current month
@@ -215,15 +225,15 @@ export class ExportComponent {
 
     // current year
     let year2 = date_ob2.getFullYear();
-    var   from = year2 + month2 + day2
-   
-    
+    var from = year2 + month2 + day2
+
+
 
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getexport/' + from + '/' + to).subscribe((checkin) => {
         checkin.forEach((element) => {
           element['date'] = element.checkindatetime.substring(6, 8) + "-" + element.checkindatetime.substring(4, 6) + "-" + element.checkindatetime.substring(0, 4);
-          
+
           if (element.checkout == '') {
             element.checkout = '-';
             element.checkoutEmo = '-';
@@ -255,6 +265,10 @@ export class ExportComponent {
 
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date);
+  }
+
+  isDisble(date: NgbDate) {
+    return date.before(this.minDate) || date.after(this.maxDate);
   }
 
   validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
