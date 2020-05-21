@@ -123,10 +123,10 @@ export class SmartTableComponent {
     });
   }
 
-  deleteDialog(id, nameid): void {
+  deleteDialog(id ,nameid,faceid): void {
     const dialogRef = this.dialog.open(DeletetableTableComponent, {
       width: '820px',
-      data: { id,nameid }
+      data: { id ,nameid,faceid }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.spinner.show();

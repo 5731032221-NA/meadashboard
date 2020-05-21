@@ -8,7 +8,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { ActivatedRoute } from '@angular/router';
 interface DialogData {
   id: string;
-  nameid: string
+  nameid: string;
+  faceid: string;
 }
 
 const httpHeaders = new HttpHeaders({
@@ -79,7 +80,14 @@ export class DeletetableTableComponent {
 
   onSubmit() {
     this.http.delete<any>('http://20.188.110.129:3000/deletemeaprofile/' + this.data.id, {}).subscribe((delet) => {
-      this.dialogRef.close();
+      this.http.post<any>('http://20.188.110.129:3000/removefaceapi/', '{"faceid": "' + this.data.faceid + '" }', options).subscribe(az1 => {
+        // console.log("hmm",az1);
+        // this.spinner.hide();
+        this.dialogRef.close()
+      }
+      )
+
+ 
     })
   }
 
