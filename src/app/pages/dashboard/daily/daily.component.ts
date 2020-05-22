@@ -691,7 +691,7 @@ export class DailyComponent {
 
                 }
                 if (hap > 100) hap = 100;
-                this.bestemphap = hap;
+                this.bestemphap = parseInt(hap.toFixed(2));
                 this.bestemphour = Math.abs(Math.floor(bestemphighestVal / 60)) + "." + ("0" + (bestemphighestVal % 60)).slice(-2);
 
               }
@@ -713,7 +713,7 @@ export class DailyComponent {
 
                   }
                   if (hap > 100) hap = 100;
-                  this.mealoverhap = hap;
+                  this.mealoverhap = parseInt(hap.toFixed(2));
                   this.mealoverhour = Math.abs(Math.floor(getworktime[MEAloverval2] / 60)) + "." + ("0" + (getworktime[MEAloverval2] % 60)).slice(-2);
                 }
               } else {
@@ -732,7 +732,7 @@ export class DailyComponent {
 
                   }
                   if (hap > 100) hap = 100;
-                  this.mealoverhap = hap;
+                  this.mealoverhap = parseInt(hap.toFixed(2));
                   this.mealoverhour = Math.abs(Math.floor(getworktime[MEAloverval] / 60)) + "." + ("0" + (getworktime[MEAloverval] % 60)).slice(-2);
                 }
               }
@@ -748,11 +748,11 @@ export class DailyComponent {
                 if (element.checkoutEmo != "") {
                   // let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
 
-                  hap = (hap * 2 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
+                  hap = ((hap * 2 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2);
 
                 }
                 if (hap > 100) hap = 100;
-                this.happypersonhap = hap;
+                this.happypersonhap = parseInt(hap.toFixed(2));
                 this.happyhour = Math.abs(Math.floor(getworktime[happyval] / 60)) + "." + ("0" + (getworktime[happyval] % 60)).slice(-2);
               }
             });
