@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 
 import { NgxSpinnerService } from "ngx-spinner";
-
+import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'info-modal',
   templateUrl: './info.component.html',
@@ -22,12 +22,16 @@ export class InfoComponent implements OnInit {
   surname: string;
   profileimage: any;
   listmea: any[];
-  data: any[]
+  data: any;
+
+  model: NgbDateStruct;
+  date: {year: number, month: number};
   // absoluteIndex(indexOnPage: number): number {
   //   return this.itemsPerPage * (this.p - 1) + indexOnPage;
   // }
 
   constructor(
+    private calendar: NgbCalendar,
     private spinner: NgxSpinnerService,
     private http: HttpClient,
     public dialog: MatDialog) {
@@ -75,6 +79,10 @@ export class InfoComponent implements OnInit {
     })
   }
 
+  selectToday() {
+    this.model = this.calendar.getToday();
+    
+  }
 
   trainDialog(name, item){
     console.log(name,item)

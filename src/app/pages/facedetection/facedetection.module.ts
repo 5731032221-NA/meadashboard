@@ -13,8 +13,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { MatDialogModule } from '@angular/material';
 import {TrainComponent} from './train/train.component'
 import { NgxSpinnerModule } from "ngx-spinner";
-
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule} from '@angular/forms';
 @NgModule({
   imports: [
     NbSelectModule,
@@ -32,6 +32,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     MatDialogModule,
     NgxSpinnerModule,
     // BlobModule,
+    NgbModule,
+    FormsModule
   ],
   declarations: [
     ...routedComponents,
