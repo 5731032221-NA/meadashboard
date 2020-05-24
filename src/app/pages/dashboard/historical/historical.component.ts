@@ -195,7 +195,7 @@ export class HistoricalComponent {
       let date_today = new Date(year + "-" + month + "-" + date);
       this.http.get<any>('http://20.188.110.129:3000/getcheckin').subscribe((result) => {
         this.http.get<any>('http://20.188.110.129:3000/getmeaprofile').subscribe((result2) => {
-          console.log("checkin",result)
+          // console.log("checkin",result)
           let ontime = 0;
           let late = 0;
           let absence = result.length;
