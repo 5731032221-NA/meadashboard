@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { NgxSpinnerService } from "ngx-spinner";
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { TrainComponent } from '../train/train.component'
+
 @Component({
   selector: 'info-modal',
   templateUrl: './info.component.html',
@@ -40,20 +42,14 @@ export class InfoComponent implements OnInit {
 
       this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
 
-        // let listmea = []
-
-        // profile.forEach((element) => {
-        //   listmea = [...listmea, { 'title': element.title, 'name': element.name, 'surname': element.surname }]
-
-        // })
+        
 
         cropinfo.forEach((element) => {
 
           this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
 
             element['image1'] = 'data:image/jpg;base64,' + image['data'];
-            // element['showimg'] = true;
-            // console.log("hi",element.checkout != '');
+           
 
           })
 
@@ -73,7 +69,7 @@ export class InfoComponent implements OnInit {
 
         this.listmea = [{'name': "เลือกพนักงาน -"},...profile];
         this.dataSource = cropinfo;
-        console.log("aa", this.dataSource);
+        // console.log("aa", this.dataSource);
         this.spinner.hide();
       })
     })
@@ -84,9 +80,18 @@ export class InfoComponent implements OnInit {
     
   }
 
-  trainDialog(name, item){
-    console.log(name,item)
+  trainDialog(id,name,title,nameem,surname,rowid): void {
+    const dialogRef = this.dialog.open(TrainComponent, {
+      width: '820px',
+      data: { id, name,title,nameem,surname,rowid }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+
+    });
   }
+
+  
   ngOnInit() {
   }
 }

@@ -42,12 +42,12 @@
           <td> <img class="tb" [src]="el.image1" /></td>
           <td>{{el.detected}} - {{el.title}} {{el.nameem}} {{el.surname}} {{el.per}}</td> 
           <!--  - {{el.title}} {{el.name}} {{el.surname}} {{el.per}} -->
-          <select  (change)="selected(el.id)" >
+          <select  (change)="trainDialog(el.detected,el.name,el.title,el.nameem,el.surname,el._id)" >
             <option *ngFor="let item of listmea" [ngValue]="item">{{item.id}} - {{item.title}} {{item.name}} {{item.surname}}</option>
           </select>
           <!-- <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
               id="edit" (click)="trainDialog(el.name, item)">&nbsp;train</button> -->
-          <td></td>
+          <td>{{el.train}}</td>
           
 
 
