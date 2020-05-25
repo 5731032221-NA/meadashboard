@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 interface DialogData {
-  id: string;
+  id: any;
   name: string;
   title: string;nameem: string;surname: string;
   rowid: string;

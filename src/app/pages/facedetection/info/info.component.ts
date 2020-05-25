@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 
 import { NgxSpinnerService } from "ngx-spinner";
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate,NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { TrainComponent } from '../train/train.component'
 
 @Component({
@@ -25,8 +25,9 @@ export class InfoComponent implements OnInit {
   profileimage: any;
   listmea: any[];
   data: any;
-
-  model: NgbDateStruct;
+  selectedCar: string;
+  // datecal: any | null;
+  model: any;
   date: { year: number, month: number };
   // absoluteIndex(indexOnPage: number): number {
   //   return this.itemsPerPage * (this.p - 1) + indexOnPage;
@@ -38,13 +39,42 @@ export class InfoComponent implements OnInit {
     private http: HttpClient,
     public dialog: MatDialog) {
     this.spinner.show();
-    this.http.get<any[]>('http://20.188.110.129:3000/getcropinfobydate/' + '2020-05-22').subscribe((cropinfo) => {
+    var date_ob = new Date();
+    date_ob.setDate(date_ob.getDate());
+    let date = date_ob.getDate();
+
+    // current month
+    let month = (date_ob.getMonth() + 1);
+
+    // current year
+    let year = date_ob.getFullYear();
+
+    this.model = { year: year, month: month, day: date };
+
+    var querydate = year +"-"+ ("0" +month).slice(-2) +"-"+ ("0" +date).slice(-2);
+
+    this.http.get<any[]>('http://20.188.110.129:3000/getcropinfobydate/' + querydate).subscribe((cropinfo) => {
 
       this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
 
 
 
         cropinfo.forEach((element) => {
+
+          if (element["train"] != "") {
+            console.log("train")
+            profile.forEach((pr) => {
+              if (element.train == pr.id) {
+                element['ttitle'] = pr.title;
+                element['tnameem'] = pr.name;
+                element['tsurname'] = pr.surname;
+              }
+
+            })
+
+            element['canselect'] = true;
+          }
+          else element['canselect'] = false;
 
           this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
 
@@ -80,7 +110,9 @@ export class InfoComponent implements OnInit {
 
   }
 
-  trainDialog(id, name, title, nameem, surname, rowid): void {
+  trainDialog(item, name, title, nameem, surname, rowid): void {
+    // console.log(item.item)
+    let id = item.substring(0, 7);
     const dialogRef = this.dialog.open(TrainComponent, {
       width: '820px',
       data: { id, name, title, nameem, surname, rowid }
@@ -93,6 +125,22 @@ export class InfoComponent implements OnInit {
 
 
           cropinfo.forEach((element) => {
+
+
+            if (element["train"] != "") {
+              console.log("train")
+              profile.forEach((pr) => {
+                if (element.train == pr.id) {
+                  element['ttitle'] = pr.title;
+                  element['tnameem'] = pr.name;
+                  element['tsurname'] = pr.surname;
+                }
+
+              })
+
+              element['canselect'] = false;
+            }
+            else element['canselect'] = true;
 
             this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
 
@@ -125,6 +173,72 @@ export class InfoComponent implements OnInit {
     });
   }
 
+  onDateSelection(date: NgbDate) {
+    this.model =date;
+
+    let date_ob = new Date(date.year, date.month - 1, date.day);
+
+    let day = ("0" + date_ob.getDate()).slice(-2);
+
+    // current month
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    let year = date_ob.getFullYear();
+    
+    var querydate = year +"-"+ ("0" +month).slice(-2) +"-"+ ("0" +day).slice(-2);
+    console.log(querydate)
+    this.http.get<any[]>('http://20.188.110.129:3000/getcropinfobydate/' + querydate).subscribe((cropinfo) => {
+
+      this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
+
+
+
+        cropinfo.forEach((element) => {
+
+          if (element["train"] != "") {
+            console.log("train")
+            profile.forEach((pr) => {
+              if (element.train == pr.id) {
+                element['ttitle'] = pr.title;
+                element['tnameem'] = pr.name;
+                element['tsurname'] = pr.surname;
+              }
+
+            })
+
+            element['canselect'] = true;
+          }
+          else element['canselect'] = false;
+
+          this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
+
+            element['image1'] = 'data:image/jpg;base64,' + image['data'];
+
+
+          })
+
+          if (element.detected != "") {
+            profile.forEach((pr) => {
+              if (element.detected == pr.id) {
+                element['title'] = pr.title;
+                element['nameem'] = pr.name;
+                element['surname'] = pr.surname;
+                element['per'] = "(" + (element.confidence * 100) + "%)";
+              }
+
+            })
+          }
+        })
+
+
+        this.listmea = [{ 'name': "เลือกพนักงาน -" }, ...profile];
+        this.dataSource = cropinfo;
+        // console.log("aa", this.dataSource);
+        this.spinner.hide();
+      })
+    })
+  }
 
   ngOnInit() {
   }

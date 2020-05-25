@@ -3,8 +3,10 @@
   <form class="form-inline">
     <div class="form-group">
       <div class="input-group">
-        <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+        <input class="form-control" placeholder="yyyy-mm-dd" 
+               name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+               (dateSelect)="onDateSelection($event)"
+               >
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i class="fas fa-calendar-alt fa-fw"></i></button>
         </div>
@@ -42,12 +44,16 @@
           <td> <img class="tb" [src]="el.image1" /></td>
           <td>{{el.detected}} - {{el.title}} {{el.nameem}} {{el.surname}} {{el.per}}</td> 
           <!--  - {{el.title}} {{el.name}} {{el.surname}} {{el.per}} -->
-          <select  (change)="trainDialog(el.detected,item.id,el.title,el.nameem,el.surname,el._id)" >
-            <option *ngFor="let item of listmea" [ngValue]="item">{{item.id}} - {{item.title}} {{item.name}} {{item.surname}}</option>
+          <!-- <form> -->
+          
+          
+          <select  (change)="trainDialog($event.target.value,el.name,el.title,el.nameem,el.surname,el._id) " [disabled]="el.canselect" >
+            <option *ngFor="let item of listmea" [ngValue]="item" >{{item.id}} - {{item.title}} {{item.name}} {{item.surname}}</option>
           </select>
+            <!-- </form> -->
           <!-- <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
               id="edit" (click)="trainDialog(el.name, item)">&nbsp;train</button> -->
-          <td>{{el.train}}</td>
+          <td>{{el.train}} - {{el.ttitle}} {{el.tnameem}} {{el.tsurname}} </td>
           
 
 
