@@ -9,6 +9,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { DeleteNNotificationComponent } from '../deletenotification/deletenotification.component'
 import { DeleteAlertComponent } from '../deletealert/deletealert.component'
 
+import { AddnotiComponent } from '../addnoti/addnoti.component'
+
 const httpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'
 });
@@ -49,7 +51,7 @@ export class NotificationComponent {
   addalert;
   displayedColumns = ['#', 'email', 'action'];
   // displayedColumns2 = ['#', 'รหัสพนักงาน', 'ชื่อ-สกุล', 'walk-in alert', 'walk-out alert', 'send to (email)', 'action'];
-  displayedColumns2 = ['#', 'รหัสพนักงาน', 'walk-in alert', 'walk-out alert', 'send to (email)', 'action'];
+  displayedColumns2 = ['#', 'รหัสพนักงาน', 'แจ้งเตือนขาเข้า', 'แจ้งเตือนขาออก', 'ส่งการแจ้งเตือน (email)', 'action'];
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, public dialog: MatDialog) {
     this.addalert = this.formBuilder.group({
@@ -127,6 +129,27 @@ export class NotificationComponent {
     const dialogRef = this.dialog.open(DeleteAlertComponent, {
       width: '820px',
       data: { id, email }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.http.get<any[]>('http://20.188.110.129:3000/getalert').subscribe((alerts) => {
+        alerts.forEach((element) => {
+          if(element.walkinalert == true) element['walkin'] = "yes";
+          else element['walkin'] = "no";
+
+          if(element.walkoutalert == true) element['walkout'] = "yes";
+          else element['walkout'] = "no";
+        })
+        this.alerts = alerts;
+
+      })
+
+    });
+  }
+
+  addnotiDialog(): void {
+    const dialogRef = this.dialog.open(AddnotiComponent, {
+      width: '820px',
+      data: { }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.http.get<any[]>('http://20.188.110.129:3000/getalert').subscribe((alerts) => {

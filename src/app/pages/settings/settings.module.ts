@@ -19,6 +19,8 @@ import {DeleteAlertComponent} from './deletealert/deletealert.component';
 import {SignupComponent} from './signup/signup.component';
 import {ResetAccountComponent} from './resetaccount/resetaccount.component';
 
+import {AddnotiComponent} from './addnoti/addnoti.component';
+
 @NgModule({
   imports: [
     NbSelectModule,
@@ -44,9 +46,11 @@ import {ResetAccountComponent} from './resetaccount/resetaccount.component';
     DeleteNNotificationComponent,
     DeleteAlertComponent,
     SignupComponent,
-    ResetAccountComponent
+    ResetAccountComponent,
+    AddnotiComponent,
+    
   ],
   entryComponents: [NotificationComponent,AccountManagementComponent,DeleteAccountComponent,DeleteAlertComponent,
-    DeleteNNotificationComponent,SignupComponent,ResetAccountComponent],
+    DeleteNNotificationComponent,SignupComponent,ResetAccountComponent, AddnotiComponent],
 })
 export class SettingsModule { }
