@@ -89,7 +89,7 @@ export class InfoComponent implements OnInit {
                 element['title'] = pr.title;
                 element['nameem'] = pr.name;
                 element['surname'] = pr.surname;
-                element['per'] = "(" + (element.confidence * 100) + "%)";
+                element['per'] = "(" + (element.confidence * 100).toFixed(2) + "%)";
               }
 
             })
@@ -170,7 +170,7 @@ export class InfoComponent implements OnInit {
                   element['title'] = pr.title;
                   element['nameem'] = pr.name;
                   element['surname'] = pr.surname;
-                  element['per'] = "(" + (element.confidence * 100) + "%)";
+                  element['per'] = "(" + (element.confidence * 100).toFixed(2) + "%)";
                 }
 
               })
@@ -239,7 +239,7 @@ export class InfoComponent implements OnInit {
                 element['title'] = pr.title;
                 element['nameem'] = pr.name;
                 element['surname'] = pr.surname;
-                element['per'] = "(" + (element.confidence * 100) + "%)";
+                element['per'] = "(" + (element.confidence * 100).toFixed(2) + "%)";
               }
 
             })
