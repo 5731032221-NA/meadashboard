@@ -222,7 +222,7 @@ export class InfoComponent implements OnInit {
 
             })
 
-            element['canselect'] = true;
+            element['canselect'] = false;
           }
           else element['canselect'] = false;
 
