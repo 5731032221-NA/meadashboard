@@ -98,7 +98,7 @@ export class InfoComponent implements OnInit {
         })
 
 
-        this.listmea = [{ 'name': "เลือกพนักงาน -" }, ...profile];
+        this.listmea = [{ 'name': " เลือกพนักงาน -" }, ...profile];
         this.dataSource = cropinfo;
         // console.log("aa", this.dataSource);
         this.spinner.hide();
