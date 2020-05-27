@@ -220,14 +220,14 @@ export class DailyComponent {
         let ohh = Math.ceil(res.exithh / parseInt(res.exit));
         let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
         if (res.entry == 0) {
-          this.femaleavgwalkin = "--:--";
+          this.maleavgwalkin = "--:--";
         } else {
-          this.femaleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
+          this.maleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
         }
         if (res.exit == 0) {
-          this.femaleavgwalkout = "--:--";
+          this.maleavgwalkout = "--:--";
         } else {
-          this.femaleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
+          this.maleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
         }
       })
 
@@ -294,14 +294,14 @@ export class DailyComponent {
         let ohh = Math.ceil(res.exithh / parseInt(res.exit));
         let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
         if (res.entry == 0) {
-          this.femaleavgwalkin = "--:--";
+          this.maleavgwalkin = "--:--";
         } else {
-          this.femaleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
+          this.maleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
         }
         if (res.exit == 0) {
-          this.femaleavgwalkout = "--:--";
+          this.maleavgwalkout = "--:--";
         } else {
-          this.femaleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
+          this.maleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
         }
       })
 
@@ -368,14 +368,14 @@ export class DailyComponent {
         let ohh = Math.ceil(res.exithh / parseInt(res.exit));
         let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
         if (res.entry == 0) {
-          this.femaleavgwalkin = "--:--";
+          this.maleavgwalkin = "--:--";
         } else {
-          this.femaleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
+          this.maleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
         }
         if (res.exit == 0) {
-          this.femaleavgwalkout = "--:--";
+          this.maleavgwalkout = "--:--";
         } else {
-          this.femaleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
+          this.maleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
         }
       })
 
@@ -443,14 +443,14 @@ export class DailyComponent {
         let ohh = Math.ceil(res.exithh / parseInt(res.exit));
         let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
         if (res.entry == 0) {
-          this.femaleavgwalkin = "--:--";
+          this.maleavgwalkin = "--:--";
         } else {
-          this.femaleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
+          this.maleavgwalkin = ("0" + (Math.floor(ihh) + Math.floor(imm / 60))).slice(-2) + ":" + ("0" + imm).slice(-2);
         }
         if (res.exit == 0) {
-          this.femaleavgwalkout = "--:--";
+          this.maleavgwalkout = "--:--";
         } else {
-          this.femaleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
+          this.maleavgwalkout = ("0" + (Math.floor(ohh) + Math.floor(omm / 60))).slice(-2) + ":" + ("0" + omm).slice(-2);
         }
       })
 
