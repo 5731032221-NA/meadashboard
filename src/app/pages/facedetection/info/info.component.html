@@ -27,6 +27,7 @@
             <th>#</th>
             <!-- <th>#</th> -->
             <th>พนักงานที่ระบบเรียนรู้</th>
+            <th>ลบข้อมูล</th>
           </tr>
 
 
@@ -59,7 +60,11 @@
             <!-- <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
               id="edit" (click)="trainDialog(el.name, item)">&nbsp;train</button> -->
             <td>{{el.train}} - {{el.ttitle}} {{el.tnameem}} {{el.tsurname}} </td>
-
+            <td>
+              <button type="button" class="close" aria-label="Close" (click)="deleteDialog(el._id,el.name)">
+              <span aria-hidden="true" style="color: red;">×</span>
+              </button>
+            </td>
 
 
           </tr>
