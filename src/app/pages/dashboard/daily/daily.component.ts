@@ -82,9 +82,9 @@ export class DailyComponent {
   mealoverout: string = "--:--";
   happyout: string = "--:--";
 
-  bestemphour: string = "-";
-  mealoverhour: string = "-";
-  happyhour: string = "-";
+  bestemphour: string = "--";
+  mealoverhour: string = "--";
+  happyhour: string = "--";
 
   bestemphap: number = 0;
   mealoverhap: number = 0;
