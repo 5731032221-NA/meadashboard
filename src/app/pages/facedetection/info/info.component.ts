@@ -182,7 +182,7 @@ export class InfoComponent implements OnInit {
 
 
           this.listmea = [{ 'name': "เลือกพนักงาน -" }, ...profile];
-          cropinfo.sort((a, b) => (b.nameem - a.nameem));
+          cropinfo.sort((a, b) => ( parseInt(b.id) - parseInt(a.id)));
           this.dataSource = cropinfo;
           // console.log("aa", this.dataSource);
           this.spinner.hide();
@@ -250,7 +250,7 @@ export class InfoComponent implements OnInit {
           }
         })
 
-        cropinfo.sort((a, b) => (b.nameem - a.nameem));
+        cropinfo.sort((a, b) => ( parseInt(b.id) - parseInt(a.id)));
         this.listmea = [{ 'name': "เลือกพนักงาน -" }, ...profile];
         this.dataSource = cropinfo;
         // console.log("aa", this.dataSource);
