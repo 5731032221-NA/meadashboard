@@ -99,6 +99,8 @@ export class InfoComponent implements OnInit {
 
 
         this.listmea = [{ 'name': " เลือกพนักงาน -" }, ...profile];
+        cropinfo.sort((a, b) => (b.nameem - a.nameem));
+        
         this.dataSource = cropinfo;
         // console.log("aa", this.dataSource);
         this.spinner.hide();
