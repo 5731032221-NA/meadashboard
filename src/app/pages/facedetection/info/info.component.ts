@@ -140,7 +140,8 @@ export class InfoComponent implements OnInit {
 
         this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
 
-
+          profile.sort((a, b) => (b.name - a.name));
+          
 
           cropinfo.forEach((element) => {
 
@@ -182,7 +183,6 @@ export class InfoComponent implements OnInit {
 
 
           this.listmea = [{ 'name': "เลือกพนักงาน -" }, ...profile];
-          cropinfo.sort((a, b) => ( parseInt(b.id) - parseInt(a.id)));
           this.dataSource = cropinfo;
           // console.log("aa", this.dataSource);
           this.spinner.hide();
@@ -211,7 +211,7 @@ export class InfoComponent implements OnInit {
 
       this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
 
-
+        profile.sort((a, b) => (b.name - a.name));
 
         cropinfo.forEach((element) => {
 
@@ -250,7 +250,7 @@ export class InfoComponent implements OnInit {
           }
         })
 
-        cropinfo.sort((a, b) => ( parseInt(b.id) - parseInt(a.id)));
+        // cropinfo.sort((a, b) => ( parseInt(b.id) - parseInt(a.id)));
         this.listmea = [{ 'name': "เลือกพนักงาน -" }, ...profile];
         this.dataSource = cropinfo;
         // console.log("aa", this.dataSource);
