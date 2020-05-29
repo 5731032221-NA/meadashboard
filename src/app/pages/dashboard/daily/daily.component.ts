@@ -219,6 +219,7 @@ export class DailyComponent {
   
         let ohh = Math.ceil(res.exithh / parseInt(res.exit));
         let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
+        
         if (res.entry == 0) {
           this.maleavgwalkin = "--:--";
         } else {
@@ -364,7 +365,10 @@ export class DailyComponent {
         this.maleexitcount = res.exit;
         let ihh = Math.ceil(res.entryhh / parseInt(res.entry));
         let imm = parseInt((ihh - Math.floor(ihh)) * 60 + Math.ceil(res.entrymm / parseInt(res.entry)).toFixed(0))
-  
+        console.log("hii1",res.entryhh)
+        console.log("hii2",res.entry)
+        console.log("hii2",res.entryhh / parseInt(res.entry))
+        console.log("hii3",Math.floor(ihh))
         let ohh = Math.ceil(res.exithh / parseInt(res.exit));
         let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
         if (res.entry == 0) {
