@@ -272,73 +272,76 @@ export class InfoComponent implements OnInit {
       data: { id, name }
     });
     dialogRef.afterClosed().subscribe(result => {
-      let date = this.model;
+      this.dataSource = this.dataSource.filter(function(obj) {
+        return obj._id !== id; // Or whatever value you want to use
+    });
+      // let date = this.model;
 
-      let date_ob = new Date(date.year, date.month - 1, date.day);
+      // let date_ob = new Date(date.year, date.month - 1, date.day);
 
-      let day = ("0" + date_ob.getDate()).slice(-2);
+      // let day = ("0" + date_ob.getDate()).slice(-2);
 
-      // current month
-      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+      // // current month
+      // let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 
-      // current year
-      let year = date_ob.getFullYear();
+      // // current year
+      // let year = date_ob.getFullYear();
 
-      var querydate = year + "-" + ("0" + month).slice(-2) + "-" + ("0" + day).slice(-2);
+      // var querydate = year + "-" + ("0" + month).slice(-2) + "-" + ("0" + day).slice(-2);
 
-      this.http.get<any[]>('http://20.188.110.129:3000/getcropinfobydate/' + querydate).subscribe((cropinfo) => {
+      // this.http.get<any[]>('http://20.188.110.129:3000/getcropinfobydate/' + querydate).subscribe((cropinfo) => {
 
-        this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
-
-
-
-          cropinfo.forEach((element) => {
-
-
-            if (element["train"] != "") {
-              console.log("train")
-              profile.forEach((pr) => {
-                if (element.train == pr.id) {
-                  element['ttitle'] = pr.title;
-                  element['tnameem'] = pr.name;
-                  element['tsurname'] = pr.surname;
-                }
-
-              })
-
-              element['canselect'] = false;
-            }
-            else element['canselect'] = false;
-
-            this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
-
-              element['image1'] = 'data:image/jpg;base64,' + image['data'];
+      //   this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
 
 
-            })
 
-            if (element.detected != "") {
-              profile.forEach((pr) => {
-                if (element.detected == pr.id) {
-                  element['title'] = pr.title;
-                  element['nameem'] = pr.name;
-                  element['surname'] = pr.surname;
-                  element['per'] = "(" + (element.confidence * 100).toFixed(2) + "%)";
-                }
-
-              })
-            }
-          })
+      //     cropinfo.forEach((element) => {
 
 
-          let list = [{ 'name': "เลือกพนักงาน -" }, ...profile];
-          list.sort((a, b) => (a.id - b.id));
-          this.listmea = list;
-          this.dataSource = cropinfo;
-          // console.log("aa", this.dataSource);
-          this.spinner.hide();
-        })
-      })
+      //       if (element["train"] != "") {
+      //         console.log("train")
+      //         profile.forEach((pr) => {
+      //           if (element.train == pr.id) {
+      //             element['ttitle'] = pr.title;
+      //             element['tnameem'] = pr.name;
+      //             element['tsurname'] = pr.surname;
+      //           }
+
+      //         })
+
+      //         element['canselect'] = false;
+      //       }
+      //       else element['canselect'] = false;
+
+      //       this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
+
+      //         element['image1'] = 'data:image/jpg;base64,' + image['data'];
+
+
+      //       })
+
+      //       if (element.detected != "") {
+      //         profile.forEach((pr) => {
+      //           if (element.detected == pr.id) {
+      //             element['title'] = pr.title;
+      //             element['nameem'] = pr.name;
+      //             element['surname'] = pr.surname;
+      //             element['per'] = "(" + (element.confidence * 100).toFixed(2) + "%)";
+      //           }
+
+      //         })
+      //       }
+      //     })
+
+
+      //     let list = [{ 'name': "เลือกพนักงาน -" }, ...profile];
+      //     list.sort((a, b) => (a.id - b.id));
+      //     this.listmea = list;
+      //     this.dataSource = cropinfo;
+      //     // console.log("aa", this.dataSource);
+      //     this.spinner.hide();
+      //   })
+      // })
 
     });
   }
