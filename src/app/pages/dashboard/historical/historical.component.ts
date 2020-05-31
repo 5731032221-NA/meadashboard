@@ -97,9 +97,9 @@ export class HistoricalComponent {
 
           });
 
-          res[0].data = [...res[0].data, [Date.parse(date_today.toString()), neutral]]
-          res[1].data = [...res[1].data, [Date.parse(date_today.toString()), happy]]
-          res[2].data = [...res[2].data, [Date.parse(date_today.toString()), unhappy]]
+          res[0].data = [...res[0].data, [Date.parse(date_today.toString()), happy]]
+          res[1].data = [...res[1].data, [Date.parse(date_today.toString()), unhappy]]
+          res[2].data = [...res[2].data, [Date.parse(date_today.toString()), neutral]]
 
       // this.dataemo = res
       this.stock = new StockChart({
