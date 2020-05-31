@@ -811,7 +811,7 @@ export class DailyComponent {
                 }
                 else {
                   this.bestempout = element.checkout;
-                  this.bestemphour = Math.abs(Math.floor(bestemphighestVal / 60)) + "." + ("0" + Math.abs(bestemphighestVal % 60)).slice(-2);
+                  this.bestemphour = Math.floor(Math.abs(bestemphighestVal / 60)) + "." + ("0" + Math.abs(bestemphighestVal % 60)).slice(-2);
                 }
                 var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50;
                 if (element.checkoutEmo != "") {
@@ -822,7 +822,7 @@ export class DailyComponent {
                 }
                 if (hap > 100) hap = 100;
                 this.bestemphap = parseInt(hap.toFixed(2));
-                // this.bestemphour = Math.abs(Math.floor(bestemphighestVal / 60)) + "." + ("0" + (bestemphighestVal % 60)).slice(-2);
+                // this.bestemphour = Math.floor(Math.abs(bestemphighestVal / 60)) + "." + ("0" + (bestemphighestVal % 60)).slice(-2);
 
               }
 
@@ -835,7 +835,7 @@ export class DailyComponent {
                   // this.mealoverout = element.checkout;
                   if (element.checkout != "") {
                     this.mealoverout = element.checkout;
-                    this.mealoverhour = Math.abs(Math.floor(getworktime[MEAloverval2] / 60)) + "." + ("0" + Math.abs(getworktime[MEAloverval2] % 60)).slice(-2);
+                    this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval2] / 60)) + "." + ("0" + Math.abs(getworktime[MEAloverval2] % 60)).slice(-2);
                   }
                   else {
                     this.mealoverout = "--:--";
@@ -850,7 +850,7 @@ export class DailyComponent {
                   }
                   if (hap > 100) hap = 100;
                   this.mealoverhap = parseInt(hap.toFixed(2));
-                  // this.mealoverhour = Math.abs(Math.floor(getworktime[MEAloverval2] / 60)) + "." + ("0" + (getworktime[MEAloverval2] % 60)).slice(-2);
+                  // this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval2] / 60)) + "." + ("0" + (getworktime[MEAloverval2] % 60)).slice(-2);
                 }
               } else {
                 if (element.id == MEAloverval) {
@@ -859,7 +859,7 @@ export class DailyComponent {
                   // this.mealoverout = element.checkout;
                   if (element.checkout != "") {
                     this.mealoverout = element.checkout;
-                    this.mealoverhour = Math.abs(Math.floor(getworktime[MEAloverval2] / 60)) + "." + ("0" + Math.abs(getworktime[MEAloverval2] % 60)).slice(-2);
+                    this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval2] / 60)) + "." + ("0" + Math.abs(getworktime[MEAloverval2] % 60)).slice(-2);
                   }
                   else {
                     this.mealoverout = "--:--";
@@ -875,7 +875,7 @@ export class DailyComponent {
                   }
                   if (hap > 100) hap = 100;
                   this.mealoverhap = parseInt(hap.toFixed(2));
-                  // this.mealoverhour = Math.abs(Math.floor(getworktime[MEAloverval] / 60)) + "." + ("0" + (getworktime[MEAloverval] % 60)).slice(-2);
+                  // this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval] / 60)) + "." + ("0" + (getworktime[MEAloverval] % 60)).slice(-2);
                 }
               }
 
@@ -885,7 +885,12 @@ export class DailyComponent {
                 // this.happyout = element.checkout;
                 if (element.checkout != "") {
                   this.happyout = element.checkout;
-                  this.happyhour = Math.abs(Math.floor(getworktime[happyval] / 60)) + "." + ("0" + Math.abs(getworktime[happyval] % 60)).slice(-2);
+                  this.happyhour = Math.floor(Math.abs(getworktime[happyval] / 60)) + "." + ("0" + Math.abs(getworktime[happyval] % 60)).slice(-2);
+                  console.log(happyval)
+                  console.log(getworktime[happyval])
+                  console.log(getworktime[happyval]/60)
+                  console.log(Math.floor(getworktime[happyval] / 60))
+
                 }
                 else {
                   this.happyout = "--:--";
@@ -901,7 +906,7 @@ export class DailyComponent {
                 }
                 if (hap > 100) hap = 100;
                 this.happypersonhap = parseInt(hap.toFixed(2));
-                // this.happyhour = Math.abs(Math.floor(getworktime[happyval] / 60)) + "." + ("0" + (getworktime[happyval] % 60)).slice(-2);
+                // this.happyhour = Math.floor(Math.abs(getworktime[happyval] / 60)) + "." + ("0" + (getworktime[happyval] % 60)).slice(-2);
               }
             });
           });
