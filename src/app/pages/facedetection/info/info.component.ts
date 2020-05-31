@@ -63,7 +63,7 @@ export class InfoComponent implements OnInit {
         cropinfo.forEach((element) => {
 
           if (element["train"] != "") {
-            console.log("train")
+            // console.log("train")
             profile.forEach((pr) => {
               if (element.train == pr.id) {
                 element['ttitle'] = pr.title;
@@ -124,11 +124,27 @@ export class InfoComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
 
-      
 
-      for (var i = 0; i <  this.dataSource.length; i++) {
+
+      for (var i = 0; i < this.dataSource.length; i++) {
         if (this.dataSource[i]._id === id) {
           this.dataSource[i].train = id;
+          this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
+
+
+            // console.log("train")
+            profile.forEach((pr) => {
+              if (id == pr.id) {
+                this.dataSource[i]['ttitle'] = pr.title;
+                this.dataSource[i]['tnameem'] = pr.name;
+                this.dataSource[i]['tsurname'] = pr.surname;
+              }
+
+            })
+
+           
+
+          })
           break;
         }
       }
@@ -280,9 +296,9 @@ export class InfoComponent implements OnInit {
       data: { id, name }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.dataSource = this.dataSource.filter(function(obj) {
+      this.dataSource = this.dataSource.filter(function (obj) {
         return obj._id !== id; // Or whatever value you want to use
-    });
+      });
       // let date = this.model;
 
       // let date_ob = new Date(date.year, date.month - 1, date.day);
