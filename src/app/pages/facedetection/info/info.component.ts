@@ -33,7 +33,7 @@ export class InfoComponent implements OnInit {
   // absoluteIndex(indexOnPage: number): number {
   //   return this.itemsPerPage * (this.p - 1) + indexOnPage;
   // }
-
+  empty: boolean = false;
   constructor(
     private calendar: NgbCalendar,
     private spinner: NgxSpinnerService,
@@ -104,6 +104,11 @@ export class InfoComponent implements OnInit {
         // cropinfo.sort((a, b) => (b.nameem - a.nameem));
 
         this.dataSource = cropinfo;
+        if(this.dataSource.length > 0){
+          this.empty = false;
+        }else{
+          this.empty = true;
+        }
         // console.log("aa", this.dataSource);
         this.spinner.hide();
       })
@@ -124,28 +129,29 @@ export class InfoComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
 
+      if (result) {
+
+        for (var i = 0; i < this.dataSource.length; i++) {
+          if (this.dataSource[i]._id === rowid) {
+            this.dataSource[i].train = id;
+            this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
 
 
-      for (var i = 0; i < this.dataSource.length; i++) {
-        if (this.dataSource[i]._id === id) {
-          this.dataSource[i].train = id;
-          this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofile').subscribe(profile => {
+              // console.log("train")
+              profile.forEach((pr) => {
+                if (id == pr.id) {
+                  this.dataSource[i]['ttitle'] = pr.title;
+                  this.dataSource[i]['tnameem'] = pr.name;
+                  this.dataSource[i]['tsurname'] = pr.surname;
+                }
+
+              })
 
 
-            // console.log("train")
-            profile.forEach((pr) => {
-              if (id == pr.id) {
-                this.dataSource[i]['ttitle'] = pr.title;
-                this.dataSource[i]['tnameem'] = pr.name;
-                this.dataSource[i]['tsurname'] = pr.surname;
-              }
 
             })
-
-           
-
-          })
-          break;
+            break;
+          }
         }
       }
       // let date = this.model;
@@ -284,6 +290,11 @@ export class InfoComponent implements OnInit {
         list.sort((a, b) => (a.id - b.id));
         this.listmea = list;
         this.dataSource = cropinfo;
+        if(this.dataSource.length > 0){
+          this.empty = false;
+        }else{
+          this.empty = true;
+        }
         // console.log("aa", this.dataSource);
         this.spinner.hide();
       })
@@ -296,9 +307,17 @@ export class InfoComponent implements OnInit {
       data: { id, name }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.dataSource = this.dataSource.filter(function (obj) {
-        return obj._id !== id; // Or whatever value you want to use
-      });
+      console.log("afterClosed", result);
+      if (result) {
+        this.dataSource = this.dataSource.filter(function (obj) {
+          return obj._id !== id; // Or whatever value you want to use
+        });
+      }
+      if(this.dataSource.length > 0){
+        this.empty = false;
+      }else{
+        this.empty = true;
+      }
       // let date = this.model;
 
       // let date_ob = new Date(date.year, date.month - 1, date.day);
