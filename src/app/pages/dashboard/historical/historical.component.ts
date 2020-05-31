@@ -227,9 +227,9 @@ export class HistoricalComponent {
 
           });
 
-          res[0].data = [...res[0].data, [Date.parse(date_today.toString()), ontime]]
-          res[1].data = [...res[1].data, [Date.parse(date_today.toString()), late]]
-          res[2].data = [...res[2].data, [Date.parse(date_today.toString()), absence]]
+          res[0].data = [...res[0].data, [Date.parse(date_today.toString()), late]]
+          res[1].data = [...res[1].data, [Date.parse(date_today.toString()), absence]]
+          res[2].data = [...res[2].data, [Date.parse(date_today.toString()), ontime]]
           res[3].data = [...res[3].data, [Date.parse(date_today.toString()), overtime]]
 
           this.stock2 = new StockChart({
