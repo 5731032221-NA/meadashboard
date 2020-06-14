@@ -9,11 +9,24 @@ const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.
 const EXCEL_EXTENSION = '.xlsx';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
+
+const httpHeaders = new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Ocp-Apim-Trace': 'true',
+  "Ocp-Apim-Subscription-Key":"3a8228e1af124f3bb2625351cfc3511f"
+
+});
+const options = {
+  headers: httpHeaders
+};
+
 @Component({
   selector: 'ngx-export',
   templateUrl: './export.component.html',
   styleUrls: ['./export.component.scss'],
 })
+
+
 export class ExportComponent {
   // data: any = [{
   //   eid: 'e101',
@@ -105,6 +118,11 @@ export class ExportComponent {
   myForm;
 
   constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private http: HttpClient, private router: Router) {
+  //   this.http.post<any>('https://dev-svhapim.azure-api.net/paymentmanagement/v1/view_payment',{"TransactionID":"110001"},options).subscribe((res) => {
+  //     // this.http.post<any>('http://localhost:8019/view_payment',{"TransactionID":"110001"}).subscribe((res) => {
+    
+  //   console.log("heer",res)
+  // })
     var date_ob = new Date();
     date_ob.setDate(date_ob.getDate() );
     let date = date_ob.getDate();

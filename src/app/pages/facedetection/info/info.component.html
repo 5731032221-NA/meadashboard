@@ -26,7 +26,8 @@
             </th>
             <th style="font-size: 15px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;">
               เวลาที่พบ</th>
-
+            <th style="font-size: 15px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;">
+              ขาเข้า/ขาออก</th>
             <th style="font-size: 15px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;">
               พนักงานที่ระบบวิเคราะห์</th>
             <th style="font-size: 15px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;">
@@ -36,6 +37,7 @@
               พนักงานที่ระบบเรียนรู้</th>
             <th style="font-size: 15px; height: 40px; background-color: #EBEBEB; color: #717171;  text-align: center;">
               ลบข้อมูล</th>
+
           </tr>
 
 
@@ -55,7 +57,8 @@
 
             <td> <img class="tb" [src]="el.image1" /></td>
             <td style="color:#FF7701 ;">{{el.time}}</td>
-            <td style="text-align: left; padding-left: 10px;">{{el.detected}} - {{el.title}} {{el.nameem}}
+            <td style="color:#FF7701 ;">{{el.inout}}</td>
+            <td style="text-align: left; padding-left: 10px; size: 10px;">{{el.detected}} - {{el.title}} {{el.nameem}}
               {{el.surname}} {{el.per}}</td>
             <!--  - {{el.title}} {{el.name}} {{el.surname}} {{el.per}} -->
             <!-- <form> -->

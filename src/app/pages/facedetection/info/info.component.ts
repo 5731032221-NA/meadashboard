@@ -65,7 +65,7 @@ export class InfoComponent implements OnInit {
           if (element["train"] != "") {
             // console.log("train")
             profile.forEach((pr) => {
-              if (element.train == pr.id) {
+              if (element.train === pr.id) {
                 element['ttitle'] = pr.title;
                 element['tnameem'] = pr.name;
                 element['tsurname'] = pr.surname;
@@ -84,9 +84,19 @@ export class InfoComponent implements OnInit {
 
           })
 
+          try {
+            if (element['camera'] % 2 == 0) element['inout'] = "ขาออก"
+            else element['inout'] = "ขาเข้า"
+          } catch (err) {
+            element['inout'] = "-"
+          }
+
+
+
           if (element.detected != "") {
             profile.forEach((pr) => {
-              if (element.detected == pr.id) {
+              if (element.detected === pr.id) {
+
                 element['title'] = pr.title;
                 element['nameem'] = pr.name;
                 element['surname'] = pr.surname;
@@ -98,15 +108,16 @@ export class InfoComponent implements OnInit {
         })
 
 
+
         let list = [{ 'name': "เลือกพนักงาน -" }, ...profile];
         list.sort((a, b) => (a.id - b.id));
         this.listmea = list;
         // cropinfo.sort((a, b) => (b.nameem - a.nameem));
 
         this.dataSource = cropinfo;
-        if(this.dataSource.length > 0){
+        if (this.dataSource.length > 0) {
           this.empty = false;
-        }else{
+        } else {
           this.empty = true;
         }
         // console.log("aa", this.dataSource);
@@ -253,7 +264,7 @@ export class InfoComponent implements OnInit {
           if (element["train"] != "") {
             console.log("train")
             profile.forEach((pr) => {
-              if (element.train == pr.id) {
+              if (element.train === pr.id) {
                 element['ttitle'] = pr.title;
                 element['tnameem'] = pr.name;
                 element['tsurname'] = pr.surname;
@@ -272,13 +283,24 @@ export class InfoComponent implements OnInit {
 
           })
 
+          try {
+            if (element['camera'] % 2 == 0) element['inout'] = "ขาออก"
+            else element['inout'] = "ขาเข้า"
+          } catch (err) {
+            element['inout'] = "-"
+          }
+
           if (element.detected != "") {
             profile.forEach((pr) => {
-              if (element.detected == pr.id) {
+
+              if (element.detected === pr.id) {
+
+                // if (element.detected === pr.id) {
                 element['title'] = pr.title;
                 element['nameem'] = pr.name;
                 element['surname'] = pr.surname;
                 element['per'] = "(" + (element.confidence * 100).toFixed(2) + "%)";
+
               }
 
             })
@@ -290,9 +312,9 @@ export class InfoComponent implements OnInit {
         list.sort((a, b) => (a.id - b.id));
         this.listmea = list;
         this.dataSource = cropinfo;
-        if(this.dataSource.length > 0){
+        if (this.dataSource.length > 0) {
           this.empty = false;
-        }else{
+        } else {
           this.empty = true;
         }
         // console.log("aa", this.dataSource);
@@ -313,9 +335,9 @@ export class InfoComponent implements OnInit {
           return obj._id !== id; // Or whatever value you want to use
         });
       }
-      if(this.dataSource.length > 0){
+      if (this.dataSource.length > 0) {
         this.empty = false;
-      }else{
+      } else {
         this.empty = true;
       }
       // let date = this.model;
