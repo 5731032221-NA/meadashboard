@@ -305,6 +305,7 @@ export class InfoComponent implements OnInit {
                 element['nameem'] = pr.name;
                 element['surname'] = pr.surname;
                 element['per'] = "(" + (element.confidence * 100).toFixed(2) + "%)";
+                element['individual_confidence'] = (element.individual_confidence * 100).toFixed(2);
 
               }
 
