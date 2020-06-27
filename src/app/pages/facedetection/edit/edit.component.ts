@@ -29,26 +29,30 @@ const options = {
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class DeleteComponent {
-
+export class EditComponent {
+  checkoutForm;
   constructor(
 
     // private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private http: HttpClient,
     private route: ActivatedRoute,
-    public dialogRef: MatDialogRef<DeleteComponent>,
+    public dialogRef: MatDialogRef<EditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-
+      this.checkoutForm = this.formBuilder.group({
+        Confidence: this.data.individual_confidence
+       
+      });
 
   }
 
 
 
 
-  onSubmit() {
-    let con = 0.0
+  onSubmit(inputdata) {
+    let con = (inputdata.Confidence/100.0).toFixed(2);
     this.http.post<any>('http://20.188.110.129:3000/updateconfidence/' + this.data.id_detected + '/'+con, {}).subscribe((updated) => {
-      this.dialogRef.close(true)
+      this.dialogRef.close(inputdata.Confidence)
     })
   }
 
