@@ -14,6 +14,7 @@ import { EditTableComponent } from '../edittable/edittable.component'
 import { DeletetableTableComponent } from '../deletetable/deletetable.component'
 import { AttendanceComponent } from '../attendance/attendance.component'
 import { NgxSpinnerService } from "ngx-spinner";
+import { EditComponent } from '../edit/edit.component'
 
 @Component({
   selector: 'ngx-tabledata',
@@ -21,7 +22,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./tabledata.component.scss'],
 })
 export class SmartTableComponent {
-  displayedColumns = ['#','รหัสพนักงาน', 'ชื่อ - สกุล', 'ตำแหน่ง', 'อีเมล์','เข้างาน','ออกงาน',  'action'];
+  displayedColumns = ['#', 'รหัสพนักงาน', 'ชื่อ - สกุล', 'ตำแหน่ง', 'อีเมล์', 'เข้างาน', 'ออกงาน','เก็บข้อมูลเข้า/ออกงานเมื่อ', 'action'];
   dataSource: any[];
   p: number = 1;
 
@@ -155,4 +156,28 @@ export class SmartTableComponent {
     });
   }
 
+  editDialog(id_detected, individual_confidence): void {
+    const dialogRef = this.dialog.open(EditComponent, {
+      width: '820px',
+      data: { id_detected, individual_confidence }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("afterClosed", result);
+
+      if (result > 0) {
+        // let dataSource = this.dataSource
+        this.dataSource.forEach(element => {
+
+          if (element['id'] == id_detected) element['individual_confidence'] = result;
+          //  element['per'] = "(" + result  + "%)";
+        });
+        // this.dataSource = dataSource
+
+
+      }
+
+
+
+    });
+  }
 }
