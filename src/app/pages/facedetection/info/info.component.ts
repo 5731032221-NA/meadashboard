@@ -7,7 +7,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NgbDate, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { TrainComponent } from '../train/train.component'
 import { DeleteComponent } from '../delete/deletet.component'
-import { EditComponent} from '../edit/edit.component'
+import { EditComponent } from '../edit/edit.component'
 
 @Component({
   selector: 'info-modal',
@@ -78,18 +78,23 @@ export class InfoComponent implements OnInit {
           }
           else element['canselect'] = false;
 
-          this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
+          try {
+            this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
 
-            element['image1'] = 'data:image/jpg;base64,' + image['data'];
+              element['image1'] = 'data:image/jpg;base64,' + image['data'];
 
 
-          })
+            })
+          } catch (err) {
+            console.log("error get image", element.train, element.time)
+          }
+
 
           try {
-            if (element['camera']  == 1) element['inout'] = "ขาเข้า A"
-            else if (element['camera']  == 2) element['inout'] = "ขาออก A"
-            else if (element['camera']  == 3) element['inout'] = "ขาเข้า B"
-            else if (element['camera']  == 4) element['inout'] = "ขาออก B"
+            if (element['camera'] == 1) element['inout'] = "ขาเข้า A"
+            else if (element['camera'] == 2) element['inout'] = "ขาออก A"
+            else if (element['camera'] == 3) element['inout'] = "ขาเข้า B"
+            else if (element['camera'] == 4) element['inout'] = "ขาออก B"
           } catch (err) {
             element['inout'] = "-"
           }
@@ -279,19 +284,22 @@ export class InfoComponent implements OnInit {
             element['canselect'] = false;
           }
           else element['canselect'] = false;
+          try {
+            this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
 
-          this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
-
-            element['image1'] = 'data:image/jpg;base64,' + image['data'];
+              element['image1'] = 'data:image/jpg;base64,' + image['data'];
 
 
-          })
+            })
+          } catch (err) {
+            console.log("error get image", element.train, element.time)
+          }
 
           try {
-            if (element['camera']  == 1) element['inout'] = "ขาเข้า A"
-            else if (element['camera']  == 2) element['inout'] = "ขาออก A"
-            else if (element['camera']  == 3) element['inout'] = "ขาเข้า B"
-            else if (element['camera']  == 4) element['inout'] = "ขาออก B"
+            if (element['camera'] == 1) element['inout'] = "ขาเข้า A"
+            else if (element['camera'] == 2) element['inout'] = "ขาออก A"
+            else if (element['camera'] == 3) element['inout'] = "ขาเข้า B"
+            else if (element['camera'] == 4) element['inout'] = "ขาออก B"
           } catch (err) {
             element['inout'] = "-"
           }
@@ -425,25 +433,25 @@ export class InfoComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log("afterClosed", result);
-      
+
       if (result > 0) {
         // let dataSource = this.dataSource
         this.dataSource.forEach(element => {
-          
-          if(element['detected'] == id_detected)  element['individual_confidence'] = result;
+
+          if (element['detected'] == id_detected) element['individual_confidence'] = result;
 
           //  element['per'] = "(" + result  + "%)";
         });
         // this.dataSource = dataSource
-        
-        
+
+
       }
-     
-      
+
+
 
     });
   }
-  
+
 
 
   ngOnInit() {
