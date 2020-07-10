@@ -341,7 +341,7 @@ export class InfoComponent implements OnInit {
         for (var page = pagefrom; page < pageto; page++) {
           let index = page
           this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + cropinfo[index].name).subscribe((image) => {
-            cropinfo[page]['image1'] = 'data:image/jpg;base64,' + image['data'];
+            cropinfo[index]['image1'] = 'data:image/jpg;base64,' + image['data'];
           })
         }
         this.dataSource = cropinfo;
