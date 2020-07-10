@@ -36,6 +36,7 @@ export class SmartTableComponent {
           element['checkin'] = '-';
           element['checkout'] =  '-';
           element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
+          element['per'] = (element['individual_confidence']*100.0).toFixed(2);
           checkin.forEach((tt) => {
             
             if(element.id == tt.id){
@@ -81,6 +82,7 @@ export class SmartTableComponent {
           element['checkin'] = '-';
           element['checkout'] =  '-';
           element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
+          element['per'] = (element['individual_confidence']*100.0).toFixed(2);
           checkin.forEach((tt) => {
           
             if(element.id == tt.id){
@@ -139,6 +141,7 @@ export class SmartTableComponent {
           element['checkin'] = '-';
           element['checkout'] =  '-';
           element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
+          element['per'] = (element['individual_confidence']*100.0).toFixed(2);
           checkin.forEach((tt) => {
           
             if(element.id == tt.id){
@@ -168,7 +171,7 @@ export class SmartTableComponent {
         // let dataSource = this.dataSource
         this.dataSource.forEach(element => {
 
-          if (element['id'] == id_detected) element['individual_confidence'] = result;
+          if (element['id'] == id_detected) element['per']  = result;
           //  element['per'] = "(" + result  + "%)";
         });
         // this.dataSource = dataSource
