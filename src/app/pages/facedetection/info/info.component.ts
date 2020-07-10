@@ -154,7 +154,7 @@ export class InfoComponent implements OnInit {
     let id = item.substring(0, 7);
     const dialogRef = this.dialog.open(TrainComponent, {
       width: '820px',
-      data: { id, name, title, nameem, surname, rowid }
+      data: { id, name, title, item, surname, rowid }
     });
     dialogRef.afterClosed().subscribe(result => {
 
@@ -418,26 +418,17 @@ export class InfoComponent implements OnInit {
     var pageto = this.p2 * this.itemsPerPage2;
     for (var page = pagefrom; page < pageto; page++) {
       let index = page
-      // console.log("this.dataSource[page]",this.dataSource[index])
-      // console.log(index)
+
       this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + this.dataSource[index].name).subscribe((image) => {
-        // this.dataSource[page]['image1'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + image['data'] );
         this.dataSource[index]['image1'] = 'data:image/jpg;base64,' + image['data'];
-        // console.log("this.dataSource[page]['image1']",this.dataSource[index]['image1'])
-        // console.log(this.dataSource[index])
+
       })
     }
 
-    // console.log("pageOfItems", pageOfItems)
-    // this.pageOfItems = pageOfItems;
+
   }
 
-  // getimage(index): any {
-  //   this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + this.dataSource[index].name).subscribe((image) => {
-  //     return this.dataSource[index]['image1'] = 'data:image/jpg;base64,' + image['data'];
-  //   })
 
-  // }
 
   ngOnInit() {
   }
