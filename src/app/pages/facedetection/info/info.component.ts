@@ -8,7 +8,7 @@ import { NgbDate, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap'
 import { TrainComponent } from '../train/train.component'
 import { DeleteComponent } from '../delete/deletet.component'
 import { EditComponent } from '../edit/edit.component'
-
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'info-modal',
   templateUrl: './info.component.html',
@@ -36,6 +36,7 @@ export class InfoComponent implements OnInit {
   // }
   empty: boolean = false;
   constructor(
+    private _sanitizer: DomSanitizer,
     private calendar: NgbCalendar,
     private spinner: NgxSpinnerService,
     private http: HttpClient,
@@ -78,16 +79,16 @@ export class InfoComponent implements OnInit {
           }
           else element['canselect'] = false;
 
-          try {
-            this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
+          // try {
+          //   this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
 
-              element['image1'] = 'data:image/jpg;base64,' + image['data'];
+          //     element['image1'] = 'data:image/jpg;base64,' + image['data'];
 
 
-            })
-          } catch (err) {
-            console.log("error get image", element.train, element.time)
-          }
+          //   })
+          // } catch (err) {
+          //   console.log("error get image", element.train, element.time)
+          // }
 
 
           try {
@@ -122,7 +123,15 @@ export class InfoComponent implements OnInit {
         list.sort((a, b) => (a.id - b.id));
         this.listmea = list;
         // cropinfo.sort((a, b) => (b.nameem - a.nameem));
-
+        
+        var pagefrom = (this.p2-1) * this.itemsPerPage2;
+        var pageto = this.p2 * this.itemsPerPage2;
+        for (var page = pagefrom; page < pageto; page++) {
+          let index = page
+          this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + cropinfo[index].name).subscribe((image) => {
+            cropinfo[index]['image1'] = 'data:image/jpg;base64,' + image['data'];
+          })
+        }
         this.dataSource = cropinfo;
         if (this.dataSource.length > 0) {
           this.empty = false;
@@ -284,16 +293,16 @@ export class InfoComponent implements OnInit {
             element['canselect'] = false;
           }
           else element['canselect'] = false;
-          try {
-            this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
+          // try {
+          //   this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + element.name).subscribe((image) => {
 
-              element['image1'] = 'data:image/jpg;base64,' + image['data'];
+          //     element['image1'] = 'data:image/jpg;base64,' + image['data'];
 
 
-            })
-          } catch (err) {
-            console.log("error get image", element.train, element.time)
-          }
+          //   })
+          // } catch (err) {
+          //   console.log("error get image", element.train, element.time)
+          // }
 
           try {
             if (element['camera'] == 1) element['inout'] = "ขาเข้า A"
@@ -326,6 +335,15 @@ export class InfoComponent implements OnInit {
         let list = [{ 'name': "เลือกพนักงาน -" }, ...profile];
         list.sort((a, b) => (a.id - b.id));
         this.listmea = list;
+
+        var pagefrom = (this.p2-1) * this.itemsPerPage2;
+        var pageto = this.p2 * this.itemsPerPage2;
+        for (var page = pagefrom; page < pageto; page++) {
+          let index = page
+          this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + cropinfo[index].name).subscribe((image) => {
+            cropinfo[page]['image1'] = 'data:image/jpg;base64,' + image['data'];
+          })
+        }
         this.dataSource = cropinfo;
         if (this.dataSource.length > 0) {
           this.empty = false;
@@ -452,7 +470,32 @@ export class InfoComponent implements OnInit {
     });
   }
 
+  onChangePage(pageOfItems: any) {
+    // update current page of items
+    var pagefrom = (this.p2-1) * this.itemsPerPage2;
+        var pageto = this.p2 * this.itemsPerPage2;
+    for (var page = pagefrom; page < pageto; page++) {
+      let index = page
+      // console.log("this.dataSource[page]",this.dataSource[index])
+      // console.log(index)
+      this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + this.dataSource[index].name).subscribe((image) => {
+        // this.dataSource[page]['image1'] = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + image['data'] );
+        this.dataSource[index]['image1'] ='data:image/jpg;base64,' + image['data'];
+        // console.log("this.dataSource[page]['image1']",this.dataSource[index]['image1'])
+        // console.log(this.dataSource[index])
+      })
+    }
+   
+    // console.log("pageOfItems", pageOfItems)
+    // this.pageOfItems = pageOfItems;
+  }
 
+  // getimage(index): any {
+  //   this.http.get<any[]>('http://20.188.110.129:3000/getcropimage/' + this.dataSource[index].name).subscribe((image) => {
+  //     return this.dataSource[index]['image1'] = 'data:image/jpg;base64,' + image['data'];
+  //   })
+
+  // }
 
   ngOnInit() {
   }
