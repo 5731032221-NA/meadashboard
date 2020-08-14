@@ -74,10 +74,11 @@
               <td><select [id]="el._id" [disabled]="el.canselect">
                 <!-- <option *ngFor="let item of listmea" [ngValue]="item" >{{item.id}} - {{item.title}} {{item.name}} -->
                 <option *ngFor="let item of listmea"  [attr.selected]="el.detected==item.id ? true : null">{{item.id}} - {{item.title}} {{item.name}} {{item.surname}}</option>
-              </select></td>
+              </select>
+              <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
+              id="edit" (click)="trainDialog(el.name,el.title,el.nameem,el.surname,el._id,el.datetime,el.date,el.camera)">&nbsp;train</button></td>
             <!-- </form> -->
-            <button nbButton status="warning" style=" font-size: 12px; background-color: #FF7701; color: white;"
-              id="edit" (click)="trainDialog(el.name,el.title,el.nameem,el.surname,el._id,el.datetime,el.date,el.camera)">&nbsp;train</button>
+            
             <td style="text-align: left; padding-left: 10px;">{{el.train}} - {{el.ttitle}} {{el.tnameem}}
               {{el.tsurname}} </td>
             <td>
