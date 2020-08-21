@@ -25,7 +25,19 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class DailyComponent {
 
- 
+  // public barChartOptions: ChartOptions = {
+  //   responsive: true,
+  // };
+  // public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  // public barChartType: ChartType = 'bar';
+  // public barChartLegend = true;
+  // public barChartPlugins = [];
+
+  // public barChartData: ChartDataSets[] = [
+  //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+  //   { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+  // ];
+
 
   empcount: number = 0;
   ontimecount: number = 0;
@@ -70,9 +82,9 @@ export class DailyComponent {
   mealoverout: string = "--:--";
   happyout: string = "--:--";
 
-  bestemphour: string = "--";
-  mealoverhour: string = "--";
-  happyhour: string = "--";
+  bestemphour: string = "-";
+  mealoverhour: string = "-";
+  happyhour: string = "-";
 
   bestemphap: number = 0;
   mealoverhap: number = 0;
@@ -136,7 +148,7 @@ export class DailyComponent {
     // }
   };
   //public barChartLabels = ['06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00'];
-  public barChartLabels = [ '05:00','06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
+  public barChartLabels = ['05:00','06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
     '16:00', '17:00', '18:00', '19:00', '20:00'];
   public barChartType = 'bar';
   public barChartLegend = true;
@@ -207,7 +219,6 @@ export class DailyComponent {
   
         let ohh = Math.floor(res.exithh / parseInt(res.exit));
         let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
-        
         if (res.entry == 0) {
           this.maleavgwalkin = "--:--";
         } else {
@@ -353,10 +364,7 @@ export class DailyComponent {
         this.maleexitcount = res.exit;
         let ihh = Math.floor(res.entryhh / parseInt(res.entry));
         let imm = parseInt((ihh - Math.floor(ihh)) * 60 + Math.ceil(res.entrymm / parseInt(res.entry)).toFixed(0))
-        console.log("hii1",res.entryhh)
-        console.log("hii2",res.entry)
-        console.log("hii2",res.entryhh / parseInt(res.entry))
-        console.log("hii3",Math.floor(ihh))
+  
         let ohh = Math.floor(res.exithh / parseInt(res.exit));
         let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
         if (res.entry == 0) {
@@ -573,10 +581,10 @@ export class DailyComponent {
       this.maleentrycount = res.entry;
       this.maleexitcount = res.exit;
       let ihh = Math.floor(res.entryhh / parseInt(res.entry));
-      let imm = parseInt((ihh - Math.floor(ihh)) * 60 + Math.ceil(res.entrymm / parseInt(res.entry)).toFixed(0))
+      let imm = (ihh - Math.floor(ihh)) * 60 + Math.ceil(res.entrymm / parseInt(res.entry))
 
       let ohh = Math.floor(res.exithh / parseInt(res.exit));
-      let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
+      let omm = (ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit))
 
       if (res.entry == 0) {
         this.maleavgwalkin = "--:--";
@@ -598,10 +606,10 @@ export class DailyComponent {
       this.femaleentrycount = res.entry;
       this.femaleexitcount = res.exit;
       let ihh = Math.floor(res.entryhh / parseInt(res.entry));
-      let imm = parseInt((ihh - Math.floor(ihh)) * 60 + Math.ceil(res.entrymm / parseInt(res.entry)).toFixed(0))
+      let imm = (ihh - Math.floor(ihh)) * 60 + Math.ceil(res.entrymm / parseInt(res.entry))
 
       let ohh = Math.floor(res.exithh / parseInt(res.exit));
-      let omm = parseInt((ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit)).toFixed(0))
+      let omm = (ohh - Math.floor(ohh)) * 60 + Math.ceil(res.exitmm / parseInt(res.exit))
       if (res.entry == 0) {
         this.femaleavgwalkin = "--:--";
       } else {
@@ -746,7 +754,7 @@ export class DailyComponent {
                 this.http.get<any>('http://20.188.110.129:3000/getmeaprofilebyid/' + element.id).subscribe((res) => {
                   // this.happy = [];
                   this.bestempimg = 'data:image/jpg;base64,' + res[0].encimage;
-                  
+
 
                 });
               }
@@ -757,7 +765,7 @@ export class DailyComponent {
                 this.http.get<any>('http://20.188.110.129:3000/getmeaprofilebyid/' + element.id).subscribe((res) => {
                   // this.happy = [];
                   this.happypersonimg = 'data:image/jpg;base64,' + res[0].encimage;
-                  
+
                 });
                 this.happypersonpo = element.position;
               }
@@ -769,7 +777,7 @@ export class DailyComponent {
                 this.http.get<any>('http://20.188.110.129:3000/getmeaprofilebyid/' + element.id).subscribe((res) => {
                   // this.happy = [];
                   this.mealoverimg = 'data:image/jpg;base64,' + res[0].encimage;
-                  
+
 
                 });
               }
@@ -780,11 +788,11 @@ export class DailyComponent {
                   // this.mealoverimg = element.image;
                   this.mealoverpo = element.position;
                   this.http.get<any>('http://20.188.110.129:3000/getmeaprofilebyid/' + element.id).subscribe((res) => {
-                  // this.happy = [];
-                  this.mealoverimg = 'data:image/jpg;base64,' + res[0].encimage;
-                  
+                    // this.happy = [];
+                    this.mealoverimg = 'data:image/jpg;base64,' + res[0].encimage;
 
-                });
+
+                  });
                 }
               }
             });
@@ -799,7 +807,7 @@ export class DailyComponent {
                 }
                 else {
                   this.bestempout = element.checkout;
-                  this.bestemphour = Math.floor(Math.abs(bestemphighestVal / 60)) + "." + ("0" + Math.abs(bestemphighestVal % 60)).slice(-2);
+                  this.bestemphour = Math.floor(Math.abs(bestemphighestVal / 60)) + "." + ("0" + Math.abs((bestemphighestVal % 60))).slice(-2);
                 }
                 var hap = (element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 50;
                 if (element.checkoutEmo != "") {
@@ -810,7 +818,7 @@ export class DailyComponent {
                 }
                 if (hap > 100) hap = 100;
                 this.bestemphap = parseInt(hap.toFixed(2));
-                // this.bestemphour = Math.floor(Math.abs(bestemphighestVal / 60)) + "." + ("0" + (bestemphighestVal % 60)).slice(-2);
+
 
               }
 
@@ -823,7 +831,7 @@ export class DailyComponent {
                   // this.mealoverout = element.checkout;
                   if (element.checkout != "") {
                     this.mealoverout = element.checkout;
-                    this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval2] / 60)) + "." + ("0" + Math.abs(getworktime[MEAloverval2] % 60)).slice(-2);
+                    this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval2] / 60)) + "." + ("0" + Math.abs((getworktime[MEAloverval2] % 60))).slice(-2);
                   }
                   else {
                     this.mealoverout = "--:--";
@@ -838,7 +846,7 @@ export class DailyComponent {
                   }
                   if (hap > 100) hap = 100;
                   this.mealoverhap = parseInt(hap.toFixed(2));
-                  // this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval2] / 60)) + "." + ("0" + (getworktime[MEAloverval2] % 60)).slice(-2);
+
                 }
               } else {
                 if (element.id == MEAloverval) {
@@ -847,7 +855,7 @@ export class DailyComponent {
                   // this.mealoverout = element.checkout;
                   if (element.checkout != "") {
                     this.mealoverout = element.checkout;
-                    this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval2] / 60)) + "." + ("0" + Math.abs(getworktime[MEAloverval2] % 60)).slice(-2);
+                    this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval2] / 60)) + "." + ("0" + Math.abs((getworktime[MEAloverval2] % 60))).slice(-2);
                   }
                   else {
                     this.mealoverout = "--:--";
@@ -863,7 +871,7 @@ export class DailyComponent {
                   }
                   if (hap > 100) hap = 100;
                   this.mealoverhap = parseInt(hap.toFixed(2));
-                  // this.mealoverhour = Math.floor(Math.abs(getworktime[MEAloverval] / 60)) + "." + ("0" + (getworktime[MEAloverval] % 60)).slice(-2);
+
                 }
               }
 
@@ -873,12 +881,7 @@ export class DailyComponent {
                 // this.happyout = element.checkout;
                 if (element.checkout != "") {
                   this.happyout = element.checkout;
-                  this.happyhour = Math.floor(Math.abs(getworktime[happyval] / 60)) + "." + ("0" + Math.abs(getworktime[happyval] % 60)).slice(-2);
-                  console.log(happyval)
-                  console.log(getworktime[happyval])
-                  console.log(getworktime[happyval]/60)
-                  console.log(Math.floor(getworktime[happyval] / 60))
-
+                  this.happyhour = Math.floor(Math.abs(getworktime[happyval] / 60)) + "." + ("0" + Math.abs((getworktime[happyval] % 60))).slice(-2);
                 }
                 else {
                   this.happyout = "--:--";
@@ -889,12 +892,12 @@ export class DailyComponent {
                 if (element.checkoutEmo != "") {
                   // let hap = ((element.checkinEmotion.emotion.happiness + element.checkinEmotion.emotion.surprise) * 100 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
 
-                  hap = ((hap * 2 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2);
+                  hap = (hap * 2 + (element.checkoutEmotion.emotion.happiness + element.checkoutEmotion.emotion.surprise) * 200) / 2;
 
                 }
                 if (hap > 100) hap = 100;
                 this.happypersonhap = parseInt(hap.toFixed(2));
-                // this.happyhour = Math.floor(Math.abs(getworktime[happyval] / 60)) + "." + ("0" + (getworktime[happyval] % 60)).slice(-2);
+
               }
             });
           });

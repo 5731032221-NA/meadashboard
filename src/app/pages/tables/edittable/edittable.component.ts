@@ -87,18 +87,20 @@ export class EditTableComponent {
 
 
   onSubmit(customerData) {
-    let formData: any = new FormData();
+    // let formData: any = new FormData();
 
-    formData.append('photo', this.imageFile);
+    // formData.append('photo', this.imageFile);
     let options2 = {
 
       headers: httpHeaders2,
     };
     this.checkoutForm.reset();
-    this.route.queryParams.subscribe(params => {
-      this.http.post<any>('http://20.188.110.129:3000/postmeaprofile/' + this.data.id, customerData, options).subscribe(done => console.log(done))
-    });
-    this.dialogRef.close();
+    // this.route.queryParams.subscribe(params => {
+    this.http.post<any>('http://20.188.110.129:3000/postmeaprofile/' + this.data.id, customerData, options).subscribe(done =>
+      this.http.post<any>('http://20.188.110.129:3000/updatesqlprofile/' + this.data.nameid, customerData, options).subscribe(done2 => this.dialogRef.close())
+    )
+    // });
+
 
 
   }
@@ -120,11 +122,14 @@ export class EditTableComponent {
       // var ciphertext2 = AES.encrypt(reader.result, 'meaprofilepic').toString(enc.Utf8)
       var text = reader.result.toString().substring(23);
       var ciphertext = AES.encrypt(text, 'meaprofilepic').toString();
+      // this.route.queryParams.subscribe(params => {
+      // console.log("ciphertext2",ciphertext2);  
+      // console.log("ciphertext",ciphertext);
       let ext = this.imageFile.name.split('.').pop()
       this.http.post<any>('http://20.188.110.129:3000/postmeapic/' + this.data.id, { 'image': ciphertext }, options).subscribe(done =>
-        this.http.post<any>('http://20.188.110.129:3000/uploadid/' + this.data.nameid+'/'+ext, {}).subscribe(uploadid =>
+        this.http.post<any>('http://20.188.110.129:3000/uploadid/' + this.data.nameid + '/' + ext, {}).subscribe(uploadid =>
           this.http.post<any>('http://20.188.110.129:3000/upload', formData, options2).subscribe(upload =>
-            this.http.post<any>('http://20.188.110.129:3000/updatetrainimage', '{"faceid": "' + this.data.faceid + '","id": "' + this.data.nameid + '","imageUrl": "' + "https://oneteamblob.blob.core.windows.net/meapicture/" + this.data.nameid + "."+ext + '" }', options).subscribe(az1 => {
+            this.http.post<any>('http://20.188.110.129:3000/updatetrainimage', '{"faceid": "' + this.data.faceid + '","id": "' + this.data.nameid + '","imageUrl": "' + "https://oneteamblob.blob.core.windows.net/meapicture/" + this.data.nameid + "." + ext + '" }', options).subscribe(az1 => {
               // console.log("hmm",az1);
               this.spinner.hide();
               this.dialogRef.close()

@@ -1,5 +1,5 @@
 import { Component, Input, Inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+// import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 // import { Observable, of } from 'rxjs';
@@ -83,11 +83,12 @@ export class DeletetableTableComponent {
       this.http.post<any>('http://20.188.110.129:3000/removefaceapi/', '{"faceid": "' + this.data.faceid + '" }', options).subscribe(az1 => {
         // console.log("hmm",az1);
         // this.spinner.hide();
-        this.dialogRef.close()
-      }
-      )
+        this.http.get<any[]>('http://20.188.110.129:3000/deletesqlprofile/' + this.data.nameid).subscribe((deletesql) => {
+          this.dialogRef.close()
 
- 
+        })
+
+      })
     })
   }
 

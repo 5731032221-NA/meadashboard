@@ -22,34 +22,33 @@ import { EditComponent } from '../edit/edit.component'
   styleUrls: ['./tabledata.component.scss'],
 })
 export class SmartTableComponent {
-  displayedColumns = ['#', 'รหัสพนักงาน', 'ชื่อ - สกุล', 'ตำแหน่ง', 'อีเมล์', 'เข้างาน', 'ออกงาน','เก็บข้อมูลเข้า/ออกงานเมื่อ', 'action'];
+  displayedColumns = ['#', 'รหัสพนักงาน', 'ชื่อ - สกุล', 'ตำแหน่ง', 'อีเมล์', 'เข้างาน', 'ออกงาน','% ตรวจจับ', 'action'];
   dataSource: any[];
   p: number = 1;
 
   evaIcons = [];
 
-  constructor(private spinner: NgxSpinnerService,private http: HttpClient, private router: Router, public dialog: MatDialog) {
+  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private router: Router, public dialog: MatDialog) {
     this.spinner.show();
     this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
       this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
         profile.forEach((element) => {
           element['checkin'] = '-';
-          element['checkout'] =  '-';
+          element['checkout'] = '-';
           element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
           element['per'] = (element['individual_confidence']*100.0).toFixed(2);
           checkin.forEach((tt) => {
-            
-            if(element.id == tt.id){
-              element['checkin'] =  tt.checkin;
-              if(tt.checkout == '') element['checkout'] =  '-';
-              else element['checkout'] =  tt.checkout;
+
+            if (element.id == tt.id) {
+              element['checkin'] = tt.checkin;
+              if (tt.checkout == '') element['checkout'] = '-';
+              else element['checkout'] = tt.checkout;
             }
-  
+
           })
 
         })
         profile.sort((a, b) => (a.id - b.id));
-         
         this.dataSource = profile;
         this.spinner.hide();
       })
@@ -60,7 +59,7 @@ export class SmartTableComponent {
   }
   // deleteRow(id) {
   //   this.http.delete<any>('http://20.188.110.129:3000/deletemeaprofile/' + id, {}).subscribe((delet) => {
-      
+
   //   })
 
   // }
@@ -72,31 +71,32 @@ export class SmartTableComponent {
   emoDialog(id, nameid, faceid): void {
     const dialogRef = this.dialog.open(EditTableComponent, {
       width: '820px',
-      data: { id ,nameid,faceid}
+      data: { id, nameid, faceid }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.spinner.show();
       this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
-      this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
-        profile.forEach((element) => {
-          element['checkin'] = '-';
-          element['checkout'] =  '-';
-          element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
-          element['per'] = (element['individual_confidence']*100.0).toFixed(2);
-          checkin.forEach((tt) => {
-          
-            if(element.id == tt.id){
-              element['checkin'] =  tt.checkin;
-              element['checkout'] =  tt.checkout;
-            }
-  
-          })
+        this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
+          profile.forEach((element) => {
+            element['checkin'] = '-';
+            element['checkout'] = '-';
+            element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
+            element['per'] = (element['individual_confidence']*100.0).toFixed(2);
+            checkin.forEach((tt) => {
 
+              if (element.id == tt.id) {
+                element['checkin'] = tt.checkin;
+                element['checkout'] = tt.checkout;
+              }
+
+            })
+
+          })
+          profile.sort((a, b) => (a.id - b.id));
+          this.dataSource = profile;
+          this.spinner.hide();
         })
-        this.dataSource = profile;
-        this.spinner.hide();
       })
-    })
     });
   }
 
@@ -106,56 +106,57 @@ export class SmartTableComponent {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-    //   this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
-    //   this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
-    //     profile.forEach((element) => {
-    //       element['checkin'] = '-';
-    //       element['checkout'] =  '-';
-    //       element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
-    //       checkin.forEach((tt) => {
-          
-    //         if(element.id == tt.id){
-    //           element['checkin'] =  tt.checkin;
-    //           element['checkout'] =  tt.checkout;
-    //         }
-  
-    //       })
+      //   this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
+      //   this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
+      //     profile.forEach((element) => {
+      //       element['checkin'] = '-';
+      //       element['checkout'] =  '-';
+      //       element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
+      //       checkin.forEach((tt) => {
 
-    //     })
-    //     this.dataSource = profile;
-    //   })
-    // })
+      //         if(element.id == tt.id){
+      //           element['checkin'] =  tt.checkin;
+      //           element['checkout'] =  tt.checkout;
+      //         }
+
+      //       })
+
+      //     })
+      //     this.dataSource = profile;
+      //   })
+      // })
     });
   }
 
-  deleteDialog(id ,nameid,faceid): void {
+  deleteDialog(id, nameid, faceid): void {
     const dialogRef = this.dialog.open(DeletetableTableComponent, {
       width: '820px',
-      data: { id ,nameid,faceid }
+      data: { id, nameid }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.spinner.show();
       this.http.get<any[]>('http://20.188.110.129:3000/getmeaprofileandimage').subscribe((profile) => {
-      this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
-        profile.forEach((element) => {
-          element['checkin'] = '-';
-          element['checkout'] =  '-';
-          element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
-          element['per'] = (element['individual_confidence']*100.0).toFixed(2);
-          checkin.forEach((tt) => {
-          
-            if(element.id == tt.id){
-              element['checkin'] =  tt.checkin;
-              element['checkout'] =  tt.checkout;
-            }
-  
-          })
+        this.http.get<any[]>('http://20.188.110.129:3000/getcheckin').subscribe((checkin) => {
+          profile.forEach((element) => {
+            element['checkin'] = '-';
+            element['checkout'] = '-';
+            element['decimage'] = 'data:image/jpg;base64,' + element['encimage'];
+            element['per'] = (element['individual_confidence']*100.0).toFixed(2);
+            checkin.forEach((tt) => {
 
+              if (element.id == tt.id) {
+                element['checkin'] = tt.checkin;
+                element['checkout'] = tt.checkout;
+              }
+
+            })
+
+          })
+          profile.sort((a, b) => (a.id - b.id));
+          this.dataSource = profile;
+          this.spinner.hide();
         })
-        this.dataSource = profile;
-        this.spinner.hide();
       })
-    })
     });
   }
 
@@ -171,7 +172,7 @@ export class SmartTableComponent {
         // let dataSource = this.dataSource
         this.dataSource.forEach(element => {
 
-          if (element['id'] == id_detected) element['per']  = result;
+          if (element['id'] == id_detected) element['per'] = result;
           //  element['per'] = "(" + result  + "%)";
         });
         // this.dataSource = dataSource
@@ -183,4 +184,5 @@ export class SmartTableComponent {
 
     });
   }
+
 }

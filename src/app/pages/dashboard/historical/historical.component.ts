@@ -49,6 +49,7 @@ export class HistoricalComponent {
   ngOnInit() {
     this.http.get<any>('http://20.188.110.129:3000/gethistoricalemo').subscribe((res) => {
       // console.log(res)
+      // this.dataemo = res
       let date_now = new Date();
       let date = ("0" + date_now.getDate()).slice(-2);
 
@@ -60,129 +61,132 @@ export class HistoricalComponent {
 
       let date_today = new Date(year + "-" + month + "-" + date);
       this.http.get<any>('http://20.188.110.129:3000/getcheckin').subscribe((result) => {
+
+        // console.log("checkin",result)
+        var neutral = 0;
+        var happy = 0;
+        var unhappy = 0;
+
+
+        result.forEach(element => {
+          // asyncForEach(result, async (element) => {
+
+
+
+
+          if (element.checkinEmo == 'neutral') {
+            neutral++;
+          }
+          else if (element.checkinEmo == "happiness" || element.checkinEmo == "surprise") {
+            happy++;
+          }
+          else unhappy++;
+
+          if (element.checkoutEmo == 'neutral') {
+            neutral++;
+          }
+          else if (element.checkoutEmo == "happiness" || element.checkoutEmo == "surprise") {
+            happy++;
+          }
+          else unhappy++;
+          //console.log(neutral, happy, unhappy)
+          // itemsProcessed++;
+          // if (itemsProcessed === result.length) {
+
+          // }
+
+
+        });
+
+        // res[0].data = [...res[0].data, [Date.parse(date_today.toString()), neutral]]
+        // res[1].data = [...res[1].data, [Date.parse(date_today.toString()), happy]]
+        // res[2].data = [...res[2].data, [Date.parse(date_today.toString()), unhappy]]
+
         
-          // console.log("checkin",result)
-          var neutral = 0;
-                                        var happy = 0;
-                                        var unhappy = 0;
+        res[0].data = [...res[0].data, [Date.parse(date_today.toString()), unhappy]]
+        res[1].data = [...res[1].data, [Date.parse(date_today.toString()), neutral]]
+        res[2].data = [...res[2].data, [Date.parse(date_today.toString()), happy]]
 
+        this.stock = new StockChart({
+          chart: {
+            type: 'spline'
+            // type: 'areaspline'
+          },
+          rangeSelector: {
+            selected: 4
+          },
+          credits: {
+            enabled: false
+          },
 
-          result.forEach(element => {
-            // asyncForEach(result, async (element) => {
-
-
-
-
-              if (element.checkinEmo == 'neutral') {
-                neutral++;
-            }
-            else if (element.checkinEmo == "happiness" || element.checkinEmo == "surprise") {
-                happy++;
-            }
-            else unhappy++;
-
-            if (element.checkoutEmo == 'neutral') {
-                neutral++;
-            }
-            else if (element.checkoutEmo == "happiness" || element.checkoutEmo == "surprise") {
-                happy++;
-            }
-            else unhappy++;
-            //console.log(neutral, happy, unhappy)
-            // itemsProcessed++;
-            // if (itemsProcessed === result.length) {
-
-            // }
-
-
-          });
-
-          res[0].data = [...res[0].data, [Date.parse(date_today.toString()), happy]]
-          res[1].data = [...res[1].data, [Date.parse(date_today.toString()), unhappy]]
-          res[2].data = [...res[2].data, [Date.parse(date_today.toString()), neutral]]
-
-      // this.dataemo = res
-      this.stock = new StockChart({
-        chart: {
-          type: 'spline'
-          // type: 'areaspline'
-        },
-        rangeSelector: {
-          selected: 4
-        },
-        credits: {
-          enabled: false
-        },
-
-        // exporting: {
-        //   buttons: {
-        //       contextButton: {
-        //           menuItems: [{
-        //               textKey: 'downloadXLS',
-        //               onclick: function () {
-        //                   this.downloadXLS();
-        //               }
-        //           }, {
-        //               textKey: 'downloadCSV',
-        //               onclick: function () {
-        //                   this.downloadCSV();
-        //               }
-        //           }]
-        //       }
-        //   }
-        // },
-
-        yAxis: {
-          // labels: {
-          //   formatter: function () {
-          //     return (this.value > 0 ? ' + ' : '') + this.value + '%';
+          // exporting: {
+          //   buttons: {
+          //       contextButton: {
+          //           menuItems: [{
+          //               textKey: 'downloadXLS',
+          //               onclick: function () {
+          //                   this.downloadXLS();
+          //               }
+          //           }, {
+          //               textKey: 'downloadCSV',
+          //               onclick: function () {
+          //                   this.downloadCSV();
+          //               }
+          //           }]
+          //       }
           //   }
           // },
-          plotLines: [{
-            value: 0,
-            width: 2,
-            color: 'silver'
-          }]
-        },
 
-        xAxis: {
-          type: 'datetime',
-          gridLineWidth: 1,
-          labels: {
+          yAxis: {
+            // labels: {
+            //   formatter: function () {
+            //     return (this.value > 0 ? ' + ' : '') + this.value + '%';
+            //   }
+            // },
+            plotLines: [{
+              value: 0,
+              width: 2,
+              color: 'silver'
+            }]
+          },
 
-            style: {
-              fontSize: '12px'
+          xAxis: {
+            type: 'datetime',
+            gridLineWidth: 1,
+            labels: {
+
+              style: {
+                fontSize: '12px'
+              }
             }
-          }
-        },
-        plotOptions: {
-          series: {
-            // compare: 'percent',
-            showInNavigator: true
-          }
-        },
+          },
+          plotOptions: {
+            series: {
+              // compare: 'percent',
+              showInNavigator: true
+            }
+          },
 
-        tooltip: {
+          tooltip: {
 
-          // pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-          // valueDecimals: 2,
-          split: true
-        },
-        legend: {
-          enabled: true
-        },
-        colors: ['#8FcBFA', '#FF7701', '#7D7D7D'],
-        // series: [{ name: "Happy", data: []},
-        // { name: "Happy", data: []},
-        // { name: "Happy", data: []}]
-        series: res
-      });
-      });
+            // pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+            // valueDecimals: 2,
+            split: true
+          },
+          legend: {
+            enabled: true
+          },
+          colors: ['#8FcBFA', '#FF7701', '#7D7D7D'],
+          // series: [{ name: "Happy", data: []},
+          // { name: "Happy", data: []},
+          // { name: "Happy", data: []}]
+          series: res
+        });
+      })
     })
 
     this.http.get<any>('http://20.188.110.129:3000/gethistoricalcheckin').subscribe((res) => {
       // console.log(res)
-      // this.dataemo = res
       let date_now = new Date();
       let date = ("0" + date_now.getDate()).slice(-2);
 
@@ -227,11 +231,17 @@ export class HistoricalComponent {
 
           });
 
-          res[0].data = [...res[0].data, [Date.parse(date_today.toString()), late]]
-          res[1].data = [...res[1].data, [Date.parse(date_today.toString()), absence]]
-          res[2].data = [...res[2].data, [Date.parse(date_today.toString()), ontime]]
-          res[3].data = [...res[3].data, [Date.parse(date_today.toString()), overtime]]
+          // res[0].data = [...res[0].data, [Date.parse(date_today.toString()), ontime]]
+          // res[1].data = [...res[1].data, [Date.parse(date_today.toString()), late]]
+          // res[2].data = [...res[2].data, [Date.parse(date_today.toString()), absence]]
+          // res[3].data = [...res[3].data, [Date.parse(date_today.toString()), overtime]]
 
+          res[0].data = [...res[0].data, [Date.parse(date_today.toString()), absence]]
+          res[1].data = [...res[1].data, [Date.parse(date_today.toString()), ontime]]
+          res[2].data = [...res[2].data, [Date.parse(date_today.toString()), overtime]]
+          res[3].data = [...res[3].data, [Date.parse(date_today.toString()), late]]
+
+          // this.dataemo = res
           this.stock2 = new StockChart({
             chart: {
               type: 'spline'
