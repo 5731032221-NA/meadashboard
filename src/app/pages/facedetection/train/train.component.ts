@@ -62,10 +62,11 @@ export class TrainComponent {
 
   onSubmit() {
    
-    this.http.get<any[]>('http://20.188.110.129:3000/traincropimage/' + this.data.name + '/' + this.data.id + '/' + this.data.rowid).subscribe((done) => {
+   
       // if (this.data.camera == 2 || this.data.camera == 4) {
         this.http.get<any[]>('http://20.188.110.129:3000/chagnetime/' + this.data.date + '/' + this.data.datetime + '/' + this.data.id + '/' + this.data.name).subscribe((done) => {
-          this.dialogRef.close(true)
+          this.http.get<any[]>('http://20.188.110.129:3000/traincropimage/' + this.data.name + '/' + this.data.id + '/' + this.data.rowid).subscribe((done) => {
+        this.dialogRef.close(true)
         })
       // }  
       // else {
